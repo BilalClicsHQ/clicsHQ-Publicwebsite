@@ -28,7 +28,7 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'teams',        name: 'Teams',        path: '/teams',         icon: ''                      },
   { id: 'docs',         name: 'Docs',         path: '/docs',          icon: '/icons/docs.svg'       },
   { id: 'clicsai',      name: 'Clics AI',     path: '/ask-ai',        icon: ''                      },
-  { id: 'dashboards',   name: 'Dashboards',   path: '/leaderboard',   icon: '/icons/dashboards.svg' },
+  { id: 'dashboards',   name: 'Dashboards',   path: '/dashboards',    icon: '/icons/dashboards.svg' },
   { id: 'workflows',    name: 'Workflows',    path: '/workflows',     icon: ''                      },
   { id: 'integrations', name: 'Integrations', path: '/integrations',  icon: ''                      },
 ]
