@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import {
   Shield,
   ChevronDown,
@@ -87,7 +87,6 @@ function LucideNavIcon({ icon: Icon, active }: { icon: any; active: boolean }) {
 
 export function Sidebar() {
   const pathname = usePathname() || '/'
-  const router = useRouter()
   const [isExpanded, setIsExpanded] = React.useState(true)
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const [spacesExpanded, setSpacesExpanded] = React.useState(false)
@@ -100,7 +99,6 @@ export function Sidebar() {
   const workspaceName = 'Workspace'
 
   const isActive = (path: string) => (path === '/' ? pathname === '/' : pathname.startsWith(path))
-  const navigate = (path: string) => { router.push(path); setMobileOpen(false) }
 
   function renderIcon(itemId: string, icon: string, active: boolean) {
     if (itemId === 'clicsai')      return <ClicsAiIcon />
@@ -206,8 +204,10 @@ export function Sidebar() {
                       )}
                     >
                       {active && <span className="absolute left-[-12px] top-1/2 -translate-y-1/2 w-[3px] h-[55%] rounded-r-full bg-purple-500" />}
-                      <button
-                        onClick={() => { if (pathname !== '/spaces') navigate('/spaces') }}
+                      <Link
+                        href="/spaces"
+                        prefetch
+                        onClick={() => setMobileOpen(false)}
                         className={cn('flex items-center gap-3 min-w-0 outline-none focus:outline-none', isExpanded ? 'flex-1' : 'justify-center w-full')}
                       >
                         {renderIcon(item.id, item.icon, active)}
@@ -216,7 +216,7 @@ export function Sidebar() {
                             {item.name}
                           </span>
                         )}
-                      </button>
+                      </Link>
                       {isExpanded && (
                         <button
                           onClick={(e) => { e.stopPropagation(); setSpacesExpanded((v) => !v) }}
@@ -229,13 +229,15 @@ export function Sidebar() {
                     {spacesExpanded && isExpanded && (
                       <div className="mt-1">
                         {/* Backend not wired yet — show a single "View all spaces" link until /api/spaces/favourites + /api/spaces/recent exist */}
-                        <button
-                          onClick={() => navigate('/spaces')}
+                        <Link
+                          href="/spaces"
+                          prefetch
+                          onClick={() => setMobileOpen(false)}
                           className="w-full flex items-center gap-2 h-8 pl-8 pr-2 text-[12px] text-[#717579] hover:text-gray-300 hover:bg-white/5 rounded-lg transition-colors outline-none focus:outline-none"
                         >
                           <Menu className="h-3 w-3" />
                           View all spaces
-                        </button>
+                        </Link>
                       </div>
                     )}
                   </div>
@@ -254,8 +256,10 @@ export function Sidebar() {
                       )}
                     >
                       {active && <span className="absolute left-[-12px] top-1/2 -translate-y-1/2 w-[3px] h-[55%] rounded-r-full bg-purple-500" />}
-                      <button
-                        onClick={() => navigate(item.path)}
+                      <Link
+                        href={item.path}
+                        prefetch
+                        onClick={() => setMobileOpen(false)}
                         className={cn('flex items-center gap-3 min-w-0 outline-none focus:outline-none', isExpanded ? 'flex-1' : 'justify-center w-full')}
                       >
                         {renderIcon(item.id, item.icon, active)}
@@ -264,7 +268,7 @@ export function Sidebar() {
                             {item.name}
                           </span>
                         )}
-                      </button>
+                      </Link>
                       {isExpanded && (
                         <button
                           onClick={() => setDocsExpanded((v) => !v)}
@@ -282,9 +286,11 @@ export function Sidebar() {
                           { label: 'Meeting Notes',  path: '/docs/meeting-notes' },
                           { label: 'Trash',          path: '/docs/trash' },
                         ].map((d) => (
-                          <button
+                          <Link
                             key={d.path}
-                            onClick={() => navigate(d.path)}
+                            href={d.path}
+                            prefetch
+                            onClick={() => setMobileOpen(false)}
                             className={cn(
                               'w-full flex items-center h-8 rounded-lg pl-10 text-[13px] transition-colors hover:bg-white/5 outline-none focus:outline-none',
                               pathname === d.path ? 'font-semibold text-white' : 'font-normal text-[#717579]',
@@ -293,7 +299,7 @@ export function Sidebar() {
                           >
                             {d.path === '/docs/trash' && <Trash2 className="h-4 w-4 mr-2 text-[#717579]" />}
                             {d.label}
-                          </button>
+                          </Link>
                         ))}
                       </div>
                     )}
@@ -303,9 +309,11 @@ export function Sidebar() {
 
               // All other nav items
               return (
-                <button
+                <Link
                   key={item.id}
-                  onClick={() => navigate(item.path)}
+                  href={item.path}
+                  prefetch
+                  onClick={() => setMobileOpen(false)}
                   className={cn(
                     'relative w-full flex items-center rounded-lg transition-all duration-150 outline-none focus:outline-none',
                     isExpanded ? 'h-[40px] px-3 gap-3 justify-start' : 'h-[40px] justify-center',
@@ -319,7 +327,7 @@ export function Sidebar() {
                       {item.name}
                     </span>
                   )}
-                </button>
+                </Link>
               )
             })}
           </div>
@@ -329,24 +337,13 @@ export function Sidebar() {
         <div className={cn('shrink-0 border-t border-white/[0.06] py-3', isExpanded ? 'px-3 space-y-[2px]' : 'flex flex-col items-center gap-[2px] px-1')}>
           {BOTTOM_ITEMS.map((item) => {
             const active = item.path ? isActive(item.path) : false
-            return (
-              <button
-                key={item.id}
-                onClick={() => {
-                  if (item.id === 'invite') {
-                    // Invite modal not implemented yet — placeholder so the click is harmless
-                    alert('Invite modal coming soon')
-                  } else if (item.path) {
-                    navigate(item.path)
-                  }
-                }}
-                className={cn(
-                  'relative flex items-center rounded-lg transition-all duration-150 outline-none focus:outline-none',
-                  isExpanded ? 'w-full h-[40px] px-3 gap-3 justify-start' : 'w-9 h-9 justify-center',
-                  active ? 'bg-white/[0.10]' : 'hover:bg-white/[0.05]',
-                )}
-                title={!isExpanded ? item.name : undefined}
-              >
+            const itemClass = cn(
+              'relative flex items-center rounded-lg transition-all duration-150 outline-none focus:outline-none',
+              isExpanded ? 'w-full h-[40px] px-3 gap-3 justify-start' : 'w-9 h-9 justify-center',
+              active ? 'bg-white/[0.10]' : 'hover:bg-white/[0.05]',
+            )
+            const itemInner = (
+              <>
                 {active && <span className="absolute left-[-12px] top-1/2 -translate-y-1/2 w-[3px] h-[55%] rounded-r-full bg-purple-500" />}
                 <SidebarIcon src={item.icon} alt={item.name} active={active} />
                 {isExpanded && (
@@ -354,7 +351,34 @@ export function Sidebar() {
                     {item.name}
                   </span>
                 )}
-              </button>
+              </>
+            )
+
+            // Invite has no route yet — keep it a button with a placeholder action.
+            if (item.id === 'invite' || !item.path) {
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => alert('Invite modal coming soon')}
+                  className={itemClass}
+                  title={!isExpanded ? item.name : undefined}
+                >
+                  {itemInner}
+                </button>
+              )
+            }
+
+            return (
+              <Link
+                key={item.id}
+                href={item.path}
+                prefetch
+                onClick={() => setMobileOpen(false)}
+                className={itemClass}
+                title={!isExpanded ? item.name : undefined}
+              >
+                {itemInner}
+              </Link>
             )
           })}
         </div>
