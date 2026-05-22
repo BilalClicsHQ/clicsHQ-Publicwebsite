@@ -49,6 +49,27 @@ export const MEMBERS: Member[] = [
   { id: 'm5', name: 'Sarah Chen',     email: 'sarah@gmail.com',   role: 'Admin',  status: 'Active',  initial: 'S' },
 ]
 
+export interface Team {
+  id: string
+  name: string
+  description: string
+  createdAt: string   // ISO
+  memberCount: number
+  memberIds: string[]
+}
+
+export const TEAMS: Team[] = [
+  { id: 'tm1', name: 'Designers',   description: 'Product & brand design squad.', createdAt: '2026-04-01', memberCount: 4, memberIds: ['m1','m2','m3','m4'] },
+  { id: 'tm2', name: 'Editors',     description: 'Content editing and review.',   createdAt: '2026-04-01', memberCount: 4, memberIds: ['m2','m3','m4','m5'] },
+  { id: 'tm3', name: 'Developers',  description: 'Frontend & backend engineers.', createdAt: '2026-04-01', memberCount: 4, memberIds: ['m1','m3','m4','m5'] },
+  { id: 'tm4', name: 'Developers',  description: 'Platform & infra team.',        createdAt: '2026-04-01', memberCount: 4, memberIds: ['m1','m2','m4','m5'] },
+  { id: 'tm5', name: 'Wordpress',   description: 'CMS & site maintenance.',       createdAt: '2026-04-01', memberCount: 4, memberIds: ['m1','m2','m3','m5'] },
+  { id: 'tm6', name: 'UI/UX',       description: 'Research, flows, prototyping.', createdAt: '2026-04-01', memberCount: 4, memberIds: ['m1','m2','m3','m4'] },
+  { id: 'tm7', name: 'Content',     description: 'Copywriting and strategy.',     createdAt: '2026-04-01', memberCount: 4, memberIds: ['m2','m3','m4','m5'] },
+  { id: 'tm8', name: 'Content',     description: 'Social & blog content.',        createdAt: '2026-04-01', memberCount: 4, memberIds: ['m1','m3','m4','m5'] },
+  { id: 'tm9', name: 'Post Design', description: 'Marketing creatives.',          createdAt: '2026-04-01', memberCount: 4, memberIds: ['m1','m2','m4','m5'] },
+]
+
 export const SPACES: Space[] = [
   {
     id: 's1', slug: 'product-backlog', name: 'Product Backlog',
@@ -104,3 +125,24 @@ export function getSpace(slug: string) {
 export function getSpaceTasks(slug: string) {
   return TASKS.filter((t) => t.spaceSlug === slug)
 }
+export function getTeam(id: string) {
+  return TEAMS.find((t) => t.id === id)
+}
+
+/** A longer members roster for the paginated Members list view. */
+const ROSTER_NAMES = [
+  ['James Jr.', 'james.jr@gmail.com', 'Member', 'Pending'],
+  ['David John', 'david12@gmail.com', 'Admin', 'Active'],
+] as const
+
+export const MEMBER_ROSTER: Member[] = Array.from({ length: 160 }, (_, i) => {
+  const [name, email, role, status] = ROSTER_NAMES[i % 2]
+  return {
+    id: `mr${i + 1}`,
+    name,
+    email,
+    role: role as Member['role'],
+    status: status as Member['status'],
+    initial: name.charAt(0),
+  }
+})
