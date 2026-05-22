@@ -15,9 +15,36 @@ import {
 import { DOC_PAGES, type DocPage, type DocBlock } from '@/data/docs'
 import { cn } from '@/lib/cn'
 
-export function DocsView() {
-  const [activeId, setActiveId] = React.useState(DOC_PAGES[0].id)
-  const active = DOC_PAGES.find((p) => p.id === activeId) ?? DOC_PAGES[0]
+type DocScope = 'all' | 'my' | 'meeting-notes' | 'trash'
+
+const SCOPE_PAGES: Record<DocScope, typeof DOC_PAGES> = {
+  all: DOC_PAGES,
+  my: DOC_PAGES,
+  'meeting-notes': DOC_PAGES.filter((p) => p.id === 'meeting-notes'),
+  trash: [],
+}
+
+export function DocsView({ scope = 'all' }: { scope?: DocScope }) {
+  const pages = SCOPE_PAGES[scope]
+  const [activeId, setActiveId] = React.useState(pages[0]?.id ?? '')
+  const active = pages.find((p) => p.id === activeId) ?? pages[0]
+
+  if (pages.length === 0) {
+    return (
+      <div className="-mx-4 -my-6 flex h-[calc(100vh-4rem)] flex-col sm:-mx-6 lg:-mx-8">
+        <div className="flex items-center justify-between border-b border-gray-100 px-6 py-3">
+          <h1 className="text-lg font-bold text-ink">Doc</h1>
+        </div>
+        <div className="flex flex-1 flex-col items-center justify-center text-center">
+          <div className="grid h-20 w-20 place-items-center rounded-full bg-gray-50 text-3xl">
+            🗑️
+          </div>
+          <p className="mt-5 text-sm font-semibold text-ink">Trash is empty</p>
+          <p className="mt-1 text-sm text-muted">Deleted documents will appear here.</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="-mx-4 -my-6 flex h-[calc(100vh-4rem)] flex-col sm:-mx-6 lg:-mx-8">
@@ -39,7 +66,7 @@ export function DocsView() {
             <Plus className="h-4 w-4" /> Add page
           </button>
           <nav className="mt-2 space-y-0.5">
-            {DOC_PAGES.map((page) => (
+            {pages.map((page) => (
               <button
                 key={page.id}
                 onClick={() => setActiveId(page.id)}
