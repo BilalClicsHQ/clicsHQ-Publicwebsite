@@ -3,6 +3,7 @@
 import * as React from 'react'
 import { Switch } from '@/components/ui/Switch'
 import { Button } from '@/components/ui/Button'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 type Row = { id: string; title: string; description: string; defaultOn: boolean }
 
@@ -19,6 +20,7 @@ const ALERTS: Row[] = [
 ]
 
 export function NotificationsTab() {
+  const comingSoon = useComingSoon()
   return (
     <div className="max-w-3xl">
       <h2 className="text-xl font-bold text-ink">Notifications</h2>
@@ -34,7 +36,7 @@ export function NotificationsTab() {
         {ALERTS.map((r) => <ToggleRow key={r.id} row={r} />)}
       </div>
 
-      <Button className="mt-6">Save Changes</Button>
+      <Button className="mt-6" onClick={() => comingSoon('Save notifications')}>Save Changes</Button>
     </div>
   )
 }

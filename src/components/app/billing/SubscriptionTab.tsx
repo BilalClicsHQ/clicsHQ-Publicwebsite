@@ -4,6 +4,7 @@ import * as React from 'react'
 import { Minus, Plus, Check, Star } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/cn'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 type Cycle = 'monthly' | 'yearly'
 
@@ -52,6 +53,7 @@ const PLANS: Plan[] = [
 ]
 
 export function SubscriptionTab() {
+  const comingSoon = useComingSoon()
   const [cycle, setCycle] = React.useState<Cycle>('monthly')
   const [seats, setSeats] = React.useState(2)
 
@@ -116,7 +118,11 @@ export function SubscriptionTab() {
             </div>
             <p className="mt-2 text-xs text-muted leading-relaxed">{plan.tagline}</p>
 
-            <Button variant={plan.highlighted ? 'primary' : 'secondary'} className="mt-4 w-full">
+            <Button
+              variant={plan.highlighted ? 'primary' : 'secondary'}
+              className="mt-4 w-full"
+              onClick={() => comingSoon(`${plan.name} plan`)}
+            >
               {plan.cta}
             </Button>
 

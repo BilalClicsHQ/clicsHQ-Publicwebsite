@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 import { DOC_PAGES, type DocPage, type DocBlock } from '@/data/docs'
 import { cn } from '@/lib/cn'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 type DocScope = 'all' | 'my' | 'meeting-notes' | 'trash'
 
@@ -25,6 +26,7 @@ const SCOPE_PAGES: Record<DocScope, typeof DOC_PAGES> = {
 }
 
 export function DocsView({ scope = 'all' }: { scope?: DocScope }) {
+  const comingSoon = useComingSoon()
   const pages = SCOPE_PAGES[scope]
   const [activeId, setActiveId] = React.useState(pages[0]?.id ?? '')
   const active = pages.find((p) => p.id === activeId) ?? pages[0]
@@ -52,17 +54,20 @@ export function DocsView({ scope = 'all' }: { scope?: DocScope }) {
       <div className="flex items-center justify-between border-b border-gray-100 px-6 py-3">
         <h1 className="text-lg font-bold text-ink">Doc</h1>
         <div className="flex items-center gap-1">
-          <HeaderButton icon={Type} label="Aa" />
-          <HeaderButton icon={Sparkles} label="Ask AI" accent />
-          <IconButton icon={MoreHorizontal} />
-          <IconButton icon={X} />
+          <HeaderButton icon={Type} label="Aa" onClick={() => comingSoon('Text formatting')} />
+          <HeaderButton icon={Sparkles} label="Ask AI" accent onClick={() => comingSoon('Ask AI in docs')} />
+          <IconButton icon={MoreHorizontal} onClick={() => comingSoon('Document options')} />
+          <IconButton icon={X} onClick={() => comingSoon('Close document')} />
         </div>
       </div>
 
       <div className="flex flex-1 overflow-hidden">
         {/* Page list sidebar */}
         <aside className="hidden w-56 shrink-0 border-r border-gray-100 p-3 md:block">
-          <button className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm text-muted hover:bg-gray-100">
+          <button
+            onClick={() => comingSoon('Add page')}
+            className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm text-muted hover:bg-gray-100"
+          >
             <Plus className="h-4 w-4" /> Add page
           </button>
           <nav className="mt-2 space-y-0.5">
@@ -94,6 +99,7 @@ export function DocsView({ scope = 'all' }: { scope?: DocScope }) {
 }
 
 function Document({ page }: { page: DocPage }) {
+  const comingSoon = useComingSoon()
   return (
     <article className="mx-auto max-w-2xl px-6 py-12">
       <h2 className="text-3xl font-bold text-ink/80">{page.title}</h2>
@@ -121,10 +127,10 @@ function Document({ page }: { page: DocPage }) {
 
       {/* Quick insert chips */}
       <div className="mt-3 flex flex-wrap gap-2">
-        <InsertChip icon={Sparkles} label="Write with AI" />
-        <InsertChip icon={Table2} label="Table" />
-        <InsertChip icon={FileText} label="Project Overview" />
-        <InsertChip icon={StickyNote} label="Meeting Notes" />
+        <InsertChip icon={Sparkles} label="Write with AI" onClick={() => comingSoon('Write with AI')} />
+        <InsertChip icon={Table2} label="Table" onClick={() => comingSoon('Insert table')} />
+        <InsertChip icon={FileText} label="Project Overview" onClick={() => comingSoon('Project Overview block')} />
+        <InsertChip icon={StickyNote} label="Meeting Notes" onClick={() => comingSoon('Meeting Notes block')} />
       </div>
     </article>
   )
@@ -153,13 +159,16 @@ function HeaderButton({
   icon: Icon,
   label,
   accent,
+  onClick,
 }: {
   icon: React.ElementType
   label: string
   accent?: boolean
+  onClick?: () => void
 }) {
   return (
     <button
+      onClick={onClick}
       className={cn(
         'inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors',
         accent ? 'text-ai-600 hover:bg-ai-50' : 'text-muted hover:bg-gray-100',
@@ -170,17 +179,31 @@ function HeaderButton({
   )
 }
 
-function IconButton({ icon: Icon }: { icon: React.ElementType }) {
+function IconButton({ icon: Icon, onClick }: { icon: React.ElementType; onClick?: () => void }) {
   return (
-    <button className="grid h-8 w-8 place-items-center rounded-md text-muted hover:bg-gray-100">
+    <button
+      onClick={onClick}
+      className="grid h-8 w-8 place-items-center rounded-md text-muted hover:bg-gray-100"
+    >
       <Icon className="h-4 w-4" />
     </button>
   )
 }
 
-function InsertChip({ icon: Icon, label }: { icon: React.ElementType; label: string }) {
+function InsertChip({
+  icon: Icon,
+  label,
+  onClick,
+}: {
+  icon: React.ElementType
+  label: string
+  onClick?: () => void
+}) {
   return (
-    <button className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-muted ring-1 ring-gray-200 hover:bg-gray-50">
+    <button
+      onClick={onClick}
+      className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-muted ring-1 ring-gray-200 hover:bg-gray-50"
+    >
       <Icon className="h-3.5 w-3.5" /> {label}
     </button>
   )

@@ -6,8 +6,11 @@ import { Button } from '@/components/ui/Button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar'
 import { Badge } from '@/components/ui/Badge'
 import { cn } from '@/lib/cn'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 export function Topbar() {
+  const comingSoon = useComingSoon()
+
   return (
     <header className="sticky top-0 z-30 bg-white">
       <div className="flex h-16 items-center gap-4 px-4 sm:px-6">
@@ -29,7 +32,7 @@ export function Topbar() {
         </div>
 
         {/* Create */}
-        <Button size="md" className="gap-1.5">
+        <Button size="md" className="gap-1.5" onClick={() => comingSoon('Quick create')}>
           <Plus className="h-4 w-4" />
           Create
         </Button>
@@ -38,6 +41,7 @@ export function Topbar() {
         <div className="flex-1 flex items-center justify-end gap-2">
           <button
             type="button"
+            onClick={() => comingSoon('Help center')}
             className="grid h-9 w-9 place-items-center rounded-full text-muted hover:bg-gray-100 hover:text-ink transition-colors"
             aria-label="Help"
           >
@@ -47,6 +51,7 @@ export function Topbar() {
           {/* Notification bell */}
           <button
             type="button"
+            onClick={() => comingSoon('Notifications')}
             className="relative grid h-9 w-9 place-items-center rounded-full text-muted hover:bg-gray-100 hover:text-ink transition-colors"
             aria-label="Notifications"
           >
@@ -63,6 +68,7 @@ export function Topbar() {
           {/* User avatar */}
           <button
             type="button"
+            onClick={() => comingSoon('Account menu')}
             className="rounded-full ring-2 ring-pink-300 hover:ring-pink-400 transition-colors"
             aria-label="Account menu"
           >

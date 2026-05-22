@@ -12,8 +12,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/DropdownMenu'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 export default function WorkflowsPage() {
+  const comingSoon = useComingSoon()
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-end">
@@ -54,9 +56,16 @@ export default function WorkflowsPage() {
                   <MoreHorizontal className="h-4 w-4 text-muted" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem><Copy className="h-3.5 w-3.5" />Duplicate Workflow</DropdownMenuItem>
-                  <DropdownMenuItem><Heart className="h-3.5 w-3.5" />Favorite</DropdownMenuItem>
-                  <DropdownMenuItem className="text-danger-fg focus:text-danger-fg">
+                  <DropdownMenuItem onSelect={() => comingSoon('Duplicate workflow')}>
+                    <Copy className="h-3.5 w-3.5" />Duplicate Workflow
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => comingSoon('Favorite workflow')}>
+                    <Heart className="h-3.5 w-3.5" />Favorite
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="text-danger-fg focus:text-danger-fg"
+                    onSelect={() => comingSoon('Delete workflow')}
+                  >
                     <Trash2 className="h-3.5 w-3.5" />Delete Workflow
                   </DropdownMenuItem>
                 </DropdownMenuContent>

@@ -12,10 +12,12 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/DropdownMenu'
 import { cn } from '@/lib/cn'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 const PAGE_SIZE = 10
 
 export function MembersView() {
+  const comingSoon = useComingSoon()
   const [page, setPage] = React.useState(1)
   const total = MEMBER_ROSTER.length
   const pageCount = Math.ceil(total / PAGE_SIZE)
@@ -34,7 +36,7 @@ export function MembersView() {
   return (
     <>
       <div className="flex items-center justify-end">
-        <Button size="sm">Create Member</Button>
+        <Button size="sm" onClick={() => comingSoon('Create member')}>Create Member</Button>
       </div>
 
       <div className="mt-5 overflow-x-auto rounded-xl bg-white ring-1 ring-gray-100">
@@ -77,7 +79,10 @@ export function MembersView() {
                         </button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
-                        <DropdownMenuItem className="text-danger-fg focus:text-danger-fg">
+                        <DropdownMenuItem
+                          className="text-danger-fg focus:text-danger-fg"
+                          onSelect={() => comingSoon('Delete member')}
+                        >
                           <Trash2 className="h-4 w-4" /> Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>
@@ -129,6 +134,7 @@ export function MembersView() {
 }
 
 function MembersEmpty() {
+  const comingSoon = useComingSoon()
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center">
       <div className="grid h-28 w-28 place-items-center rounded-full bg-gray-50 text-subtle">
@@ -137,7 +143,7 @@ function MembersEmpty() {
       <p className="mt-6 max-w-xs text-base font-bold text-ink">
         Bring member together and make their work easy to visualize!
       </p>
-      <Button className="mt-4">
+      <Button className="mt-4" onClick={() => comingSoon('Invite member')}>
         <UserPlus className="h-4 w-4" /> Invite member
       </Button>
     </div>

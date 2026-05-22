@@ -12,6 +12,7 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/DropdownMenu'
 import { CreateTeamDialog } from './CreateTeamDialog'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -40,6 +41,7 @@ export function TeamsView() {
 }
 
 function TeamCard({ team }: { team: Team }) {
+  const comingSoon = useComingSoon()
   return (
     <div className="group relative rounded-xl bg-white p-4 ring-1 ring-gray-100 shadow-card transition-shadow hover:shadow-lg">
       <div className="flex items-start justify-between">
@@ -51,10 +53,13 @@ function TeamCard({ team }: { team: Team }) {
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => comingSoon('Edit team')}>
               <Pencil className="h-4 w-4" /> Edit
             </DropdownMenuItem>
-            <DropdownMenuItem className="text-danger-fg focus:text-danger-fg">
+            <DropdownMenuItem
+              className="text-danger-fg focus:text-danger-fg"
+              onSelect={() => comingSoon('Delete team')}
+            >
               <Trash2 className="h-4 w-4" /> Delete
             </DropdownMenuItem>
           </DropdownMenuContent>

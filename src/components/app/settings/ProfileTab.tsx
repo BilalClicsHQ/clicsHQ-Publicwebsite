@@ -6,8 +6,10 @@ import { Input } from '@/components/ui/Input'
 import { Label } from '@/components/ui/Label'
 import { Button } from '@/components/ui/Button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 export function ProfileTab() {
+  const comingSoon = useComingSoon()
   return (
     <div className="max-w-3xl">
       <h2 className="text-xl font-bold text-ink">Profile</h2>
@@ -22,7 +24,12 @@ export function ProfileTab() {
         </div>
         <div>
           <p className="text-sm font-medium text-ink">Profile photo</p>
-          <button className="text-sm font-medium text-ai-600 hover:underline">Change</button>
+          <button
+            onClick={() => comingSoon('Change photo')}
+            className="text-sm font-medium text-ai-600 hover:underline"
+          >
+            Change
+          </button>
         </div>
       </div>
 
@@ -47,7 +54,7 @@ export function ProfileTab() {
         </div>
       </div>
 
-      <Button className="mt-6">Save Changes</Button>
+      <Button className="mt-6" onClick={() => comingSoon('Save profile')}>Save Changes</Button>
     </div>
   )
 }

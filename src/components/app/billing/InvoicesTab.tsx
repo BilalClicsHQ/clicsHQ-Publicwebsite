@@ -9,6 +9,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/DropdownMenu'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 type Invoice = {
   id: string
@@ -27,6 +28,7 @@ const INVOICES: Invoice[] = [
 ]
 
 export function InvoicesTab() {
+  const comingSoon = useComingSoon()
   return (
     <div className="max-w-2xl space-y-10">
       {/* Billing Information */}
@@ -42,7 +44,10 @@ export function InvoicesTab() {
             <dd className="font-medium text-ink">+92 123 1251544</dd>
           </div>
         </dl>
-        <button className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-ai-600 hover:underline">
+        <button
+          onClick={() => comingSoon('Update billing info')}
+          className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-ai-600 hover:underline"
+        >
           Update Information <ArrowUpRight className="h-3.5 w-3.5" />
         </button>
       </section>
@@ -69,17 +74,23 @@ export function InvoicesTab() {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem>
+              <DropdownMenuItem onSelect={() => comingSoon('Edit payment method')}>
                 <Pencil className="h-4 w-4" /> Edit
               </DropdownMenuItem>
-              <DropdownMenuItem className="text-danger-fg focus:text-danger-fg">
+              <DropdownMenuItem
+                className="text-danger-fg focus:text-danger-fg"
+                onSelect={() => comingSoon('Delete payment method')}
+              >
                 <Trash2 className="h-4 w-4" /> Delete
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
 
-        <button className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-ink hover:text-ai-600">
+        <button
+          onClick={() => comingSoon('Add payment method')}
+          className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-ink hover:text-ai-600"
+        >
           <Plus className="h-3.5 w-3.5" /> Add another payment
         </button>
       </section>
@@ -88,7 +99,12 @@ export function InvoicesTab() {
       <section className="rounded-2xl bg-white p-5 ring-1 ring-gray-100 shadow-card">
         <div className="flex items-center justify-between">
           <h2 className="text-base font-bold text-ink">Invoice History</h2>
-          <button className="text-sm font-medium text-ai-600 hover:underline">View Invoices</button>
+          <button
+            onClick={() => comingSoon('View invoices')}
+            className="text-sm font-medium text-ai-600 hover:underline"
+          >
+            View Invoices
+          </button>
         </div>
 
         <div className="mt-4 overflow-x-auto">

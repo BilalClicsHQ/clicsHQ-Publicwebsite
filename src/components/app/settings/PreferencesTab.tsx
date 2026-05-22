@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/Label'
 import { Button } from '@/components/ui/Button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select'
 import { cn } from '@/lib/cn'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 const THEMES = [
   { id: 'light', label: 'Light', icon: Sun },
@@ -14,6 +15,7 @@ const THEMES = [
 ]
 
 export function PreferencesTab() {
+  const comingSoon = useComingSoon()
   const [theme, setTheme] = React.useState('light')
 
   return (
@@ -60,7 +62,7 @@ export function PreferencesTab() {
         <RegionalSelect label="Week starts on" options={['Sunday', 'Monday']} />
       </div>
 
-      <Button className="mt-6">Save Changes</Button>
+      <Button className="mt-6" onClick={() => comingSoon('Save preferences')}>Save Changes</Button>
     </div>
   )
 }

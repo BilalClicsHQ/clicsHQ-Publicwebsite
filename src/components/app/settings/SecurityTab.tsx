@@ -5,8 +5,10 @@ import { Input } from '@/components/ui/Input'
 import { Label } from '@/components/ui/Label'
 import { Button } from '@/components/ui/Button'
 import { Switch } from '@/components/ui/Switch'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 export function SecurityTab() {
+  const comingSoon = useComingSoon()
   const [emailOtp, setEmailOtp] = React.useState(true)
   const [totp, setTotp] = React.useState(false)
 
@@ -45,7 +47,7 @@ export function SecurityTab() {
         </div>
       </div>
 
-      <Button className="mt-6">Save Changes</Button>
+      <Button className="mt-6" onClick={() => comingSoon('Update security')}>Save Changes</Button>
     </div>
   )
 }

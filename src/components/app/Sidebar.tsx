@@ -15,6 +15,7 @@ import {
   Plug,
 } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import { useComingSoon } from '@/components/app/ComingSoon'
 
 // ── Icon filters (white when active, dim grey when not) ─────────────────────
 const ICON_STYLE_ACTIVE   = { filter: 'brightness(0) invert(1)', opacity: 1   } as const
@@ -87,6 +88,7 @@ function LucideNavIcon({ icon: Icon, active }: { icon: any; active: boolean }) {
 
 export function Sidebar() {
   const pathname = usePathname() || '/'
+  const comingSoon = useComingSoon()
   const [isExpanded, setIsExpanded] = React.useState(true)
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const [spacesExpanded, setSpacesExpanded] = React.useState(false)
@@ -359,7 +361,7 @@ export function Sidebar() {
               return (
                 <button
                   key={item.id}
-                  onClick={() => alert('Invite modal coming soon')}
+                  onClick={() => comingSoon('Invite teammates')}
                   className={itemClass}
                   title={!isExpanded ? item.name : undefined}
                 >
