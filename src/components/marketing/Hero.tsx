@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { CTAButton } from './CTAButton'
 
 export function Hero() {
   return (
@@ -27,18 +28,8 @@ export function Hero() {
             className="pointer-events-none absolute -left-24 -top-12 hidden select-none sm:block"
           />
 
-          <Link
-            href="/signup"
-            className="inline-flex h-11 items-center justify-center rounded-xl bg-gradient-to-b from-violet-500 to-violet-600 px-6 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 transition-transform hover:-translate-y-0.5"
-          >
-            Get Started Now
-          </Link>
-          <Link
-            href="/demo"
-            className="inline-flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white px-6 text-sm font-semibold text-ink transition-colors hover:bg-gray-50"
-          >
-            Try It Free
-          </Link>
+          <CTAButton variant="accent" href="/signup">Get Started Now</CTAButton>
+          <CTAButton variant="secondary" href="/demo">Try It Free</CTAButton>
         </div>
 
         <p className="mt-4 text-sm text-muted">
