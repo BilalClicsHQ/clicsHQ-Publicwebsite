@@ -3,26 +3,30 @@
 import * as React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronDown, Plug, LayoutGrid, GanttChart, ListChecks, Sparkles, FileText, Calendar, Workflow } from 'lucide-react'
+import { ChevronDown, ListChecks, Calendar as CalendarIcon } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
 interface FeatureItem {
   id: string
-  icon: React.ElementType
+  /** Path to a colored SVG icon. Falls back to `lucideIcon` if omitted. */
+  iconSrc?: string
+  /** Lucide icon used when no SVG asset is available yet. */
+  lucideIcon?: React.ElementType
   title: string
   desc: string
   href: string
 }
 
+// Order matches the Figma dropdown grid (3 columns × 3 rows in Figma — 8 items).
 const FEATURES: FeatureItem[] = [
-  { id: 'integrations', icon: Plug,       title: 'Integrations', desc: 'Connect with 100+ tools you already use.',  href: '/product/integrations' },
-  { id: 'kanban',       icon: LayoutGrid, title: 'Kanban Board', desc: 'Visualize your team’s work in columns.', href: '/product/kanban' },
-  { id: 'gantt',        icon: GanttChart, title: 'Gantt Chart',  desc: 'Plan timelines and track dependencies.',     href: '/product/gantt' },
-  { id: 'tasks',        icon: ListChecks, title: 'Tasks',        desc: 'Create and assign tasks to your team.',      href: '/product/tasks' },
-  { id: 'ai',           icon: Sparkles,   title: 'AI assists',   desc: 'Let AI plan and report on your projects.',   href: '/product/ai' },
-  { id: 'docs',         icon: FileText,   title: 'Docs',         desc: 'Write rich documents alongside your work.',  href: '/product/docs' },
-  { id: 'calendar',     icon: Calendar,   title: 'Calendar',     desc: 'See deadlines and events on a calendar.',    href: '/product/calendar' },
-  { id: 'workflows',    icon: Workflow,   title: 'Workflows',    desc: 'Automate the boring parts of project ops.',  href: '/product/workflows' },
+  { id: 'integrations', iconSrc: '/images/navbar/integrations.svg', title: 'Integrations', desc: 'Connect with 100+ tools you already use',     href: '/product/integrations' },
+  { id: 'kanban',       iconSrc: '/images/navbar/kanban.svg',       title: 'Kanban Board', desc: 'Workflows with smart automation',             href: '/product/kanban' },
+  { id: 'gantt',        iconSrc: '/images/navbar/gantt.svg',        title: 'Gantt Chart',  desc: 'Workflows with smart automation',             href: '/product/gantt' },
+  { id: 'tasks',        lucideIcon: ListChecks,                      title: 'Tasks',        desc: 'Track performance and insights in real Time', href: '/product/tasks' },
+  { id: 'ai',           iconSrc: '/images/navbar/ai-assists.svg',   title: 'Ai assists',   desc: 'Leverage Ai to supercharge your pipline',     href: '/product/ai' },
+  { id: 'docs',         iconSrc: '/images/navbar/docs.svg',         title: 'Docs',         desc: 'Workflows with smart automation',             href: '/product/docs' },
+  { id: 'calendar',     lucideIcon: CalendarIcon,                    title: 'Calendar',     desc: 'Track performance and insights in real Time', href: '/product/calendar' },
+  { id: 'workflows',    iconSrc: '/images/navbar/workflows.svg',    title: 'Workflows',    desc: 'Leverage Ai to supercharge your pipline',     href: '/product/workflows' },
 ]
 
 const NAV_LINKS = [
@@ -34,6 +38,7 @@ const NAV_LINKS = [
 export function Navbar() {
   const [openProduct, setOpenProduct] = React.useState(false)
   const closeTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+  const productRef = React.useRef<HTMLDivElement | null>(null)
 
   const handleEnter = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
@@ -42,6 +47,31 @@ export function Navbar() {
   const handleLeave = () => {
     closeTimer.current = setTimeout(() => setOpenProduct(false), 120)
   }
+
+  // Close on click-outside (keyboard nav users + tablets)
+  React.useEffect(() => {
+    if (!openProduct) return
+    const handler = (e: MouseEvent) => {
+      if (productRef.current && !productRef.current.contains(e.target as Node)) {
+        setOpenProduct(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [openProduct])
+
+  // Close on Escape key
+  React.useEffect(() => {
+    if (!openProduct) return
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpenProduct(false)
+    }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [openProduct])
+
+  // Cleanup pending timer on unmount
+  React.useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current) }, [])
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-gray-100">
@@ -62,6 +92,7 @@ export function Navbar() {
         <nav className="hidden md:flex items-center gap-1">
           {/* Product (with dropdown) */}
           <div
+            ref={productRef}
             className="relative"
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}
@@ -79,24 +110,50 @@ export function Navbar() {
             </button>
 
             {openProduct && (
-              <div className="absolute left-1/2 top-full mt-2 -translate-x-1/2 w-[560px] rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-gray-100 animate-fade-up">
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted">Features</p>
-                <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1">
-                  {FEATURES.map((f) => (
-                    <Link
-                      key={f.id}
-                      href={f.href}
-                      className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-gray-50"
-                    >
-                      <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-gray-100 text-ink transition-colors group-hover:bg-ink group-hover:text-white">
-                        <f.icon className="h-4 w-4" />
-                      </span>
-                      <div className="min-w-0">
-                        <p className="text-sm font-semibold text-ink">{f.title}</p>
-                        <p className="truncate text-xs text-muted">{f.desc}</p>
-                      </div>
-                    </Link>
-                  ))}
+              <div
+                role="menu"
+                className="absolute left-1/2 top-full z-50 mt-3 w-[760px] -translate-x-1/2 rounded-2xl bg-white p-3 shadow-2xl ring-1 ring-gray-100 animate-fade-up"
+                onMouseEnter={handleEnter}
+                onMouseLeave={handleLeave}
+              >
+                {/* Features banner */}
+                <div className="rounded-lg bg-gray-100 px-3 py-2">
+                  <p className="text-xs font-semibold text-ink/80">Features</p>
+                </div>
+                <div className="mt-1 grid grid-cols-3 gap-x-2 gap-y-1 p-2">
+                  {FEATURES.map((f) => {
+                    const LucideIcon = f.lucideIcon
+                    return (
+                      <Link
+                        key={f.id}
+                        href={f.href}
+                        role="menuitem"
+                        onClick={() => setOpenProduct(false)}
+                        className="group flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-gray-50 hover:ring-1 hover:ring-gray-200 focus-visible:bg-gray-50 focus-visible:outline-none"
+                      >
+                        <span className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center">
+                          {f.iconSrc ? (
+                            <Image
+                              src={f.iconSrc}
+                              alt=""
+                              aria-hidden
+                              width={40}
+                              height={40}
+                              className="h-10 w-10"
+                            />
+                          ) : LucideIcon ? (
+                            <span className="grid h-10 w-10 place-items-center rounded-lg bg-gray-100 text-ink">
+                              <LucideIcon className="h-5 w-5" />
+                            </span>
+                          ) : null}
+                        </span>
+                        <div className="min-w-0 pt-0.5">
+                          <p className="text-sm font-semibold text-ink">{f.title}</p>
+                          <p className="text-[11px] leading-snug text-muted">{f.desc}</p>
+                        </div>
+                      </Link>
+                    )
+                  })}
                 </div>
               </div>
             )}

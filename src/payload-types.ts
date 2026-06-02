@@ -72,6 +72,8 @@ export interface Config {
     media: Media;
     contacts: Contact;
     users: User;
+    redirects: Redirect;
+    'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -83,6 +85,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     contacts: ContactsSelect<false> | ContactsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -105,7 +109,13 @@ export interface Config {
     collection: 'users';
   };
   jobs: {
-    tasks: unknown;
+    tasks: {
+      schedulePublish: TaskSchedulePublish;
+      inline: {
+        input: unknown;
+        output: unknown;
+      };
+    };
     workflows: unknown;
   };
 }
@@ -134,9 +144,106 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
+  /**
+   * URL path (auto-generated from title). Use "/" for nested e.g. product/tasks.
+   */
   slug: string;
+  /**
+   * Optional. Used for breadcrumbs and nested navigation.
+   */
+  parent?: (string | null) | Page;
   layout?:
     | (
+        | {
+            heroHeadlineStart?: string | null;
+            heroHeadlineAccent?: string | null;
+            heroDescription?: string | null;
+            heroPrimaryCTA?: {
+              label?: string | null;
+              url?: string | null;
+            };
+            heroSecondaryCTA?: {
+              label?: string | null;
+              url?: string | null;
+            };
+            heroDemoText?: string | null;
+            heroDemoLink?: {
+              label?: string | null;
+              url?: string | null;
+            };
+            logosHeading?: string | null;
+            toolsHeading?: string | null;
+            toolsCTA?: {
+              label?: string | null;
+              url?: string | null;
+            };
+            exploreHeadingMain?: string | null;
+            exploreHeadingAccent?: string | null;
+            exploreTabs?:
+              | {
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            solutionsHeadingMain?: string | null;
+            solutionsHeadingAccent?: string | null;
+            solutionsDescription?: string | null;
+            solutionsTabs?:
+              | {
+                  label: string;
+                  eyebrow?: string | null;
+                  title: string;
+                  description?: string | null;
+                  cta?: {
+                    label?: string | null;
+                    url?: string | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            howEyebrow?: string | null;
+            howHeadingMain?: string | null;
+            howHeadingAccent?: string | null;
+            howDescription?: string | null;
+            howSteps?:
+              | {
+                  title: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            aiHeading?: string | null;
+            aiDescription?: string | null;
+            aiFeatures?:
+              | {
+                  title: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            whyEyebrow?: string | null;
+            whyHeading?: string | null;
+            whyPoints?:
+              | {
+                  title: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            ctaHeading?: string | null;
+            ctaDescription?: string | null;
+            ctaPrimary?: {
+              label?: string | null;
+              url?: string | null;
+            };
+            ctaSecondary?: {
+              label?: string | null;
+              url?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'homePage';
+          }
         | {
             headline: string;
             subheadline?: string | null;
@@ -294,22 +401,41 @@ export interface Page {
           }
       )[]
     | null;
+  /**
+   * Short page summary used for AI search results and rich snippets. Write 1–2 sentences.
+   */
+  aiSummary?: string | null;
+  sitemap?: {
+    /**
+     * Include this page in /sitemap.xml.
+     */
+    include?: boolean | null;
+    priority?: ('1.0' | '0.9' | '0.8' | '0.7' | '0.5' | '0.3') | null;
+    changefreq?: ('always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never') | null;
+  };
+  /**
+   * Paste a JSON-LD object (e.g. SoftwareApplication, FAQPage). Will be injected as <script type="application/ld+json"> on this page.
+   */
+  jsonLd?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   meta?: {
-    /**
-     * SEO title — defaults to page title if empty
-     */
     title?: string | null;
-    /**
-     * SEO meta description
-     */
     description?: string | null;
     /**
-     * Open Graph image
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
     image?: (string | null) | Media;
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -364,7 +490,6 @@ export interface Post {
   id: string;
   title: string;
   slug: string;
-  status?: ('draft' | 'published') | null;
   publishedAt?: string | null;
   author?: (string | null) | User;
   featuredImage?: (string | null) | Media;
@@ -387,18 +512,41 @@ export interface Post {
     };
     [k: string]: unknown;
   };
+  /**
+   * Short summary for AI search results and rich snippets.
+   */
+  aiSummary?: string | null;
+  sitemap?: {
+    /**
+     * Include this post in /sitemap.xml.
+     */
+    include?: boolean | null;
+    priority?: ('1.0' | '0.9' | '0.8' | '0.7' | '0.5' | '0.3') | null;
+    changefreq?: ('always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never') | null;
+  };
+  /**
+   * Paste a JSON-LD object (e.g. BlogPosting, FAQPage). Will be injected as <script type="application/ld+json">.
+   */
+  jsonLd?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   meta?: {
-    /**
-     * SEO title — defaults to post title if empty
-     */
     title?: string | null;
-    /**
-     * SEO meta description
-     */
     description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -434,6 +582,121 @@ export interface Contact {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: string;
+  from: string;
+  to?: {
+    type?: ('reference' | 'custom') | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: string | Post;
+        } | null);
+    url?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-jobs".
+ */
+export interface PayloadJob {
+  id: string;
+  /**
+   * Input data provided to the job
+   */
+  input?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  taskStatus?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  completedAt?: string | null;
+  totalTried?: number | null;
+  /**
+   * If hasError is true this job will not be retried
+   */
+  hasError?: boolean | null;
+  /**
+   * If hasError is true, this is the error that caused it
+   */
+  error?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Task execution log
+   */
+  log?:
+    | {
+        executedAt: string;
+        completedAt: string;
+        taskSlug: 'inline' | 'schedulePublish';
+        taskID: string;
+        input?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        output?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        state: 'failed' | 'succeeded';
+        error?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  taskSlug?: ('inline' | 'schedulePublish') | null;
+  queue?: string | null;
+  waitUntil?: string | null;
+  processing?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -458,6 +721,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: string | User;
+      } | null)
+    | ({
+        relationTo: 'redirects';
+        value: string | Redirect;
+      } | null)
+    | ({
+        relationTo: 'payload-jobs';
+        value: string | PayloadJob;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -508,9 +779,115 @@ export interface PayloadMigration {
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  parent?: T;
   layout?:
     | T
     | {
+        homePage?:
+          | T
+          | {
+              heroHeadlineStart?: T;
+              heroHeadlineAccent?: T;
+              heroDescription?: T;
+              heroPrimaryCTA?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
+              heroSecondaryCTA?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
+              heroDemoText?: T;
+              heroDemoLink?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
+              logosHeading?: T;
+              toolsHeading?: T;
+              toolsCTA?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
+              exploreHeadingMain?: T;
+              exploreHeadingAccent?: T;
+              exploreTabs?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              solutionsHeadingMain?: T;
+              solutionsHeadingAccent?: T;
+              solutionsDescription?: T;
+              solutionsTabs?:
+                | T
+                | {
+                    label?: T;
+                    eyebrow?: T;
+                    title?: T;
+                    description?: T;
+                    cta?:
+                      | T
+                      | {
+                          label?: T;
+                          url?: T;
+                        };
+                    id?: T;
+                  };
+              howEyebrow?: T;
+              howHeadingMain?: T;
+              howHeadingAccent?: T;
+              howDescription?: T;
+              howSteps?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              aiHeading?: T;
+              aiDescription?: T;
+              aiFeatures?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              whyEyebrow?: T;
+              whyHeading?: T;
+              whyPoints?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              ctaHeading?: T;
+              ctaDescription?: T;
+              ctaPrimary?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
+              ctaSecondary?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
         hero?:
           | T
           | {
@@ -641,6 +1018,15 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  aiSummary?: T;
+  sitemap?:
+    | T
+    | {
+        include?: T;
+        priority?: T;
+        changefreq?: T;
+      };
+  jsonLd?: T;
   meta?:
     | T
     | {
@@ -650,6 +1036,7 @@ export interface PagesSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -658,20 +1045,30 @@ export interface PagesSelect<T extends boolean = true> {
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
-  status?: T;
   publishedAt?: T;
   author?: T;
   featuredImage?: T;
   excerpt?: T;
   content?: T;
+  aiSummary?: T;
+  sitemap?:
+    | T
+    | {
+        include?: T;
+        priority?: T;
+        changefreq?: T;
+      };
+  jsonLd?: T;
   meta?:
     | T
     | {
         title?: T;
         description?: T;
+        image?: T;
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -753,6 +1150,53 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  from?: T;
+  to?:
+    | T
+    | {
+        type?: T;
+        reference?: T;
+        url?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-jobs_select".
+ */
+export interface PayloadJobsSelect<T extends boolean = true> {
+  input?: T;
+  taskStatus?: T;
+  completedAt?: T;
+  totalTried?: T;
+  hasError?: T;
+  error?: T;
+  log?:
+    | T
+    | {
+        executedAt?: T;
+        completedAt?: T;
+        taskSlug?: T;
+        taskID?: T;
+        input?: T;
+        output?: T;
+        state?: T;
+        error?: T;
+        id?: T;
+      };
+  taskSlug?: T;
+  queue?: T;
+  waitUntil?: T;
+  processing?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -850,6 +1294,26 @@ export interface SiteSetting {
   metaDescription?: string | null;
   ogImage?: (string | null) | Media;
   favicon?: (string | null) | Media;
+  /**
+   * e.g. @clickshq (used for Twitter card metadata)
+   */
+  twitterHandle?: string | null;
+  /**
+   * Injected at end of <head>. Use for Google Analytics, GTM, Plausible, etc.
+   */
+  headScripts?: string | null;
+  /**
+   * Injected immediately after <body> opening tag. Use for GTM <noscript> fallback.
+   */
+  bodyStartScripts?: string | null;
+  /**
+   * Injected before </body>. Use for chat widgets, late-loading scripts.
+   */
+  bodyEndScripts?: string | null;
+  /**
+   * Contents of /robots.txt. Leave blank for sensible defaults (allow all + sitemap).
+   */
+  robotsTxt?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -918,9 +1382,36 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   metaDescription?: T;
   ogImage?: T;
   favicon?: T;
+  twitterHandle?: T;
+  headScripts?: T;
+  bodyStartScripts?: T;
+  bodyEndScripts?: T;
+  robotsTxt?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TaskSchedulePublish".
+ */
+export interface TaskSchedulePublish {
+  input: {
+    type?: ('publish' | 'unpublish') | null;
+    locale?: string | null;
+    doc?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: string | Post;
+        } | null);
+    global?: string | null;
+    user?: (string | null) | User;
+  };
+  output?: unknown;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

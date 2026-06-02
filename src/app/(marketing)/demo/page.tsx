@@ -1,8 +1,8 @@
-﻿import type { Metadata } from 'next'
-import { PageStub } from '@/components/marketing/PageStub'
+import type { Metadata } from 'next'
+import { DemoView } from '@/components/marketing/DemoView'
 
-export const metadata: Metadata = { title: 'See clicsHQ in action' }
+export const metadata: Metadata = { title: 'Request a demo' }
 
-export default function Page() {
-  return <PageStub eyebrow="Demo" title="See clicsHQ in action" body="Book a live demo with our team to see how clicsHQ fits your workflow." />
+export default function DemoPage() {
+  return <DemoView />
 }
