@@ -73,6 +73,16 @@ export function Hero() {
           />
         </div>
 
+        {/*
+          Soft fade overlay that blends the stage into the white area above —
+          covers ~25% from the top of the stage, gradient from full-white down
+          to transparent so the dark texture appears to fade in gradually.
+        */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-[28%] bg-gradient-to-b from-white via-white/70 to-transparent"
+        />
+
         <div className="container-app relative pb-20 lg:pb-24">
           <div className="relative mx-auto max-w-5xl">
             {/* Floating "24 Total Tasks" card — left, breaks out over the stage */}
