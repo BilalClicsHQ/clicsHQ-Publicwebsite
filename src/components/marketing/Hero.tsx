@@ -22,8 +22,8 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       {/* Headline area */}
-      <div className="container-app relative pt-14 sm:pt-16 lg:pt-20 pb-8 text-center">
-        <h1 className="relative mx-auto max-w-4xl text-balance font-bold tracking-[-0.02em] text-ink leading-[1.15] text-[32px] sm:text-[44px] lg:text-[56px]">
+      <div className="container-app relative pt-14 sm:pt-20 lg:pt-24 pb-8 text-center">
+        <h1 className="relative mx-auto max-w-[1100px] text-balance font-bold tracking-[-0.025em] text-ink leading-[1.0] text-[40px] sm:text-[64px] lg:text-[88px]">
           Manage Your Task Productivity
         </h1>
 
@@ -34,14 +34,14 @@ export function Hero() {
 
         {/* CTAs */}
         <div className="relative mt-10 inline-flex items-center justify-center gap-3">
-          {/* Curved arrow doodle — points at the primary CTA from the bottom-left */}
+          {/* Curved arrow doodle — sits to the left of the primary CTA, curling up to point at it */}
           <Image
             src="/images/hero/arrow.svg"
             alt=""
             aria-hidden
             width={92}
             height={116}
-            className="pointer-events-none absolute -left-28 -bottom-4 hidden h-24 w-auto select-none sm:block"
+            className="pointer-events-none absolute -left-[120px] -bottom-2 hidden h-[110px] w-auto select-none sm:block"
           />
 
           <CTAButton variant="accent" size="lg" href="/signup">Get Started Now</CTAButton>
