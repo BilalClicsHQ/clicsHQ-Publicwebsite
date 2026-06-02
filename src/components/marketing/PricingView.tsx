@@ -144,7 +144,32 @@ export function PricingView() {
             </div>
           </div>
 
-          <div className="inline-flex items-center rounded-full bg-gray-100 p-0.5">
+          <div className="relative inline-flex items-center rounded-full bg-gray-100 p-0.5">
+            {/* "-20" annotation curving from the Yearly button — Figma savings indicator */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -right-12 -top-3 hidden items-center gap-1 sm:flex"
+            >
+              <svg width="36" height="34" viewBox="0 0 36 34" fill="none" className="text-ink">
+                <path
+                  d="M2 30 C 2 18, 14 6, 28 8"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                <path
+                  d="M24 4 L30 8 L26 14"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  fill="none"
+                />
+              </svg>
+              <span className="text-xs font-semibold text-ink">-20</span>
+            </span>
+
             {(['monthly', 'yearly'] as Cycle[]).map((c) => (
               <button
                 key={c}
@@ -228,26 +253,32 @@ export function PricingView() {
 function PlanCard({ plan, cycle }: { plan: Plan; cycle: Cycle }) {
   const price = cycle === 'monthly' ? plan.monthly : plan.yearly
 
+  // Per-plan soft accent gradient at the top of the card (matches Figma tint).
+  const accent = {
+    individuals: 'from-pink-100/60 via-rose-50/30',
+    teams:       'from-violet-100/70 via-pink-50/40',
+    enterprises: 'from-sky-100/60 via-blue-50/30',
+  }[plan.id]
+
   return (
     <div
       className={cn(
-        'relative rounded-2xl p-6 ring-1 transition-shadow',
+        'relative overflow-hidden rounded-2xl p-6 ring-1 transition-shadow',
         plan.highlighted
           ? 'lg:-mt-3 lg:mb-3 bg-white ring-gray-200 shadow-xl'
           : 'bg-white ring-gray-100',
       )}
     >
       {plan.highlighted && (
-        <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full bg-ink px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+        <span className="absolute -top-3 left-1/2 z-10 inline-flex -translate-x-1/2 items-center gap-1 rounded-full bg-ink px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
           <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
           Most Popular
         </span>
       )}
 
-      {/* Soft accent gradient at top of highlighted card */}
-      {plan.highlighted && (
-        <div className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-32 rounded-t-2xl bg-gradient-to-b from-violet-100/70 via-pink-50/40 to-transparent" />
-      )}
+      {/* Soft accent gradient at top of every card — color depends on plan */}
+      <div className={cn('pointer-events-none absolute inset-x-0 top-0 -z-0 h-32 bg-gradient-to-b to-transparent', accent)} />
+
 
       <h3 className="relative text-base font-semibold text-ink">{plan.name}</h3>
       <p className="relative mt-3 text-xs text-muted">Starts at</p>
