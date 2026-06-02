@@ -79,7 +79,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <Image
-            src="/images/logo/ClicsHQ_logo.svg"
+            src="/images/logo/clicshq-logo.png"
             alt="clicsHQ"
             width={120}
             height={40}

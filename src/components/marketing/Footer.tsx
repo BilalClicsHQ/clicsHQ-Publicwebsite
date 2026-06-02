@@ -37,9 +37,9 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div>
-            {/* Inverted logo for dark background */}
+            {/* Logo from Figma export — inverted for dark footer */}
             <Image
-              src="/images/logo/ClicsHQ_logo.svg"
+              src="/images/logo/clicshq-logo.png"
               alt="clicsHQ"
               width={140}
               height={48}
