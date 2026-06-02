@@ -21,22 +21,22 @@ const POINTS = [
 export function WhyClicsHQ() {
   return (
     <section className="bg-white py-20 sm:py-24">
-      <div className="container-app grid items-center gap-12 lg:grid-cols-2">
+      <div className="container-app grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         {/* Left */}
         <div>
           <p className="text-sm font-medium text-muted">Why clicsHQ</p>
-          <h2 className="mt-2 heading-lg text-balance">
+          <h2 className="mt-3 text-balance text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[44px]">
             Built for how modern teams actually work.
           </h2>
 
           <ul className="mt-10 space-y-7">
             {POINTS.map((p) => (
               <li key={p.n} className="flex gap-5">
-                <span className="grid h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink text-sm font-bold text-white">
+                <span className="grid h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-ink text-base font-bold text-white">
                   {p.n}
                 </span>
                 <div>
-                  <h3 className="text-base font-bold text-ink">{p.title}</h3>
+                  <h3 className="text-base font-bold text-ink sm:text-lg">{p.title}</h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-muted">{p.body}</p>
                 </div>
               </li>
