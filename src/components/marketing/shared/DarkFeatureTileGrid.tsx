@@ -8,6 +8,8 @@ export interface DarkTile {
   title: string
   body?: string
   imageSrc?: string
+  /** In-code preview slot — takes precedence over `imageSrc`. */
+  visual?: React.ReactNode
 }
 
 const CHIP_COLORS = {
@@ -46,11 +48,13 @@ export function DarkFeatureTileGrid({
           )}
           <h3 className="text-base font-bold leading-tight text-white">{t.title}</h3>
           {t.body && <p className="text-xs leading-relaxed text-white/60">{t.body}</p>}
-          {t.imageSrc && (
+          {t.visual ? (
+            <div className="mt-2">{t.visual}</div>
+          ) : t.imageSrc ? (
             <div className="mt-2 overflow-hidden rounded-lg ring-1 ring-white/10">
               <Image src={t.imageSrc} alt="" width={400} height={240} className="h-auto w-full" />
             </div>
-          )}
+          ) : null}
         </div>
       ))}
     </div>

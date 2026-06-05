@@ -32,18 +32,19 @@ const SOCIALS = [
 
 export function Footer() {
   return (
-    <footer className="rounded-t-[2rem] bg-ink text-white">
-      <div className="container-app py-14 sm:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <footer className="relative z-10 -mt-10 px-3 pb-4 sm:-mt-12 sm:px-4 sm:pb-6 lg:px-6 lg:pb-8">
+      <div className="rounded-[2rem] bg-ink px-6 py-12 text-white sm:px-10 sm:py-14 lg:px-14 lg:py-16">
+        <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div>
-            {/* clicsHQ logo — inverted with CSS filter for dark footer bg */}
+            {/* clicsHQ logo — `invert` (not brightness-0) flips the monochrome
+                artwork so the text reads white while the swirl keeps its gradient. */}
             <Image
               src="/images/logo/ClicsHQ_logo.svg"
               alt="clicsHQ"
               width={140}
               height={48}
-              className="h-10 w-auto brightness-0 invert"
+              className="h-10 w-auto invert"
             />
             <p className="mt-5 text-sm leading-relaxed text-white/70">
               Work Management Platform<br />

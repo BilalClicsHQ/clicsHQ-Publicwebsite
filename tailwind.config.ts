@@ -89,8 +89,14 @@ const config: Config = {
       },
 
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Satoshi is the global base typeface (self-hosted from Fontshare).
+        // 'SF Pro Text' & 'Helvetica Neue' from the Figma file are kept as fallbacks.
+        sans: ['Satoshi', 'SF Pro Text', '-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'Helvetica', 'Arial', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Satoshi', 'SF Pro Text', '-apple-system', 'Helvetica Neue', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Manrope — secondary typeface (Google Fonts); use via `font-manrope`.
+        manrope: ['Manrope', 'Satoshi', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Handwriting accent — replaces Figma's "Lucida Handwriting".
+        handwriting: ['Caveat', 'Segoe Script', 'Bradley Hand', 'cursive'],
       },
 
       fontSize: {

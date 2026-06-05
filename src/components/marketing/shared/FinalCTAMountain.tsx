@@ -1,9 +1,13 @@
 import Image from 'next/image'
 import { CTAButton } from '../CTAButton'
+import { cn } from '@/lib/cn'
 
 /**
- * Off-white landscape illustration + headline + dual CTA.
+ * Off-white landscape illustration + headline + CTA(s).
  * Used as the final CTA on the home page and every product page.
+ *
+ * `align="center"` centers the copy over the illustration (Integrations page).
+ * Pass a falsy `secondaryLabel` to render a single primary CTA.
  */
 export function FinalCTAMountain({
   title = 'Bring your team’s work into one connected place.',
@@ -12,6 +16,7 @@ export function FinalCTAMountain({
   primaryHref = '/signup',
   secondaryLabel = 'Get a demo',
   secondaryHref = '/demo',
+  align = 'left',
 }: {
   title?: string
   subtitle?: string
@@ -19,32 +24,57 @@ export function FinalCTAMountain({
   primaryHref?: string
   secondaryLabel?: string
   secondaryHref?: string
+  align?: 'left' | 'center'
 }) {
+  const centered = align === 'center'
   return (
     <section className="relative overflow-hidden">
       <Image
-        src="/images/footer/footerpic.svg"
+        src="/images/footer/footer-2.svg"
         alt=""
         aria-hidden
         width={1440}
-        height={607}
+        height={539}
         className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
       />
-      {/* Soft white gradient for text legibility */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/75 via-white/35 to-transparent"
-      />
+      {/* Soft white wash for text legibility (left layout only — the centered
+          layout sits over the light sky of the illustration, like the Figma). */}
+      {!centered && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/75 via-white/35 to-transparent"
+        />
+      )}
 
-      <div className="container-app relative py-24 sm:py-28 lg:py-32">
-        <div className="max-w-xl">
-          <h2 className="text-balance text-3xl font-bold leading-tight text-ink sm:text-4xl lg:text-5xl">
+      <div className={cn('container-app relative', centered ? 'py-20 sm:py-24 lg:py-28' : 'py-24 sm:py-28 lg:py-32')}>
+        <div className={cn('max-w-xl', centered && 'mx-auto max-w-2xl text-center')}>
+          <h2
+            className={cn(
+              'font-bold tracking-tight text-ink',
+              centered
+                ? 'mx-auto max-w-[20ch] text-[2rem] leading-[1.12] sm:text-[2.5rem] lg:text-[3rem]'
+                : 'text-balance text-3xl leading-tight sm:text-4xl lg:text-5xl',
+            )}
+          >
             {title}
           </h2>
-          <p className="mt-4 max-w-md text-sm text-ink/70 sm:text-base">{subtitle}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <CTAButton href={primaryHref}>{primaryLabel}</CTAButton>
-            <CTAButton variant="secondary" href={secondaryHref}>{secondaryLabel}</CTAButton>
+          <p
+            className={cn(
+              'mt-4 text-sm text-ink/70 sm:text-base',
+              centered ? 'mx-auto max-w-md' : 'max-w-md',
+            )}
+          >
+            {subtitle}
+          </p>
+          <div className={cn('mt-7 flex flex-wrap gap-3', centered && 'justify-center')}>
+            <CTAButton href={primaryHref} size={centered ? 'sm' : 'md'}>
+              {primaryLabel}
+            </CTAButton>
+            {secondaryLabel && (
+              <CTAButton variant="secondary" href={secondaryHref}>
+                {secondaryLabel}
+              </CTAButton>
+            )}
           </div>
         </div>
       </div>

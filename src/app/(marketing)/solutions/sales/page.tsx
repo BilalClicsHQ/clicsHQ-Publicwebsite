@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+ import type { Metadata } from 'next'
 import { Eye, Sparkles, Workflow } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'

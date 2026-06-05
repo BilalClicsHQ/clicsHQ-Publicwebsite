@@ -1,56 +1,65 @@
 'use client'
 
 import * as React from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
-import { LayoutGrid, GanttChart, ListChecks, FileText, Calendar, Workflow, Plug, Sparkles } from 'lucide-react'
 import { Highlight } from './Highlight'
 
+const NAV_ICON = '/images/navbar'
+
 const ITEMS = [
-  { id: 'kanban',       icon: LayoutGrid, title: 'Kanban',       href: '/product/kanban'       },
-  { id: 'gantt',        icon: GanttChart, title: 'Gantt',        href: '/product/gantt'        },
-  { id: 'tasks',        icon: ListChecks, title: 'Tasks',        href: '/product/tasks'        },
-  { id: 'docs',         icon: FileText,   title: 'Docs',         href: '/product/docs'         },
-  { id: 'calendar',     icon: Calendar,   title: 'Calendar',     href: '/product/calendar'     },
-  { id: 'workflows',    icon: Workflow,   title: 'Workflows',    href: '/product/workflows'    },
-  { id: 'integrations', icon: Plug,       title: 'Integrations', href: '/product/integrations' },
-  { id: 'ai',           icon: Sparkles,   title: 'AI assists',   href: '/product/ai'           },
-]
+  { iconSrc: `${NAV_ICON}/integrations.svg`, title: 'Integrations', desc: 'Connect with 100+ tools you already use.',  href: '/product/integrations' },
+  { iconSrc: `${NAV_ICON}/kanban.svg`,       title: 'Kanban Board', desc: 'Visual boards that keep work moving.',      href: '/product/kanban'       },
+  { iconSrc: `${NAV_ICON}/gantt.svg`,        title: 'Gantt Chart',  desc: 'Plan timelines and track dependencies.',    href: '/product/gantt'        },
+  { iconSrc: `${NAV_ICON}/task.svg`,         title: 'Tasks',        desc: 'Assign, prioritize, and track every task.', href: '/product/tasks'        },
+  { iconSrc: `${NAV_ICON}/ai-assists.svg`,   title: 'AI Agents',    desc: 'Let AI handle the busywork for you.',       href: '/product/ai'           },
+  { iconSrc: `${NAV_ICON}/docs.svg`,         title: 'Docs',         desc: 'Write, share, and link docs to your work.', href: '/product/docs'         },
+  { iconSrc: `${NAV_ICON}/calender.svg`,     title: 'Calendar',     desc: 'See deadlines and schedules at a glance.',  href: '/product/calendar'     },
+  { iconSrc: `${NAV_ICON}/workflows.svg`,    title: 'Workflows',    desc: 'Automate repetitive steps end to end.',     href: '/product/workflows'    },
+] as const
 
 /**
- * "Board view is just the beginning" — 8 sibling-product navigation cards.
- * The accent color of the highlighted word varies by source page.
+ * "Board view is just the beginning" — sibling-product navigation cards with
+ * the product's navbar icon, title, and one-line description. The accent color
+ * of the highlighted headline word varies by source page.
  */
 export function CrossProductGrid({
+  eyebrow = 'Part of the clicsHQ platform',
   title = (
     <>
       Board view is just the <Highlight color="blue">beginning</Highlight>
     </>
   ),
-  subtitle = 'Switch how your team sees the work and pick the right view for any moment — without leaving your workflow.',
+  subtitle = 'Board view is your visual entry point into the clicsHQ platform. Tasks, Docs, Chat, Calendar, Dashboards, and more in a single, converged app — explore everything you unlock when your work lives in one place.',
 }: {
+  eyebrow?: string
   title?: React.ReactNode
   subtitle?: string
 }) {
   return (
     <section className="container-app py-16 sm:py-20">
       <div className="text-center">
-        <h2 className="mx-auto max-w-3xl text-balance text-2xl font-bold leading-tight text-ink sm:text-3xl">
+        {eyebrow && <p className="text-xs font-medium text-muted sm:text-sm">{eyebrow}</p>}
+        <h2 className="mx-auto mt-1.5 max-w-3xl text-balance text-2xl font-bold leading-tight text-ink sm:text-3xl">
           {title}
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-sm text-muted sm:text-base">{subtitle}</p>
       </div>
 
-      <ul className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
+      <ul className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {ITEMS.map((it) => (
-          <li key={it.id}>
+          <li key={it.title}>
             <Link
               href={it.href}
-              className="group flex items-center gap-3 rounded-xl bg-white p-3.5 ring-1 ring-gray-100 transition-shadow hover:shadow-card"
+              className="group flex items-start gap-3 rounded-xl bg-white p-4 ring-1 ring-gray-100 transition-shadow hover:shadow-card"
             >
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gray-100 text-ink transition-colors group-hover:bg-ink group-hover:text-white">
-                <it.icon className="h-4 w-4" />
+              <span className="grid h-10 w-10 shrink-0 place-items-center">
+                <Image src={it.iconSrc} alt="" aria-hidden width={40} height={40} className="h-10 w-10" />
               </span>
-              <span className="text-sm font-semibold text-ink">{it.title}</span>
+              <span className="min-w-0">
+                <span className="block text-sm font-semibold text-ink">{it.title}</span>
+                <span className="mt-0.5 block text-xs leading-relaxed text-muted">{it.desc}</span>
+              </span>
             </Link>
           </li>
         ))}

@@ -12,6 +12,7 @@ import { CTAButton } from '../CTAButton'
 export function ProductHero({
   eyebrow,
   eyebrowColor = 'text-violet-600',
+  eyebrowUppercase = true,
   title,
   subtitle,
   primaryLabel = 'Get Started Now',
@@ -25,6 +26,7 @@ export function ProductHero({
 }: {
   eyebrow?: string
   eyebrowColor?: string
+  eyebrowUppercase?: boolean
   title: React.ReactNode
   subtitle?: string
   primaryLabel?: string
@@ -44,15 +46,15 @@ export function ProductHero({
 
   return (
     <section className={`relative overflow-hidden ${bg}`}>
-      <div className="container-app grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:py-24">
+      <div className="container-app grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-[0.88fr_1.13fr] lg:gap-16 lg:py-24">
         {/* Left — copy */}
         <div>
           {eyebrow && (
-            <p className={`text-xs font-semibold uppercase tracking-wide ${eyebrowColor}`}>
+            <p className={`${eyebrowUppercase ? 'text-xs font-semibold uppercase tracking-wide' : 'text-[17px] font-medium'} ${eyebrowColor}`}>
               {eyebrow}
             </p>
           )}
-          <h1 className="mt-3 text-balance text-[34px] font-bold leading-[1.05] tracking-tight text-ink sm:text-[44px] lg:text-[56px]">
+          <h1 className="mt-6 text-balance text-[34px] font-bold leading-[1.08] tracking-tight text-ink sm:text-[46px] lg:text-[58px]">
             {title}
           </h1>
           {subtitle && (
@@ -60,9 +62,9 @@ export function ProductHero({
               {subtitle}
             </p>
           )}
-          <div className="mt-7 flex flex-wrap gap-3">
-            <CTAButton href={primaryHref}>{primaryLabel}</CTAButton>
-            <CTAButton variant="secondary" href={secondaryHref}>{secondaryLabel}</CTAButton>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <CTAButton size="lg" href={primaryHref}>{primaryLabel}</CTAButton>
+            <CTAButton size="lg" variant="secondary" href={secondaryHref}>{secondaryLabel}</CTAButton>
           </div>
         </div>
 

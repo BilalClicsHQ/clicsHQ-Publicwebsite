@@ -1,24 +1,30 @@
 import type { Metadata } from 'next'
 import { ProductPage, type ProductPageConfig } from '@/components/marketing/shared/ProductPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
+import {
+  TasksTableMockup,
+  KanbanCardMockup,
+  KanbanBoardMockup,
+} from '@/components/marketing/shared/ProductMockups'
 
 export const metadata: Metadata = { title: 'Tasks' }
 
 const config: ProductPageConfig = {
   hero: {
-    eyebrow: 'Tasks',
+    eyebrow: 'Task management',
     eyebrowColor: 'text-emerald-600',
-    title: 'Tasks that actually get done',
+    title: 'Tasks that keep every project moving',
     subtitle:
-      'Create, assign, and track tasks with priorities, due dates, dependencies, and AI-powered status updates.',
+      'Plan, assign, track, and complete work in one clean, fast workspace. Stop priorities, due dates, owners, comments, and progress visible for every team.',
     primaryLabel: 'Get Started',
-    mockupSrc: '/images/dashboards/ClicshqPage.svg',
+    secondaryLabel: 'Explore tasks',
+    mockup: <TasksTableMockup />,
     background: 'light',
   },
   intro: {
     title: (
       <>
-        Built for <Highlight color="green">real teamwork</Highlight>, not micromanagement
+        A <Highlight color="green">complete place</Highlight> to manage daily work
       </>
     ),
     subtitle:
@@ -26,34 +32,40 @@ const config: ProductPageConfig = {
   },
   splitRows: [
     {
-      eyebrow: 'Capture',
-      title: 'Create tasks faster than you can type them',
-      body: 'Quick-add from anywhere. Keyboard shortcuts for power users. AI suggests owners and due dates.',
-      bullets: ['Inline quick-add from any view', 'Templates for repeating work', 'AI auto-suggests owners and due dates'],
-      imageSrc: '/images/dashboards/ClicshqPage.svg',
+      eyebrow: 'Visual tracking',
+      title: 'See every stage of work clearly',
+      body:
+        'Track priorities, statuses, owners, and due dates at a glance. Sort, filter, and group your task list any way your team works.',
+      bullets: ['Custom statuses and priorities', 'Subtasks and dependencies', 'Bulk edit + multi-select'],
+      visual: <TasksTableMockup />,
     },
     {
-      eyebrow: 'Organize',
-      title: 'Group, sort, filter — your way',
-      body: 'Build personal and team views in seconds. Save filters. Share with one click.',
-      bullets: ['Custom statuses and priorities', 'Subtasks and dependencies', 'Bulk edit + multi-select'],
-      imageSrc: '/images/dashboards/ClicshqPage.svg',
+      eyebrow: 'Full context',
+      title: 'Open a task and get the full picture',
+      body:
+        'Every task carries comments, attachments, linked docs, and a complete activity history — so nothing gets lost.',
+      visual: <KanbanCardMockup />,
       reverse: true,
     },
     {
-      eyebrow: 'Stay aligned',
-      title: 'Comments, mentions, and automatic updates',
-      body: 'Activity threads on every task. @mentions go to inbox. Status changes notify watchers.',
-      imageSrc: '/images/dashboards/ClicshqPage.svg',
+      eyebrow: 'Flexible views',
+      title: 'Work the way your team prefers',
+      body:
+        'Switch between list, board, and calendar in one click. Save personalized views and share them across the team.',
+      visual: <KanbanBoardMockup />,
     },
   ],
   crossGridAccentColor: 'green',
   faqTitle: 'Tasks FAQs',
   faqs: [
-    { q: 'Can I link tasks to docs and projects?', a: 'Yes — every task can be linked to docs, sprints, customers, and more.' },
-    { q: 'Can AI help triage my task list?',        a: 'clicsHQ AI ranks tasks by priority, flags overdue items, and suggests next actions.' },
-    { q: 'How do recurring tasks work?',            a: 'Set any task to repeat daily/weekly/monthly. New instances appear automatically on the due date.' },
+    { q: 'Can I assign tasks to team members?',  a: 'Yes — assign owners, add watchers, @mention teammates, and route work automatically.' },
+    { q: 'Can I track due dates and priorities?', a: 'Set due dates, priorities, and dependencies. clicsHQ flags overdue and at-risk work.' },
+    { q: 'Can tasks be viewed as a board?',        a: 'Yes — switch any task list to a Kanban board, calendar, or timeline instantly.' },
   ],
+  finalCTA: {
+    title: 'Turn every idea into trackable work',
+    subtitle: 'Create, assign, and track tasks across projects — and keep every team aligned start to finish.',
+  },
 }
 
 export default function TasksPage() {

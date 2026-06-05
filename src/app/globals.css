@@ -2,8 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Inter — workhorse UI font (matches Figma typography). */
-@import url('https://rsms.me/inter/inter.css');
+/* Manrope — secondary typeface (Google Fonts). */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* Caveat — handwriting accent that replaces Figma's "Lucida Handwriting" (Google Fonts). */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+
+/*
+ * Satoshi — the global base typeface for the whole site.
+ * Self-hosted from Fontshare (Satoshi is NOT available on Google Fonts).
+ * Weights: 300 Light · 400 Regular · 500 Medium · 700 Bold · 900 Black.
+ */
+@font-face { font-family: 'Satoshi'; src: url('/fonts/satoshi/Satoshi-300.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/satoshi/Satoshi-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/satoshi/Satoshi-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/satoshi/Satoshi-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/satoshi/Satoshi-900.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
 
 @layer base {
   :root {
@@ -15,8 +29,11 @@
     --surface:   #F9FAFB;
   }
 
-  html { font-family: 'Inter var', Inter, ui-sans-serif, system-ui, sans-serif; }
-  @supports (font-variation-settings: normal) { html { font-family: 'Inter var', Inter, sans-serif; } }
+  /* Satoshi base — 'SF Pro Text' & 'Helvetica Neue' (from the Figma file) kept as fallbacks. */
+  html {
+    font-family: 'Satoshi', 'SF Pro Text', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+  }
 
   html {
     scroll-behavior: smooth;

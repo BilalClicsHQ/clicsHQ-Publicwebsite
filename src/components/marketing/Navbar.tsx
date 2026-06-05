@@ -5,8 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {
   ChevronDown,
-  ListChecks,
-  Calendar as CalendarIcon,
   Settings,
   Megaphone,
   Code,
@@ -38,10 +36,10 @@ const FEATURES: FeatureItem[] = [
   { id: 'integrations', iconSrc: '/images/navbar/integrations.svg', title: 'Integrations', desc: 'Connect with 100+ tools you already use',     href: '/product/integrations' },
   { id: 'kanban',       iconSrc: '/images/navbar/kanban.svg',       title: 'Kanban Board', desc: 'Workflows with smart automation',             href: '/product/kanban' },
   { id: 'gantt',        iconSrc: '/images/navbar/gantt.svg',        title: 'Gantt Chart',  desc: 'Workflows with smart automation',             href: '/product/gantt' },
-  { id: 'tasks',        lucideIcon: ListChecks,                      title: 'Tasks',        desc: 'Track performance and insights in real Time', href: '/product/tasks' },
+  { id: 'tasks',        iconSrc: '/images/navbar/task.svg',         title: 'Tasks',        desc: 'Track performance and insights in real Time', href: '/product/tasks' },
   { id: 'ai',           iconSrc: '/images/navbar/ai-assists.svg',   title: 'Ai assists',   desc: 'Leverage Ai to supercharge your pipline',     href: '/product/ai' },
   { id: 'docs',         iconSrc: '/images/navbar/docs.svg',         title: 'Docs',         desc: 'Workflows with smart automation',             href: '/product/docs' },
-  { id: 'calendar',     lucideIcon: CalendarIcon,                    title: 'Calendar',     desc: 'Track performance and insights in real Time', href: '/product/calendar' },
+  { id: 'calendar',     iconSrc: '/images/navbar/calender.svg',     title: 'Calendar',     desc: 'Track performance and insights in real Time', href: '/product/calendar' },
   { id: 'workflows',    iconSrc: '/images/navbar/workflows.svg',    title: 'Workflows',    desc: 'Leverage Ai to supercharge your pipline',     href: '/product/workflows' },
 ]
 

@@ -1,0 +1,4 @@
+[     625ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/_next/static/chunks/main-app.js?v=1780639391623:0
+[    2958ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/favicon.ico:0
+[    2974ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/image?url=%2Fimages%2Fkanban-board%2Fkanban-board-never.png&w=1080&q=75:0
+[    2974ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/image?url=%2Fimages%2Fkanban-board%2Fkanban-board-stage.png&w=1080&q=75:0

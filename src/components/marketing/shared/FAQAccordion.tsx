@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Plus, Minus } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
 export interface FAQItem {
@@ -10,14 +10,17 @@ export interface FAQItem {
 }
 
 /**
- * Outlined rounded-row accordion with +/− toggle. First item open by default.
+ * Outlined rounded-row accordion. First item open by default.
+ * `toggle` picks the affordance: a rotating chevron (default) or a +/− sign.
  */
 export function FAQAccordion({
   title = 'Frequently Asked Questions',
   items,
+  toggle = 'chevron',
 }: {
   title?: string
   items: FAQItem[]
+  toggle?: 'chevron' | 'plusminus'
 }) {
   const [openIndex, setOpenIndex] = React.useState<number | null>(0)
 
@@ -38,9 +41,17 @@ export function FAQAccordion({
                 aria-expanded={isOpen}
               >
                 <span className="text-sm font-medium text-ink">{it.q}</span>
-                <ChevronDown
-                  className={cn('h-4 w-4 shrink-0 text-muted transition-transform', isOpen && 'rotate-180')}
-                />
+                {toggle === 'plusminus' ? (
+                  isOpen ? (
+                    <Minus className="h-[1.125rem] w-[1.125rem] shrink-0 text-ink" />
+                  ) : (
+                    <Plus className="h-[1.125rem] w-[1.125rem] shrink-0 text-ink" />
+                  )
+                ) : (
+                  <ChevronDown
+                    className={cn('h-4 w-4 shrink-0 text-muted transition-transform', isOpen && 'rotate-180')}
+                  />
+                )}
               </button>
               {isOpen && (
                 <div className="px-5 pb-5 text-sm leading-relaxed text-muted animate-fade-up">

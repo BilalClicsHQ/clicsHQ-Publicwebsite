@@ -14,6 +14,7 @@ export function FeatureSplitRow({
   bullets,
   imageSrc,
   imageAlt = '',
+  visual,
   reverse = false,
   ctaLabel,
   ctaHref,
@@ -24,6 +25,8 @@ export function FeatureSplitRow({
   bullets?: string[]
   imageSrc?: string
   imageAlt?: string
+  /** In-code mockup slot — takes precedence over `imageSrc` when provided. */
+  visual?: React.ReactNode
   reverse?: boolean
   ctaLabel?: string
   ctaHref?: string
@@ -58,7 +61,9 @@ export function FeatureSplitRow({
         )}
       </div>
 
-      {imageSrc && (
+      {visual ? (
+        <div className="relative">{visual}</div>
+      ) : imageSrc ? (
         <div className="relative overflow-hidden rounded-2xl bg-gray-50 ring-1 ring-gray-100">
           <Image
             src={imageSrc}
@@ -68,7 +73,7 @@ export function FeatureSplitRow({
             className="h-auto w-full"
           />
         </div>
-      )}
+      ) : null}
     </div>
   )
 }

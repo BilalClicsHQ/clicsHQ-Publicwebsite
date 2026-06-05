@@ -24,7 +24,11 @@ next-env.d.ts
 # Media uploads
 /media/
 
+# Figma design cache (fetched JSON + reference PNGs)
+/figma-cache/
+
 # Editor / tooling
 .claude/
 .vscode/
 .idea/
+.shots/
