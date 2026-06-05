@@ -1,12 +1,11 @@
 import type { Metadata } from 'next'
 import { ProductPage, type ProductPageConfig } from '@/components/marketing/shared/ProductPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
-import {
-  WorkflowCanvasMockup,
-  KanbanBoardMockup,
-} from '@/components/marketing/shared/ProductMockups'
+import { Shot } from '@/components/marketing/shared/ProductMockups'
 
 export const metadata: Metadata = { title: 'Workflow automation' }
+
+const IMG = '/images/workflows'
 
 const config: ProductPageConfig = {
   hero: {
@@ -18,7 +17,7 @@ const config: ProductPageConfig = {
       'Create simple workflows that trigger actions automatically when tasks are created, updated, assigned, commented on, or moved.',
     primaryLabel: 'Start for free',
     secondaryLabel: 'Explore Workflows',
-    mockup: <WorkflowCanvasMockup />,
+    mockup: <Shot src={`${IMG}/workflow-hero.svg`} alt="clicsHQ workflow builder" w={784} h={556} priority />,
     background: 'light',
   },
   intro: {
@@ -37,14 +36,14 @@ const config: ProductPageConfig = {
       body:
         'Compose triggers, conditions, and actions on a simple visual canvas. Test every step before you publish.',
       bullets: ['No-code builder with branching logic', 'Test runs with sample data', 'Per-step error handling and retries'],
-      visual: <WorkflowCanvasMockup />,
+      visual: <Shot src={`${IMG}/workflow-build.svg`} alt="Building an automation on the workflow canvas" w={267} h={466} />,
     },
     {
       eyebrow: 'Run',
       title: 'Automate repetitive board actions',
       body:
         'Let clicsHQ move cards, notify teammates, and update statuses automatically when things change — so your team stays focused on real work.',
-      visual: <KanbanBoardMockup />,
+      visual: <Shot src={`${IMG}/workflow-build2.svg`} alt="A When → Then automation running" w={484} h={249} />,
       reverse: true,
     },
   ],
@@ -52,7 +51,9 @@ const config: ProductPageConfig = {
     title: 'Popular workflow ideas',
     subtitle:
       'These are not templates. They are simple examples of what your team can build using the workflow builder.',
-    columns: 4,
+    layout: 'showcase',
+    image: `${IMG}/workflow-features.svg`,
+    imageAlt: 'clicsHQ workflow builder canvas',
     tiles: [
       { chipLabel: 'When → Then', chipColor: 'emerald', title: 'Task created',      body: 'Assign the right user and send a notification.' },
       { chipLabel: 'When → Then', chipColor: 'sky',     title: 'Label added',       body: 'Move the task to the selected list.' },

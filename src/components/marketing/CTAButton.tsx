@@ -24,7 +24,7 @@ const ctaVariants = cva(
         primary:
           'bg-ink text-white hover:bg-black active:bg-black focus-visible:ring-ink/40',
         accent:
-          'bg-violet-500 text-white shadow-md shadow-violet-500/25 hover:bg-violet-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-500/30 focus-visible:ring-violet-500/50',
+          'bg-gradient-to-r from-[#7338F2] to-[#A66BFF] text-white shadow-[0_10px_30px_-6px_rgba(115,56,242,0.55)] hover:from-[#6A2EE8] hover:to-[#9B5BFF] hover:-translate-y-0.5 hover:shadow-[0_14px_38px_-6px_rgba(115,56,242,0.65)] focus-visible:ring-violet-500/50',
         secondary:
           'bg-white text-ink border border-gray-200 hover:bg-gray-50 focus-visible:ring-ink/30',
         ghost:

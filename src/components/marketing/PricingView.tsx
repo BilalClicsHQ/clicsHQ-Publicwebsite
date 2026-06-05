@@ -114,13 +114,6 @@ const FAQS: FAQ[] = [
   },
 ]
 
-// SVG inset ratios — used to position the content overlay over the white card
-// area inside each background SVG. (See spec.)
-const INSET = {
-  popular: { top: 31 / 922, side: 41 / 590, bottom: 51 / 922 },
-  normal: { top: 21 / 724, side: 31 / 462, bottom: 41 / 724 },
-}
-
 // ── View ────────────────────────────────────────────────────────────────────
 
 export function PricingView() {
@@ -276,7 +269,7 @@ export function PricingView() {
         </div>
 
         {/* ── Pricing cards ── */}
-        <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:items-start">
+        <div className="mt-6 flex flex-col items-center justify-center gap-8 lg:flex-row lg:items-center lg:gap-0">
           {PLANS.map((plan) => (
             <PlanCard
               key={plan.id}
@@ -359,6 +352,14 @@ export function PricingView() {
   )
 }
 
+// SVG inset ratios — position the content overlay over the inner white card
+// area of each background SVG (the SVG already draws the rounded card + tint +
+// pattern + shadow; content is laid over its inner region).
+const INSET = {
+  popular: { top: 31 / 922, side: 41 / 590, bottom: 51 / 922 },
+  normal: { top: 21 / 724, side: 31 / 462, bottom: 41 / 724 },
+}
+
 // ── Plan card ─────────────────────────────────────────────────────────────────
 
 function PlanCard({
@@ -372,28 +373,21 @@ function PlanCard({
 }) {
   const isPopular = plan.popular
   const inset = isPopular ? INSET.popular : INSET.normal
-
-  // Desktop widths from spec; full-width below lg so cards stack cleanly.
   const width = isPopular ? 470 : 370
 
   return (
     <div
-      className="relative w-full"
-      style={{ maxWidth: width }}
       onClick={onSelect}
+      className={cn('relative w-full', isPopular && 'z-10 lg:-mx-4')}
+      style={{ maxWidth: width }}
     >
-      {/* Background SVG (full width, block). Fallback border keeps layout intact
-          if the asset hasn't been added yet. */}
+      {/* The SVG is the full card art (rounded card + tint + grid + shadow). */}
       <img
         src={plan.bg}
         alt=""
         aria-hidden
         className="block w-full select-none"
-        style={{
-          borderRadius: 24,
-          // Soft fallback so the card area is visible before the SVG is dropped in.
-          boxShadow: selected ? '0 0 0 2px #000' : '0 1px 3px rgba(0,0,0,0.08)',
-        }}
+        style={{ borderRadius: 24, boxShadow: selected ? '0 0 0 2px #000' : undefined }}
       />
 
       {/* "Most Popular" badge — straddles the top edge of the Teams card */}
@@ -402,18 +396,11 @@ function PlanCard({
           src="/icons/mostpopular.svg"
           alt="Most Popular"
           className="pointer-events-none absolute select-none"
-          style={{
-            left: '50%',
-            top: `${inset.top * 100}%`,
-            transform: 'translate(-50%, -50%)',
-            zIndex: 10,
-            width: 230,
-            height: 'auto',
-          }}
+          style={{ left: '50%', top: `${inset.top * 100}%`, transform: 'translate(-50%, -50%)', zIndex: 10, width: 230, height: 'auto' }}
         />
       )}
 
-      {/* Content overlay — inset to match the SVG's inner white card area */}
+      {/* Content overlay — inset to the SVG's inner white card area */}
       <div
         className="absolute flex flex-col"
         style={{
@@ -421,52 +408,27 @@ function PlanCard({
           left: `${inset.side * 100}%`,
           right: `${inset.side * 100}%`,
           bottom: `${inset.bottom * 100}%`,
-          padding: isPopular ? '60px 24px 20px' : '18px 18px 14px',
+          padding: isPopular ? '58px 26px 22px' : '20px 20px 16px',
         }}
       >
         {/* Plan name */}
-        <h3
-          style={{
-            fontFamily: 'Satoshi, sans-serif',
-            fontWeight: 600,
-            fontSize: isPopular ? 24 : 20,
-            color: '#222',
-          }}
-        >
+        <h3 style={{ fontFamily: 'Satoshi, sans-serif', fontWeight: 700, fontSize: isPopular ? 26 : 22, color: '#1a1a1a' }}>
           {plan.name}
         </h3>
 
         {/* "Starts at" caption */}
-        <p style={{ fontSize: isPopular ? 13 : 12, color: '#555', marginBottom: 3 }}>
-          Starts at
-        </p>
+        <p style={{ fontSize: 13, color: '#555', marginTop: 4 }}>Starts at</p>
 
         {/* Price + period */}
-        <div className="flex items-baseline gap-1.5">
-          <span
-            style={{
-              fontFamily: 'Satoshi, sans-serif',
-              fontWeight: 700,
-              fontSize: isPopular ? 48 : 36,
-              color: '#111',
-            }}
-          >
+        <div className="flex items-baseline gap-1.5" style={{ marginTop: 2 }}>
+          <span style={{ fontFamily: 'Satoshi, sans-serif', fontWeight: 700, fontSize: isPopular ? 48 : 40, color: '#111', lineHeight: 1 }}>
             {plan.price}
           </span>
-          <span style={{ fontSize: isPopular ? 15 : 13, color: '#555' }}>{plan.period}</span>
+          <span style={{ fontSize: isPopular ? 15 : 14, color: '#555' }}>{plan.period}</span>
         </div>
 
         {/* Description */}
-        <p
-          className="text-left"
-          style={{
-            fontSize: isPopular ? 14 : 12,
-            color: '#555',
-            lineHeight: 1.5,
-            marginTop: 8,
-            marginBottom: isPopular ? 22 : 16,
-          }}
-        >
+        <p className="text-left" style={{ fontSize: isPopular ? 14 : 13, color: '#555', lineHeight: 1.5, marginTop: 10, marginBottom: isPopular ? 18 : 14 }}>
           {plan.description}
         </p>
 
@@ -477,50 +439,21 @@ function PlanCard({
             'w-full transition-colors',
             plan.ctaStyle === 'filled'
               ? 'bg-black text-white hover:bg-gray-800'
-              : 'border border-gray-300 text-gray-700 hover:bg-gray-50',
+              : 'border border-gray-300 bg-white/70 text-gray-800 hover:bg-white',
           )}
-          style={{
-            padding: `${isPopular ? 12 : 10}px 0`,
-            borderRadius: isPopular ? 14 : 12,
-            fontSize: isPopular ? 16 : 14,
-            fontWeight: 600,
-            marginBottom: isPopular ? 24 : 18,
-          }}
+          style={{ padding: `${isPopular ? 13 : 11}px 0`, borderRadius: 12, fontSize: isPopular ? 15 : 14, fontWeight: 600 }}
         >
           {plan.cta}
         </button>
 
         {/* Features */}
-        <div
-          style={{
-            borderTop: '1px solid #E5E7EB',
-            paddingTop: isPopular ? 20 : 16,
-          }}
-        >
-          <p
-            style={{
-              fontSize: isPopular ? 15 : 13,
-              fontWeight: 600,
-              color: '#222',
-              marginBottom: isPopular ? 14 : 10,
-            }}
-          >
-            {plan.headerLabel}
-          </p>
+        <div style={{ borderTop: '1px solid #E5E7EB', marginTop: isPopular ? 20 : 16, paddingTop: isPopular ? 18 : 14 }}>
+          <p style={{ fontSize: isPopular ? 15 : 13, fontWeight: 600, color: '#222', marginBottom: isPopular ? 14 : 10 }}>{plan.headerLabel}</p>
           <ul className="flex flex-col" style={{ gap: isPopular ? 12 : 9 }}>
             {plan.features.map((f) => (
               <li key={f} className="flex items-start" style={{ gap: 10 }}>
-                <Check
-                  className="shrink-0 text-green-500"
-                  style={{
-                    width: isPopular ? 18 : 16,
-                    height: isPopular ? 18 : 16,
-                    marginTop: 1,
-                  }}
-                />
-                <span style={{ fontSize: isPopular ? 15 : 13, color: '#333', lineHeight: 1.4 }}>
-                  {f}
-                </span>
+                <Check className="shrink-0 text-green-500" style={{ width: isPopular ? 18 : 16, height: isPopular ? 18 : 16, marginTop: 1 }} />
+                <span style={{ fontSize: isPopular ? 15 : 13, color: '#333', lineHeight: 1.4 }}>{f}</span>
               </li>
             ))}
           </ul>

@@ -3,17 +3,10 @@
 import * as React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import {
-  ChevronDown,
-  Settings,
-  Megaphone,
-  Code,
-  TrendingUp,
-  Rocket,
-  Heart,
-  Briefcase,
-} from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/cn'
+
+const SOL = '/images/solutions'
 
 interface FeatureItem {
   id: string
@@ -26,8 +19,9 @@ interface FeatureItem {
 
 interface SolutionItem {
   id: string
-  lucideIcon: React.ElementType
+  iconSrc: string
   title: string
+  desc: string
   href: string
 }
 
@@ -43,18 +37,23 @@ const FEATURES: FeatureItem[] = [
   { id: 'workflows',    iconSrc: '/images/navbar/workflows.svg',    title: 'Workflows',    desc: 'Leverage Ai to supercharge your pipline',     href: '/product/workflows' },
 ]
 
-// Solutions dropdown — 2 columns
+// Solutions dropdown — Teams column + Company type (two columns)
 const SOLUTIONS_TEAMS: SolutionItem[] = [
-  { id: 'operations',  lucideIcon: Settings,    title: 'Operations',  href: '/solutions/operations'  },
-  { id: 'marketing',   lucideIcon: Megaphone,   title: 'Marketing',   href: '/solutions/marketing'   },
-  { id: 'engineering', lucideIcon: Code,        title: 'Engineering', href: '/solutions/engineering' },
-  { id: 'sales',       lucideIcon: TrendingUp,  title: 'Sales',       href: '/solutions/sales'       },
+  { id: 'operations',  iconSrc: `${SOL}/operations.svg`,     title: 'Operations',  desc: 'Connect with 100+ tools you already use',     href: '/solutions/operations'  },
+  { id: 'marketing',   iconSrc: `${SOL}/marketing.svg`,      title: 'Marketing',   desc: 'Track performance and insights in real Time', href: '/solutions/marketing'   },
+  { id: 'engineering', iconSrc: `${SOL}/engineering.svg`,    title: 'Engineering', desc: 'Track performance and insights in real Time', href: '/solutions/engineering' },
+  { id: 'sales',       iconSrc: `${SOL}/sales.svg`,          title: 'Sales',       desc: 'Track performance and insights in real Time', href: '/solutions/sales'       },
 ]
 
-const SOLUTIONS_COMPANY: SolutionItem[] = [
-  { id: 'startup',    lucideIcon: Rocket,    title: 'Startup',        href: '/solutions/startup'        },
-  { id: 'small-biz',  lucideIcon: Briefcase, title: 'Small Business', href: '/solutions/small-business' },
-  { id: 'nonprofit',  lucideIcon: Heart,     title: 'Non profit',     href: '/solutions/nonprofits'     },
+const SOLUTIONS_COMPANY_A: SolutionItem[] = [
+  { id: 'startup',    iconSrc: `${SOL}/startup.svg`,        title: 'Startup',        desc: 'Workflows with smart automation',         href: '/solutions/startup'        },
+  { id: 'small-biz',  iconSrc: `${SOL}/small-business.svg`, title: 'Small Business', desc: 'Leverage Ai to supercharge your pipline', href: '/solutions/small-business' },
+  { id: 'nonprofit',  iconSrc: `${SOL}/nonprofit.svg`,      title: 'Non profit',     desc: 'Leverage Ai to supercharge your pipline', href: '/solutions/nonprofits'     },
+]
+
+const SOLUTIONS_COMPANY_B: SolutionItem[] = [
+  { id: 'gantt', iconSrc: `${SOL}/gantt.svg`, title: 'Gantt Chart', desc: 'Workflows with smart automation', href: '/product/gantt' },
+  { id: 'docs',  iconSrc: `${SOL}/docs.svg`,  title: 'Docs',        desc: 'Workflows with smart automation', href: '/product/docs'  },
 ]
 
 const NAV_LINKS = [
@@ -136,7 +135,7 @@ export function Navbar() {
             <button
               onClick={() => setOpenMenu(openMenu === 'product' ? null : 'product')}
               className={cn(
-                'inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                'inline-flex items-center gap-1 rounded-lg px-3 py-2 text-[15px] font-medium transition-colors',
                 openMenu === 'product' ? 'bg-gray-50 text-ink' : 'text-ink/80 hover:text-ink',
               )}
               aria-expanded={openMenu === 'product'}
@@ -199,7 +198,7 @@ export function Navbar() {
             <button
               onClick={() => setOpenMenu(openMenu === 'solutions' ? null : 'solutions')}
               className={cn(
-                'inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                'inline-flex items-center gap-1 rounded-lg px-3 py-2 text-[15px] font-medium transition-colors',
                 openMenu === 'solutions' ? 'bg-gray-50 text-ink' : 'text-ink/80 hover:text-ink',
               )}
               aria-expanded={openMenu === 'solutions'}
@@ -213,28 +212,36 @@ export function Navbar() {
             {openMenu === 'solutions' && (
               <div
                 role="menu"
-                className="absolute left-1/2 top-full z-50 mt-3 w-[480px] -translate-x-1/2 rounded-2xl bg-white p-4 shadow-2xl ring-1 ring-gray-100 animate-fade-up"
+                className="absolute left-1/2 top-full z-50 mt-3 w-[760px] -translate-x-1/2 rounded-2xl bg-white p-3 shadow-2xl ring-1 ring-gray-100 animate-fade-up"
                 onMouseEnter={openHandler('solutions')}
                 onMouseLeave={closeHandler}
               >
                 <div className="rounded-lg bg-gray-100 px-3 py-2">
                   <p className="text-xs font-semibold text-ink/80">Solutions</p>
                 </div>
-                <div className="mt-3 grid grid-cols-2 gap-x-6 px-2">
+                <div className="mt-1 grid grid-cols-3 gap-x-2 p-2">
                   {/* Teams */}
                   <div>
-                    <p className="px-2 pb-1.5 text-[10px] font-semibold uppercase tracking-wide text-subtle">Teams</p>
+                    <p className="px-3 pb-1 text-sm text-subtle">Teams</p>
                     <ul>
                       {SOLUTIONS_TEAMS.map((s) => (
                         <SolutionRow key={s.id} item={s} onClick={() => setOpenMenu(null)} />
                       ))}
                     </ul>
                   </div>
-                  {/* Company type */}
+                  {/* Company type (spans two columns) */}
                   <div>
-                    <p className="px-2 pb-1.5 text-[10px] font-semibold uppercase tracking-wide text-subtle">Company type</p>
+                    <p className="px-3 pb-1 text-sm text-subtle">Company type</p>
                     <ul>
-                      {SOLUTIONS_COMPANY.map((s) => (
+                      {SOLUTIONS_COMPANY_A.map((s) => (
+                        <SolutionRow key={s.id} item={s} onClick={() => setOpenMenu(null)} />
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="px-3 pb-1 text-sm text-transparent" aria-hidden>.</p>
+                    <ul>
+                      {SOLUTIONS_COMPANY_B.map((s) => (
                         <SolutionRow key={s.id} item={s} onClick={() => setOpenMenu(null)} />
                       ))}
                     </ul>
@@ -248,7 +255,7 @@ export function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-ink/80 transition-colors hover:text-ink"
+              className="rounded-lg px-3 py-2 text-[15px] font-medium text-ink/80 transition-colors hover:text-ink"
             >
               {l.label}
             </Link>
@@ -259,19 +266,19 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <Link
             href="/demo"
-            className="hidden h-9 items-center rounded-lg px-3 text-sm font-medium text-ink/80 transition-colors hover:text-ink sm:inline-flex"
+            className="hidden h-10 items-center rounded-lg px-3 text-[15px] font-medium text-ink/80 transition-colors hover:text-ink sm:inline-flex"
           >
             Demo
           </Link>
           <Link
             href="/login"
-            className="hidden h-9 items-center rounded-lg border border-gray-200 bg-white px-4 text-sm font-medium text-ink transition-colors hover:bg-gray-50 sm:inline-flex"
+            className="hidden h-10 items-center rounded-lg border border-gray-200 bg-white px-4 text-[15px] font-medium text-ink transition-colors hover:bg-gray-50 sm:inline-flex"
           >
             Log in
           </Link>
           <Link
             href="/signup"
-            className="inline-flex h-9 items-center rounded-lg bg-ink px-4 text-sm font-semibold text-white transition-colors hover:bg-black"
+            className="inline-flex h-10 items-center rounded-lg bg-ink px-4 text-[15px] font-semibold text-white transition-colors hover:bg-black"
           >
             Sign up
           </Link>
@@ -282,19 +289,21 @@ export function Navbar() {
 }
 
 function SolutionRow({ item, onClick }: { item: SolutionItem; onClick: () => void }) {
-  const Icon = item.lucideIcon
   return (
     <li>
       <Link
         href={item.href}
         role="menuitem"
         onClick={onClick}
-        className="flex items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-gray-50"
+        className="group flex items-start gap-3 rounded-xl p-2.5 transition-colors hover:bg-gray-50 focus-visible:bg-gray-50 focus-visible:outline-none"
       >
-        <span className="grid h-7 w-7 place-items-center rounded-md bg-gray-100 text-ink">
-          <Icon className="h-3.5 w-3.5" />
+        <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center">
+          <Image src={item.iconSrc} alt="" aria-hidden width={36} height={36} className="h-9 w-9" />
         </span>
-        <span className="text-sm font-medium text-ink">{item.title}</span>
+        <div className="min-w-0 pt-0.5">
+          <p className="text-sm font-semibold text-ink">{item.title}</p>
+          <p className="text-[11px] leading-snug text-muted">{item.desc}</p>
+        </div>
       </Link>
     </li>
   )

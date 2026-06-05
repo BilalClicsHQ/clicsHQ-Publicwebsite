@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
-import { Eye, Sparkles, Workflow } from 'lucide-react'
+import { Eye, Sparkles, Workflow, ListChecks, FileText, Bell, BookOpen } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
+import { Highlight } from '@/components/marketing/shared/Highlight'
+
+const TOOL = '/images/tools'
 
 export const metadata: Metadata = { title: 'For Small Business' }
 
@@ -57,6 +60,42 @@ const config: SolutionPageConfig = {
       reverse: true,
     },
   ],
+  aiAssistant: {
+    eyebrow: 'clics AI',
+    title: (
+      <>
+        <Highlight color="violet">AI help</Highlight> for everyday business work
+      </>
+    ),
+    subtitle:
+      'Ask questions, summarize updates, draft replies, and let AI agents handle the busywork for your team.',
+    items: [
+      { icon: ListChecks, iconBg: 'bg-violet-100 text-violet-600', title: 'Task Agent',     body: 'Creates and organizes task lists.' },
+      { icon: FileText,   iconBg: 'bg-pink-100 text-pink-600',     title: 'Summary Agent',  body: 'Summarizes meetings and updates.' },
+      { icon: Bell,       iconBg: 'bg-amber-100 text-amber-600',   title: 'Reminder Agent', body: 'Flags overdue and upcoming work.' },
+      { icon: BookOpen,   iconBg: 'bg-sky-100 text-sky-600',       title: 'Docs Assistant', body: 'Finds answers from team docs.' },
+    ],
+  },
+  spaces: {
+    eyebrow: 'Spaces',
+    title: 'Organize work your way',
+    subtitle: 'Use flexible spaces and multiple views to manage work the way your team prefers.',
+    tabs: ['Overview', 'List', 'Kanban', 'Calendar', 'Gantt'],
+  },
+  integrations: {
+    eyebrow: 'Integrations',
+    title: 'Connect your everyday tools',
+    subtitle: 'Bring the tools your team already uses closer to the projects and customers you manage in clicsHQ.',
+    logos: [
+      { src: `${TOOL}/dropbox.svg`, alt: 'Dropbox' },
+      { src: `${TOOL}/msTeams.svg`, alt: 'Microsoft Teams' },
+      { src: `${TOOL}/g-drive.svg`, alt: 'Google Drive' },
+      { src: `${TOOL}/Jira.svg`,    alt: 'Jira' },
+      { src: `${TOOL}/Github.svg`,  alt: 'GitHub' },
+      { src: `${TOOL}/Figma.svg`,   alt: 'Figma' },
+      { src: `${TOOL}/Slack.svg`,   alt: 'Slack' },
+    ],
+  },
   finalCTA: {
     title: 'Run your small business from one workspace',
     subtitle: 'Manage projects, tasks, docs, workflows, and AI updates with clicsHQ.',

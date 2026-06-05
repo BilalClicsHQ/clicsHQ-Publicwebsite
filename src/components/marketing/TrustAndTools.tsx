@@ -79,12 +79,17 @@ export function TrustAndTools() {
           Works With 200+ Tools You Already Use
         </h2>
 
-        <ul className="mx-auto mt-10 flex flex-wrap items-end justify-center gap-2 sm:gap-3 lg:gap-4">
+        <ul className="mx-auto mt-10 flex items-center justify-center">
           {TOOLS.map((t, i) => {
             const tier = tierFor(i, TOOLS.length)
             const sz = TIER_SIZE[tier]
+            const z = { sm: 10, md: 20, lg: 30, xl: 40 }[tier]
             return (
-              <li key={t.name} className="group relative">
+              <li
+                key={t.name}
+                className="group relative -ml-3 first:ml-0 sm:-ml-4"
+                style={{ zIndex: z }}
+              >
                 {/* Background pastel circle */}
                 <div className={cn('relative grid place-items-center', sz.box)}>
                   <Image

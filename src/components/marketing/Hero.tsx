@@ -20,10 +20,32 @@ import { CTAButton } from './CTAButton'
  */
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden bg-ink">
+      {/* Curved-lines pattern over the black stage (lower portion) */}
+      <Image
+        src="/images/hero/landingpages-curved-lines.svg"
+        alt=""
+        aria-hidden
+        width={1400}
+        height={920}
+        priority
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-auto w-full select-none object-cover object-bottom"
+      />
+      {/* White shade at the top — near-white fading to transparent so the top reads
+          white, blends through a soft shadow, then into the black stage below. */}
+      <Image
+        src="/images/hero/landingpagesshade.svg"
+        alt=""
+        aria-hidden
+        width={1400}
+        height={479}
+        priority
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-auto w-full select-none"
+      />
+
       {/* Headline area */}
-      <div className="container-app relative pt-14 sm:pt-20 lg:pt-24 pb-8 text-center">
-        <h1 className="relative mx-auto max-w-[1100px] text-balance font-bold tracking-[-0.025em] text-ink leading-[1.0] text-[40px] sm:text-[64px] lg:text-[88px]">
+      <div className="container-app relative z-10 pt-14 sm:pt-20 lg:pt-24 pb-8 text-center">
+        <h1 className="relative mx-auto max-w-[1100px] text-balance font-medium tracking-[-0.01em] text-ink leading-[1.05] text-[40px] sm:text-[64px] lg:text-[84px]">
           Manage Your Task Productivity
         </h1>
 
@@ -48,41 +70,16 @@ export function Hero() {
           <CTAButton variant="secondary" size="lg" href="/demo">Try It Free</CTAButton>
         </div>
 
-        <p className="relative mt-4 text-sm text-muted">
+        <p className="relative mt-4 text-sm text-white/80">
           Try Our Demo Of Dashboard Now!{' '}
-          <Link href="/demo" className="font-medium text-pink-500 hover:underline">
+          <Link href="/demo" className="font-medium text-pink-400 hover:underline">
             – Learn More →
           </Link>
         </p>
       </div>
 
-      {/* Stage with app preview */}
-      <div className="relative">
-        {/* Dark stage backdrop — uses the Figma flowing-curves pattern */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[82%] select-none"
-        >
-          <Image
-            src="/images/hero/dark-stage.png"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-bottom"
-          />
-        </div>
-
-        {/*
-          Soft fade overlay that blends the stage into the white area above —
-          covers ~25% from the top of the stage, gradient from full-white down
-          to transparent so the dark texture appears to fade in gradually.
-        */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[28%] bg-gradient-to-b from-white via-white/70 to-transparent"
-        />
-
+      {/* Stage with app preview — sits on the black section bg + curved lines */}
+      <div className="relative z-10">
         <div className="container-app relative pb-20 lg:pb-24">
           <div className="relative mx-auto max-w-5xl">
             {/* Floating "24 Total Tasks" card — left, breaks out over the stage */}

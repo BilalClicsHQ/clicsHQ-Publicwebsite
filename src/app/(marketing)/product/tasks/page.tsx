@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import { ProductPage, type ProductPageConfig } from '@/components/marketing/shared/ProductPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
-import {
-  TasksTableMockup,
-  KanbanCardMockup,
-  KanbanBoardMockup,
-} from '@/components/marketing/shared/ProductMockups'
+import { Shot } from '@/components/marketing/shared/ProductMockups'
 
 export const metadata: Metadata = { title: 'Tasks' }
+
+const IMG = '/images/tasks'
 
 const config: ProductPageConfig = {
   hero: {
@@ -19,7 +17,7 @@ const config: ProductPageConfig = {
       'Plan, assign, track, and complete work in one clean task workspace. Keep priorities, due dates, owners, comments, and progress visible for every team.',
     primaryLabel: 'Start for free',
     secondaryLabel: 'Explore Tasks',
-    mockup: <TasksTableMockup />,
+    mockup: <Shot src={`${IMG}/task-hero.svg`} alt="clicsHQ task management" w={784} h={556} priority />,
     background: 'light',
   },
   intro: {
@@ -38,14 +36,14 @@ const config: ProductPageConfig = {
       body:
         'Track priorities, statuses, owners, and due dates at a glance. Sort, filter, and group your task list any way your team works.',
       bullets: ['Custom statuses and priorities', 'Subtasks and dependencies', 'Bulk edit + multi-select'],
-      visual: <TasksTableMockup />,
+      visual: <Shot src={`${IMG}/task-stage.svg`} alt="Task list showing every stage of work" w={556} h={319} />,
     },
     {
       eyebrow: 'Full context',
       title: 'Open a task and get the full picture',
       body:
         'Every task carries comments, attachments, linked docs, and a complete activity history — so nothing gets lost.',
-      visual: <KanbanCardMockup />,
+      visual: <Shot src={`${IMG}/task-context.svg`} alt="Opening a task with full context" w={434} h={342} />,
       reverse: true,
     },
     {
@@ -53,7 +51,7 @@ const config: ProductPageConfig = {
       title: 'Work the way your team prefers',
       body:
         'Switch between list, board, and calendar in one click. Save personalized views and share them across the team.',
-      visual: <KanbanBoardMockup />,
+      visual: <Shot src={`${IMG}/task-view-space.svg`} alt="Switching between task views" w={434} h={336} />,
     },
   ],
   crossGridAccentColor: 'lime',

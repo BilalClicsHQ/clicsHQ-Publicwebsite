@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
-import { Eye, Sparkles, Workflow } from 'lucide-react'
+import { Eye, Sparkles, Workflow, Megaphone, FileText, CheckCircle, FileBarChart } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
+
+const TOOL = '/images/tools'
 
 export const metadata: Metadata = { title: 'For Marketing teams' }
 
@@ -48,6 +50,42 @@ const config: SolutionPageConfig = {
     { title: 'Workload by team member',              body: 'Don’t over-book your designers or writers — capacity views show real bandwidth.',     imageSrc: '/images/dashboards/ClicshqPage.svg' },
     { title: 'Approval and overdue insights',        body: 'See pending approvals and overdue work at a glance so nothing slips before launch.',  imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
   ],
+  aiAssistant: {
+    eyebrow: 'clics AI',
+    title: (
+      <>
+        Meet your <Highlight color="violet">AI marketing</Highlight> assistant
+      </>
+    ),
+    subtitle:
+      'Ask questions, create campaign briefs, summarize updates, and let AI agents help your team move from idea to launch faster.',
+    items: [
+      { icon: Megaphone,    iconBg: 'bg-violet-100 text-violet-600', title: 'Campaign Agent',  body: 'Creates campaign plans, launch checklists, and task lists.' },
+      { icon: FileText,     iconBg: 'bg-pink-100 text-pink-600',     title: 'Content Agent',   body: 'Turns ideas into briefs, outlines, drafts, and content tasks.' },
+      { icon: CheckCircle,  iconBg: 'bg-amber-100 text-amber-600',   title: 'Approval Agent',  body: 'Tracks pending reviews and reminds the right owners.' },
+      { icon: FileBarChart, iconBg: 'bg-sky-100 text-sky-600',       title: 'Reporting Agent', body: 'Summarizes campaign progress and weekly marketing updates.' },
+    ],
+  },
+  spaces: {
+    eyebrow: 'Spaces',
+    title: 'Organize marketing your way',
+    subtitle: 'Use flexible spaces and multiple views to manage work the way your team prefers.',
+    tabs: ['Overview', 'List', 'Kanban', 'Calendar', 'Gantt'],
+  },
+  integrations: {
+    eyebrow: 'Integrations',
+    title: 'Connect your marketing stack',
+    subtitle: 'Bring your tools closer to the work your team manages in clicsHQ.',
+    logos: [
+      { src: `${TOOL}/dropbox.svg`, alt: 'Dropbox' },
+      { src: `${TOOL}/msTeams.svg`, alt: 'Microsoft Teams' },
+      { src: `${TOOL}/g-drive.svg`, alt: 'Google Drive' },
+      { src: `${TOOL}/Jira.svg`,    alt: 'Jira' },
+      { src: `${TOOL}/Github.svg`,  alt: 'GitHub' },
+      { src: `${TOOL}/Figma.svg`,   alt: 'Figma' },
+      { src: `${TOOL}/Slack.svg`,   alt: 'Slack' },
+    ],
+  },
   finalCTA: {
     title: 'Launch campaigns faster with clicsHQ',
     subtitle: 'Bring campaign planning, execution, approvals, and AI assistance into one connected workspace.',

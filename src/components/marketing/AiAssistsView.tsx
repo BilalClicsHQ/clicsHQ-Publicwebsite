@@ -1,31 +1,34 @@
 import * as React from 'react'
+import Image from 'next/image'
 import { MessageSquare, Bot, FileText } from 'lucide-react'
 import { CTAButton } from './CTAButton'
 import { TrustLogoStrip } from './shared/TrustLogoStrip'
 import { SectionHeader } from './shared/SectionHeader'
 import { FeatureSplitRow } from './shared/FeatureSplitRow'
-import { DarkFeatureTileGrid } from './shared/DarkFeatureTileGrid'
 import { CrossProductGrid } from './shared/CrossProductGrid'
 import { FAQAccordion } from './shared/FAQAccordion'
 import { FinalCTAMountain } from './shared/FinalCTAMountain'
 import { Footer } from './Footer'
 import { Highlight } from './shared/Highlight'
-import {
-  AiChatMockup,
-  AiAgentGrid,
-  AiWayTile,
-  WorkflowCanvasMockup,
-  DocsEditorMockup,
-  type AiAgent,
-} from './shared/ProductMockups'
+import { Shot, AiWayTile } from './shared/ProductMockups'
 
-const AGENTS: AiAgent[] = [
-  { name: 'Project Planner',    desc: 'Breaks goals into tasks, owners, and a realistic timeline.', tone: 'violet' },
-  { name: 'Meeting Summarizer', desc: 'Turns call notes into decisions, action items, and owners.', tone: 'pink' },
-  { name: 'Status Reporter',    desc: 'Drafts weekly status updates from real project activity.',   tone: 'sky' },
-  { name: 'Follow-up Agent',    desc: 'Chases blockers and reminds owners about at-risk work.',      tone: 'amber' },
-  { name: 'Workload Analyzer',  desc: 'Spots overloaded teammates and rebalances assignments.',      tone: 'emerald' },
-  { name: 'Executive Brief',    desc: 'Rolls everything up into a leadership-ready summary.',         tone: 'fuchsia' },
+const IMG = '/images/ai'
+
+// Pre-designed agent cards (SVG screenshots from Figma).
+const AGENT_SHOTS = [
+  { src: `${IMG}/ai-agent-projectplanner.svg`,   alt: 'Project Planner agent' },
+  { src: `${IMG}/ai-agent-meetingsummarize.svg`, alt: 'Meeting Summarizer agent' },
+  { src: `${IMG}/ai-agent-status-reporter.svg`,  alt: 'Status Reporter agent' },
+  { src: `${IMG}/ai-agent-follow-up-agent.svg`,  alt: 'Follow-up agent' },
+  { src: `${IMG}/ai-agent-executive-brief.svg`,  alt: 'Executive Brief agent' },
+]
+
+// Floating dark callout cards for the "Secure AI" section.
+const SECURE_BOXES = [
+  { src: `${IMG}/ai-secure-blackbox-left-top.svg`,     pos: 'lg:absolute lg:left-0 lg:top-2' },
+  { src: `${IMG}/ai-secure-blackbox-right-top.svg`,    pos: 'lg:absolute lg:right-0 lg:top-2' },
+  { src: `${IMG}/ai-secure-blackbox-left-bottom.svg`,  pos: 'lg:absolute lg:bottom-2 lg:left-0' },
+  { src: `${IMG}/ai-secure-blackbox-right-bottom.svg`, pos: 'lg:absolute lg:bottom-2 lg:right-0' },
 ]
 
 const FAQS = [
@@ -65,7 +68,7 @@ export function AiAssistsView() {
               </CTAButton>
             </div>
           </div>
-          <AiChatMockup />
+          <Shot src={`${IMG}/ai-hero1.svg`} alt="clicsHQ AI chat" w={787} h={562} priority />
         </div>
       </section>
 
@@ -92,17 +95,37 @@ export function AiAssistsView() {
           subtitle="Specialised agents that plan, summarize, report, and follow up — so your team focuses on the work that matters."
           className="mb-10"
         />
-        <AiAgentGrid agents={AGENTS} />
+        <div className="mx-auto grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {AGENT_SHOTS.map((a) => (
+            <Image
+              key={a.src}
+              src={a.src}
+              alt={a.alt}
+              width={451}
+              height={318}
+              className="h-auto w-full rounded-2xl ring-1 ring-gray-200/70"
+            />
+          ))}
+        </div>
       </section>
 
-      {/* Turn work into action automatically */}
-      <section className="container-app py-12 sm:py-16">
-        <FeatureSplitRow
-          eyebrow="Automatic"
+      {/* Turn work into action automatically — centered 3-step flow */}
+      <section className="container-app py-16 sm:py-20">
+        <SectionHeader
           title="Turn work into action automatically"
-          body="When a meeting ends, clicsHQ AI summarizes the discussion and turns decisions into tasks with owners and due dates — no manual entry."
-          visual={<WorkflowCanvasMockup />}
+          subtitle="When a meeting ends, clicsHQ AI summarizes the discussion and turns decisions into tasks — no manual entry."
+          className="mb-10"
         />
+        <ul className="mx-auto flex max-w-3xl flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
+          {['Meeting ends', 'AI summarizes discussion', 'Tasks are created'].map((step, i) => (
+            <React.Fragment key={step}>
+              <li className="rounded-2xl bg-white px-6 py-4 text-center text-[16px] font-medium text-ink ring-1 ring-gray-200 sm:text-left">
+                {step}
+              </li>
+              {i < 2 && <span aria-hidden className="hidden text-2xl text-subtle sm:block">→</span>}
+            </React.Fragment>
+          ))}
+        </ul>
       </section>
 
       {/* Understand documents without reading everything */}
@@ -111,23 +134,42 @@ export function AiAssistsView() {
           eyebrow="In docs"
           title="Understand documents without reading everything"
           body="Ask AI to summarize long docs, extract decisions, or answer a question — grounded in your real workspace content, with links back to the source."
-          visual={<DocsEditorMockup />}
+          visual={<Shot src={`${IMG}/ai-document.svg`} alt="Asking AI about a document" w={267} h={474} />}
           reverse
         />
       </section>
 
-      {/* Secure AI for your workspace */}
+      {/* Secure AI for your workspace — center mockup framed by 4 dark callout cards */}
       <section className="container-app py-16 sm:py-20">
-        <SectionHeader title="Secure AI for your workspace" className="mb-10" />
-        <DarkFeatureTileGrid
-          columns={4}
-          tiles={[
-            { chipLabel: 'Encrypted',   chipColor: 'violet', title: 'Encrypted in transit',     body: 'TLS everywhere. SOC 2 Type II.' },
-            { chipLabel: 'No training', chipColor: 'pink',   title: 'Never trains on your data', body: 'Your data is never used to train shared models.' },
-            { chipLabel: 'Permissions', chipColor: 'amber',  title: 'Respects permissions',      body: 'AI only sees what each user can already access.' },
-            { chipLabel: 'Audit',       chipColor: 'sky',    title: 'Full audit log',            body: 'Every AI invocation is logged for admins.' },
-          ]}
+        <SectionHeader
+          title="Secure AI for your workspace"
+          subtitle="clicsHQ AI is designed with workspace permissions, privacy, and enterprise controls in mind."
+          className="mb-10"
         />
+        <div className="relative mx-auto max-w-6xl">
+          <div className="mx-auto max-w-2xl lg:max-w-3xl">
+            <Image
+              src={`${IMG}/ai-secure.svg`}
+              alt="Secure clicsHQ AI"
+              width={678}
+              height={529}
+              className="h-auto w-full rounded-2xl shadow-2xl ring-1 ring-gray-200/60"
+            />
+          </div>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:mt-0 lg:block">
+            {SECURE_BOXES.map((b) => (
+              <Image
+                key={b.src}
+                src={b.src}
+                alt=""
+                aria-hidden
+                width={422}
+                height={180}
+                className={`h-auto w-full rounded-2xl lg:w-[22rem] ${b.pos}`}
+              />
+            ))}
+          </div>
+        </div>
       </section>
 
       <CrossProductGrid

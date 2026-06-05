@@ -20,6 +20,37 @@ import {
 import { cn } from '@/lib/cn'
 
 /**
+ * Floating product screenshot — rounded + soft even shadow + subtle ring
+ * (matches the Figma hero/section mockups). Pass intrinsic w/h from the asset.
+ */
+export function Shot({
+  src,
+  alt = '',
+  w = 1000,
+  h = 720,
+  priority = false,
+  className = '',
+}: {
+  src: string
+  alt?: string
+  w?: number
+  h?: number
+  priority?: boolean
+  className?: string
+}) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={w}
+      height={h}
+      priority={priority}
+      className={cn('h-auto w-full rounded-2xl shadow-2xl ring-1 ring-gray-200/60', className)}
+    />
+  )
+}
+
+/**
  * In-code product "screen" mockups.
  *
  * Each product page renders its OWN distinct UI (instead of every page reusing

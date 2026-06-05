@@ -1,7 +1,9 @@
  import type { Metadata } from 'next'
-import { Eye, Sparkles, Workflow } from 'lucide-react'
+import { Eye, Sparkles, Workflow, FileText, FileBarChart, Bell, Briefcase } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
+
+const TOOL = '/images/tools'
 
 export const metadata: Metadata = { title: 'For Sales teams' }
 
@@ -52,6 +54,42 @@ const config: SolutionPageConfig = {
     { title: (<>Proposal and approval<br className="hidden lg:block" /> visibility</>),     body: 'Generate proposal docs from call notes. Reviewers approve in clicsHQ.', imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
     { title: (<>Follow-up reminders<br className="hidden lg:block" /> by owner</>),         body: 'AI suggests follow-ups based on prospect engagement and deal stage.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
   ],
+  aiAssistant: {
+    eyebrow: 'clics AI',
+    title: (
+      <>
+        Meet your <Highlight color="violet">AI sales</Highlight> assistant
+      </>
+    ),
+    subtitle:
+      'Use built-in AI agents to summarize calls, generate updates, break down tasks, track follow-ups, and keep sales work moving.',
+    items: [
+      { icon: FileText,     iconBg: 'bg-violet-100 text-violet-600', title: 'Meeting Summarizer', body: 'Turns discovery calls, demos, and internal sales meetings into clear summaries and action items.' },
+      { icon: FileBarChart, iconBg: 'bg-pink-100 text-pink-600',     title: 'Status Reporter',    body: 'Generates quick deal and pipeline updates with completed work and next steps.' },
+      { icon: Bell,         iconBg: 'bg-amber-100 text-amber-600',   title: 'Follow-up Agent',    body: 'Reminds reps about inactive leads, pending follow-ups, and stale sales tasks.' },
+      { icon: Briefcase,    iconBg: 'bg-sky-100 text-sky-600',       title: 'Executive Brief',    body: 'Creates a high-level sales summary for leadership with risks, updates, and sales highlights.' },
+    ],
+  },
+  spaces: {
+    eyebrow: 'Spaces',
+    title: 'Organize sales your way',
+    subtitle: 'Use flexible spaces and multiple views to manage work the way your team prefers.',
+    tabs: ['Overview', 'List', 'Kanban', 'Calendar', 'Gantt'],
+  },
+  integrations: {
+    eyebrow: 'Integrations',
+    title: 'Connect your sales stack',
+    subtitle: 'Bring sales tools closer to the leads, deals, and customer handoffs your team manages in clicsHQ.',
+    logos: [
+      { src: `${TOOL}/dropbox.svg`, alt: 'Dropbox' },
+      { src: `${TOOL}/msTeams.svg`, alt: 'Microsoft Teams' },
+      { src: `${TOOL}/g-drive.svg`, alt: 'Google Drive' },
+      { src: `${TOOL}/Jira.svg`,    alt: 'Jira' },
+      { src: `${TOOL}/Github.svg`,  alt: 'GitHub' },
+      { src: `${TOOL}/Figma.svg`,   alt: 'Figma' },
+      { src: `${TOOL}/Slack.svg`,   alt: 'Slack' },
+    ],
+  },
   finalCTA: { title: 'Close more deals with clicsHQ', subtitle: 'A single source of truth across your pipeline.' },
 }
 

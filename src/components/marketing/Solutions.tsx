@@ -106,73 +106,19 @@ export function Solutions() {
             </div>
           </div>
 
-          {/* Right — preview on vibrant blue radial-ish gradient */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 p-6 sm:p-10">
-            {/* Soft radial glow center */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                  'radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%)',
-              }}
+          {/* Right — pre-composed "resource management" banner (blue card +
+              annotation chips + dashboard, exported from Figma) */}
+          <div className="relative flex items-center justify-center">
+            <Image
+              src="/images/hero/banner.svg"
+              alt="clicsHQ resource management dashboard"
+              width={615}
+              height={612}
+              className="h-auto w-full"
             />
-
-            {/* Annotation chips — star + label, white pills */}
-            <AnnotationChip className="left-4 top-5"    color="pink"    label="Create plan" />
-            <AnnotationChip className="right-4 top-5"   color="amber"   label="Research competitors" />
-            <AnnotationChip className="left-5 bottom-5" color="violet"  label="Update timeline" />
-            <AnnotationChip className="right-5 bottom-5" color="emerald" label="Create Task" />
-            <AnnotationChip className="left-12 top-1/2 -translate-y-1/2" color="sky" label="Summary" />
-            <AnnotationChip className="right-12 top-1/2 -translate-y-1/2" color="rose" label="Check Status" />
-
-            <div className="relative mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-white/30">
-              <Image
-                src="/images/dashboards/ClicshqPage.svg"
-                alt="clicsHQ dashboard"
-                width={1580}
-                height={910}
-                className="h-auto w-full"
-              />
-            </div>
           </div>
         </div>
       </div>
     </section>
-  )
-}
-
-// ── Annotation chip ──
-
-const CHIP_STAR_COLOR: Record<string, string> = {
-  pink:    'text-pink-500',
-  amber:   'text-amber-500',
-  violet:  'text-violet-500',
-  emerald: 'text-emerald-500',
-  sky:     'text-sky-500',
-  rose:    'text-rose-500',
-}
-
-function AnnotationChip({
-  className,
-  color,
-  label,
-}: {
-  className?: string
-  color: keyof typeof CHIP_STAR_COLOR
-  label: string
-}) {
-  return (
-    <div
-      className={cn(
-        'pointer-events-none absolute hidden items-center gap-1.5 rounded-md bg-white px-2 py-1 text-2xs font-medium text-ink shadow-md sm:flex',
-        className,
-      )}
-    >
-      <svg viewBox="0 0 12 12" className={cn('h-3 w-3 fill-current', CHIP_STAR_COLOR[color])}>
-        <path d="M6 0l1.5 4.5L12 5l-3.5 3 1 4.5L6 10l-3.5 2.5 1-4.5L0 5l4.5-.5L6 0z" />
-      </svg>
-      {label}
-    </div>
   )
 }
