@@ -12,19 +12,20 @@ export const metadata: Metadata = { title: 'Tasks' }
 const config: ProductPageConfig = {
   hero: {
     eyebrow: 'Task management',
-    eyebrowColor: 'text-emerald-600',
+    eyebrowColor: 'text-ink',
+    eyebrowUppercase: false,
     title: 'Tasks that keep every project moving',
     subtitle:
-      'Plan, assign, track, and complete work in one clean, fast workspace. Stop priorities, due dates, owners, comments, and progress visible for every team.',
-    primaryLabel: 'Get Started',
-    secondaryLabel: 'Explore tasks',
+      'Plan, assign, track, and complete work in one clean task workspace. Keep priorities, due dates, owners, comments, and progress visible for every team.',
+    primaryLabel: 'Start for free',
+    secondaryLabel: 'Explore Tasks',
     mockup: <TasksTableMockup />,
     background: 'light',
   },
   intro: {
     title: (
       <>
-        A <Highlight color="green">complete place</Highlight> to manage daily work
+        A <Highlight color="sky">complete place</Highlight> to manage daily work
       </>
     ),
     subtitle:
@@ -55,8 +56,9 @@ const config: ProductPageConfig = {
       visual: <KanbanBoardMockup />,
     },
   ],
-  crossGridAccentColor: 'green',
+  crossGridAccentColor: 'lime',
   faqTitle: 'Tasks FAQs',
+  faqToggle: 'plusminus',
   faqs: [
     { q: 'Can I assign tasks to team members?',  a: 'Yes — assign owners, add watchers, @mention teammates, and route work automatically.' },
     { q: 'Can I track due dates and priorities?', a: 'Set due dates, priorities, and dependencies. clicsHQ flags overdue and at-risk work.' },
@@ -65,6 +67,8 @@ const config: ProductPageConfig = {
   finalCTA: {
     title: 'Turn every idea into trackable work',
     subtitle: 'Create, assign, and track tasks across projects — and keep every team aligned start to finish.',
+    align: 'center',
+    secondaryLabel: '',
   },
 }
 

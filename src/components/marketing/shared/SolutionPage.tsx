@@ -11,6 +11,7 @@ export interface SolutionPageConfig {
   hero: {
     eyebrow?: string
     eyebrowColor?: string
+    eyebrowUppercase?: boolean
     title: React.ReactNode
     subtitle?: string
     primaryLabel?: string
@@ -19,12 +20,14 @@ export interface SolutionPageConfig {
     background?: 'light' | 'soft-pink' | 'soft-violet'
   }
   benefits?: {
+    eyebrow?: string
     title: React.ReactNode
     subtitle?: string
     items: Benefit[]
     columns?: 3 | 4
   }
   intro?: {
+    eyebrow?: string
     title: React.ReactNode
     subtitle?: string
   }
@@ -57,6 +60,7 @@ export function SolutionPage({ config }: { config: SolutionPageConfig }) {
       <ProductHero
         eyebrow={config.hero.eyebrow}
         eyebrowColor={config.hero.eyebrowColor}
+        eyebrowUppercase={config.hero.eyebrowUppercase}
         title={config.hero.title}
         subtitle={config.hero.subtitle}
         primaryLabel={config.hero.primaryLabel}
@@ -68,6 +72,7 @@ export function SolutionPage({ config }: { config: SolutionPageConfig }) {
       {config.benefits && (
         <section className="container-app py-16 sm:py-20">
           <SectionHeader
+            eyebrow={config.benefits.eyebrow}
             title={config.benefits.title}
             subtitle={config.benefits.subtitle}
             className="mb-10"
@@ -78,7 +83,7 @@ export function SolutionPage({ config }: { config: SolutionPageConfig }) {
 
       {config.intro && (
         <section className="container-app py-8">
-          <SectionHeader title={config.intro.title} subtitle={config.intro.subtitle} />
+          <SectionHeader eyebrow={config.intro.eyebrow} title={config.intro.title} subtitle={config.intro.subtitle} />
         </section>
       )}
 

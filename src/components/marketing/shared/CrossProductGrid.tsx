@@ -39,11 +39,11 @@ export function CrossProductGrid({
   return (
     <section className="container-app py-16 sm:py-20">
       <div className="text-center">
-        {eyebrow && <p className="text-[15px] font-medium text-ink">{eyebrow}</p>}
-        <h2 className="mx-auto mt-3 max-w-3xl text-balance text-[26px] font-bold leading-[1.12] tracking-tight text-ink sm:text-[32px] lg:text-[36px]">
+        {eyebrow && <p className="text-[20px] font-normal text-ink">{eyebrow}</p>}
+        <h2 className="mx-auto mt-3 max-w-3xl text-balance text-[28px] font-medium leading-[1.17] tracking-normal text-ink sm:text-[40px] lg:text-[48px]">
           {title}
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-[16px] leading-relaxed text-muted sm:text-[17px]">{subtitle}</p>
+        <p className="mx-auto mt-4 max-w-2xl text-[18px] leading-[1.5] text-muted sm:text-[20px]">{subtitle}</p>
       </div>
 
       <ul className="mx-auto mt-14 grid max-w-4xl gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">

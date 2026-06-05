@@ -39,10 +39,10 @@ export function FeatureShowcase({
 
       {/* Corner cards */}
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:mt-0 lg:block">
-        <Card className="lg:absolute lg:left-0 lg:top-2 lg:w-[23rem]" {...tl} />
-        <Card className="lg:absolute lg:right-0 lg:top-2 lg:w-[23rem]" {...tr} />
-        <Card className="lg:absolute lg:bottom-2 lg:left-0 lg:w-[23rem]" {...bl} />
-        <Card className="lg:absolute lg:bottom-2 lg:right-0 lg:w-[23rem]" {...br} />
+        <Card className="lg:absolute lg:left-0 lg:top-2 lg:w-[24rem]" {...tl} />
+        <Card className="lg:absolute lg:right-0 lg:top-2 lg:w-[24rem]" {...tr} />
+        <Card className="lg:absolute lg:bottom-2 lg:left-0 lg:w-[24rem]" {...bl} />
+        <Card className="lg:absolute lg:bottom-2 lg:right-0 lg:w-[24rem]" {...br} />
       </div>
     </div>
   )
@@ -54,9 +54,9 @@ function Card({
   className,
 }: ShowcaseTile & { className?: string }) {
   return (
-    <div className={cn('rounded-2xl bg-ink p-5 text-white shadow-xl ring-1 ring-white/5', className)}>
-      <h3 className="text-sm font-bold leading-tight">{title}</h3>
-      <p className="mt-2 text-xs leading-relaxed text-white/60">{body}</p>
+    <div className={cn('rounded-2xl bg-ink p-7 text-white shadow-xl ring-1 ring-white/5', className)}>
+      <h3 className="text-lg font-bold leading-tight">{title}</h3>
+      <p className="mt-2 text-[15px] leading-relaxed text-white/60">{body}</p>
     </div>
   )
 }

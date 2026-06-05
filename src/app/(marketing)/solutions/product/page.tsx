@@ -8,7 +8,8 @@ export const metadata: Metadata = { title: 'For Product teams' }
 const config: SolutionPageConfig = {
   hero: {
     eyebrow: 'clicsHQ for Product',
-    eyebrowColor: 'text-orange-600',
+    eyebrowColor: 'text-ink',
+    eyebrowUppercase: false,
     title: (
       <>
         From discovery to launch on <Highlight color="orange">one</Highlight> platform

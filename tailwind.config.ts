@@ -89,9 +89,9 @@ const config: Config = {
       },
 
       fontFamily: {
-        // Match the Figma source font: Helvetica Neue / SF Pro (Arial on Windows).
-        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'SF Pro Text', '-apple-system', 'BlinkMacSystemFont', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['Helvetica Neue', 'Helvetica', 'Arial', 'SF Pro Text', '-apple-system', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Satoshi is the Figma source font (self-hosted from Fontshare).
+        sans: ['Satoshi', 'SF Pro Text', '-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'Helvetica', 'Arial', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Satoshi', 'SF Pro Text', '-apple-system', 'Helvetica Neue', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         // Manrope — secondary typeface (Google Fonts); use via `font-manrope`.
         manrope: ['Manrope', 'Satoshi', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         // Handwriting accent — replaces Figma's "Lucida Handwriting".

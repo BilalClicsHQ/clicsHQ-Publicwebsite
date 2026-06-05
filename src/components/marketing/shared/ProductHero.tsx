@@ -54,17 +54,17 @@ export function ProductHero({
               {eyebrow}
             </p>
           )}
-          <h1 className="mt-6 text-balance text-[34px] font-bold leading-[1.08] tracking-tight text-ink sm:text-[46px] lg:text-[58px]">
+          <h1 className="mt-6 text-balance text-[36px] font-medium leading-[1.17] tracking-normal text-ink sm:text-[48px] lg:text-[62px]">
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
+            <p className="mt-5 max-w-[480px] text-[18px] font-normal leading-[1.5] text-muted sm:text-[22px] lg:text-[25px]">
               {subtitle}
             </p>
           )}
-          <div className="mt-8 flex flex-wrap gap-4">
-            <CTAButton size="lg" href={primaryHref}>{primaryLabel}</CTAButton>
-            <CTAButton size="lg" variant="secondary" href={secondaryHref}>{secondaryLabel}</CTAButton>
+          <div className="mt-8 flex flex-wrap gap-[10px]">
+            <CTAButton href={primaryHref} className="h-[45px] rounded-[10px] px-[15px] text-base font-medium">{primaryLabel}</CTAButton>
+            <CTAButton variant="secondary" href={secondaryHref} className="h-[45px] rounded-[10px] px-[15px] text-base font-medium">{secondaryLabel}</CTAButton>
           </div>
         </div>
 

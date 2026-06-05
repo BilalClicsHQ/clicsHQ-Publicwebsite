@@ -4,10 +4,10 @@ import Image from 'next/image'
 // `cls` sets a per-logo display height — TNN is a square stacked mark so it
 // needs more height than the wide wordmarks to look optically balanced.
 const COMPANIES = [
-  { name: 'TNN',       src: '/images/companies/TNN.svg',       w: 114, h: 114, cls: 'h-14' },
+  { name: 'TNN',       src: '/images/companies/TNN.svg',       w: 114, h: 114, cls: 'h-24' },
   { name: 'Cyberbay',  src: '/images/companies/CyberBay.svg',  w: 159, h: 32,  cls: 'h-8'  },
-  { name: 'Nyxlab',    src: '/images/companies/nyxLab.svg',    w: 198, h: 71,  cls: 'h-12' },
-  { name: 'Capexplan', src: '/images/companies/capexplan.svg', w: 180, h: 40,  cls: 'h-9'  },
+  { name: 'Nyxlab',    src: '/images/companies/nyxLab.svg',    w: 198, h: 71,  cls: 'h-16' },
+  { name: 'Capexplan', src: '/images/companies/capexplan.svg', w: 180, h: 40,  cls: 'h-10' },
 ]
 
 /**

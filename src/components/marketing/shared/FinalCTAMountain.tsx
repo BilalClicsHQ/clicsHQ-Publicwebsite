@@ -50,10 +50,10 @@ export function FinalCTAMountain({
         <div className={cn('max-w-xl', centered && 'mx-auto max-w-2xl text-center')}>
           <h2
             className={cn(
-              'font-bold tracking-tight text-ink',
+              'font-medium tracking-normal text-ink',
               centered
-                ? 'mx-auto max-w-[20ch] text-[2rem] leading-[1.2] sm:text-[2.75rem] lg:text-[3.5rem]'
-                : 'text-balance text-3xl leading-tight sm:text-4xl lg:text-5xl',
+                ? 'mx-auto max-w-[28ch] text-[2rem] leading-[1.17] sm:text-[2.75rem] lg:text-[3.5rem]'
+                : 'text-balance text-3xl leading-[1.17] sm:text-4xl lg:text-5xl',
             )}
           >
             {title}
@@ -61,7 +61,7 @@ export function FinalCTAMountain({
           <p
             className={cn(
               'mt-5 text-[16px] text-ink/90 sm:text-[18px] lg:text-[19px]',
-              centered ? 'mx-auto max-w-2xl' : 'max-w-md',
+              centered ? 'mx-auto max-w-[34rem]' : 'max-w-md',
             )}
           >
             {subtitle}

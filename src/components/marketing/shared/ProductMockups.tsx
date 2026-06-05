@@ -359,14 +359,14 @@ export function WorkflowRecipeTile({
  * Positions are percentage-based so the whole arrangement scales fluidly.
  */
 const ORBIT_LOGOS = [
-  { logo: '/images/tools/msTeams.svg',    bg: '/images/tools/msteambgCircle.svg',    alt: 'Microsoft Teams', pos: 'left-[19%] top-[18%]',                  size: 'h-12 w-12 sm:h-14 sm:w-14' },
-  { logo: '/images/tools/dropbox.svg',    bg: '/images/tools/dropboxbgCircle.svg',   alt: 'Dropbox',         pos: 'left-[48%] top-[3%] -translate-x-1/2',   size: 'h-14 w-14 sm:h-[4.25rem] sm:w-[4.25rem]' },
-  { logo: '/images/tools/Outlook.svg',    bg: '/images/tools/outlookbgCircle.svg',   alt: 'Outlook',         pos: 'right-[13%] top-[18%]',                 size: 'h-12 w-12 sm:h-14 sm:w-14' },
-  { logo: '/images/tools/g-calendar.svg', bg: '/images/tools/gCallendarbgCircle.svg', alt: 'Google Calendar', pos: 'left-[6%] top-[44%]',                  size: 'h-11 w-11 sm:h-12 sm:w-12' },
-  { logo: '/images/tools/Figma.svg',      bg: '/images/tools/figmabgCircle.svg',     alt: 'Figma',           pos: 'right-[5%] top-[40%]',                  size: 'h-12 w-12 sm:h-14 sm:w-14' },
-  { logo: '/images/tools/g-drive.svg',    bg: '/images/tools/gDrivebgCircle.svg',    alt: 'Google Drive',    pos: 'left-[19%] bottom-[15%]',               size: 'h-12 w-12 sm:h-14 sm:w-14' },
-  { logo: '/images/tools/Jira.svg',       bg: '/images/tools/jirabgCircle.svg',      alt: 'Jira',            pos: 'left-[48%] bottom-[4%] -translate-x-1/2', size: 'h-14 w-14 sm:h-[4.25rem] sm:w-[4.25rem]' },
-  { logo: '/images/tools/Slack.svg',      bg: '/images/tools/slackbgCircle.svg',     alt: 'Slack',           pos: 'right-[13%] bottom-[16%]',              size: 'h-12 w-12 sm:h-14 sm:w-14' },
+  { logo: '/images/tools/msTeams.svg',    bg: '/images/tools/msteambgCircle.svg',    alt: 'Microsoft Teams', pos: 'left-[19%] top-[18%]',                  size: 'h-16 w-16 sm:h-[5rem] sm:w-[5rem]'},
+  { logo: '/images/tools/dropbox.svg',    bg: '/images/tools/dropboxbgCircle.svg',   alt: 'Dropbox',         pos: 'left-[48%] top-[3%] -translate-x-1/2',   size: 'h-[4.5rem] w-[4.5rem] sm:h-[6rem] sm:w-[6rem]'},
+  { logo: '/images/tools/Outlook.svg',    bg: '/images/tools/outlookbgCircle.svg',   alt: 'Outlook',         pos: 'right-[13%] top-[18%]',                 size: 'h-16 w-16 sm:h-[5rem] sm:w-[5rem]'},
+  { logo: '/images/tools/g-calendar.svg', bg: '/images/tools/gCallendarbgCircle.svg', alt: 'Google Calendar', pos: 'left-[6%] top-[44%]',                  size: 'h-14 w-14 sm:h-[4.5rem] sm:w-[4.5rem]'},
+  { logo: '/images/tools/Figma.svg',      bg: '/images/tools/figmabgCircle.svg',     alt: 'Figma',           pos: 'right-[5%] top-[40%]',                  size: 'h-16 w-16 sm:h-[5rem] sm:w-[5rem]'},
+  { logo: '/images/tools/g-drive.svg',    bg: '/images/tools/gDrivebgCircle.svg',    alt: 'Google Drive',    pos: 'left-[19%] bottom-[15%]',               size: 'h-16 w-16 sm:h-[5rem] sm:w-[5rem]'},
+  { logo: '/images/tools/Jira.svg',       bg: '/images/tools/jirabgCircle.svg',      alt: 'Jira',            pos: 'left-[48%] bottom-[4%] -translate-x-1/2', size: 'h-[4.5rem] w-[4.5rem] sm:h-[6rem] sm:w-[6rem]'},
+  { logo: '/images/tools/Slack.svg',      bg: '/images/tools/slackbgCircle.svg',     alt: 'Slack',           pos: 'right-[13%] bottom-[16%]',              size: 'h-16 w-16 sm:h-[5rem] sm:w-[5rem]'},
 ]
 
 export function IntegrationOrbitMockup({ className }: { className?: string }) {
@@ -379,7 +379,7 @@ export function IntegrationOrbitMockup({ className }: { className?: string }) {
           alt="clicsHQ"
           width={197}
           height={68}
-          className="h-9 w-auto sm:h-11"
+          className="h-14 w-auto sm:h-20"
           priority
         />
       </div>
@@ -423,14 +423,14 @@ export function IntegrationCardGrid({ items }: { items: IntegrationItem[] }) {
           className="flex flex-col rounded-2xl bg-white p-5 ring-1 ring-gray-200/70 transition-shadow hover:shadow-card"
         >
           <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gray-50 ring-1 ring-gray-100">
-              <Image src={it.logo} alt={it.name} width={28} height={28} className="h-6 w-6" />
+            <span className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gray-50 ring-1 ring-gray-100">
+              <Image src={it.logo} alt={it.name} width={36} height={36} className="h-9 w-9" />
             </span>
-            <p className="text-[0.9375rem] font-semibold text-ink">{it.name}</p>
+            <p className="text-[20px] font-medium text-ink">{it.name}</p>
           </div>
-          <p className="mt-3 text-[0.8125rem] leading-relaxed text-muted">{it.desc}</p>
-          <span className="mt-3 inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-ink">
-            Learn More <ArrowRight className="h-[0.875rem] w-[0.875rem]" />
+          <p className="mt-3 text-[15px] leading-relaxed text-muted">{it.desc}</p>
+          <span className="ml-auto mt-3 inline-flex items-center gap-1.5 text-[15px] font-semibold text-ink">
+            Learn More <ArrowRight className="h-4 w-4" />
           </span>
         </div>
       ))}

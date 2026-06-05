@@ -25,7 +25,7 @@ function Shot({
       width={1000}
       height={720}
       priority={priority}
-      className="h-auto w-full rounded-2xl drop-shadow-2xl"
+      className="h-auto w-full rounded-2xl shadow-2xl ring-1 ring-gray-200/60"
     />
   )
 }

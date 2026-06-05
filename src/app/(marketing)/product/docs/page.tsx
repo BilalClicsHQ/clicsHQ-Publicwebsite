@@ -50,29 +50,29 @@ const config: ProductPageConfig = {
       </>
     ),
     subtitle:
-      'clicsHQ Docs live next to your tasks, boards, and people — so writing and doing stay in sync.',
+      'clicsHQ Docs connect knowledge with tasks, workflows, comments, AI agents, and projects so your team never works in silos.',
   },
   splitRows: [
     {
       eyebrow: 'Collaborative editing',
       title: 'Write together in real time',
       body:
-        'Co-edit with comments, mentions, inline replies, and live cursors across your whole team — no version conflicts.',
+        'Collaborate live with comments, mentions, shared editing, and instant updates across your team.',
       visual: <Shot src={`${IMG}/docs-write.png`} alt="Co-editing a clicsHQ doc in real time" />,
     },
     {
-      eyebrow: 'Docs → Tasks',
+      eyebrow: 'Docs + Tasks',
       title: 'Turn ideas into actionable work',
       body:
-        'Highlight any line and create a task with owners and due dates — it stays linked back to the doc that spawned it.',
+        'Convert text into tasks, assign owners, add due dates, and link work directly from your docs.',
       visual: <Shot src={`${IMG}/docs-ideas.png`} alt="Turning doc ideas into linked tasks and templates" />,
       reverse: true,
     },
     {
       eyebrow: 'AI assistance',
-      title: 'Get quick answers with AI',
+      title: 'Get Quick Answers with AI',
       body:
-        'Press Ask AI inside any document to summarize, rewrite, or generate a draft using your real workspace context.',
+        'Generate summaries, improve writing, brainstorm ideas, and create documentation instantly with AI.',
       visual: <Shot src={`${IMG}/docs-answers.png`} alt="Asking clicsHQ AI questions about a doc" />,
     },
   ],
@@ -83,24 +83,24 @@ const config: ProductPageConfig = {
     imageAlt: 'clicsHQ Docs dashboard with templates and document list',
     tiles: [
       {
-        title: 'Recent pages',
-        body: 'Jump back into what you were working on in one click — your latest docs always within reach.',
+        title: 'Nested pages',
+        body: 'Create structured documentation hierarchies for teams and projects.',
       },
       {
         title: 'Templates',
-        body: 'Start from RFCs, briefs, meeting notes, and more instead of a blank page.',
+        body: 'Start quickly with meeting notes, SOPs, PRDs, wikis, and playbooks.',
       },
       {
         title: 'Permissions',
-        body: 'Granular sharing — view, comment, or edit per person or team, down to a single page.',
+        body: 'Control who can view, comment, or edit every document.',
       },
       {
         title: 'Version history',
-        body: 'Every change is saved. Restore any previous version instantly, with no lost work.',
+        body: 'Track changes and restore previous versions anytime.',
       },
     ],
   },
-  crossGridAccentColor: 'sky',
+  crossGridAccentColor: 'lime',
   faqTitle: 'Docs FAQs',
   faqToggle: 'plusminus',
   faqs: [
@@ -110,7 +110,7 @@ const config: ProductPageConfig = {
   ],
   finalCTA: {
     title: 'Build docs your team will actually use',
-    subtitle: 'Bring knowledge, plans, and execution into one connected place — powered by AI.',
+    subtitle: 'Bring knowledge, collaboration, and execution into one connected workspace.',
     align: 'center',
     secondaryLabel: '',
   },

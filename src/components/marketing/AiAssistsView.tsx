@@ -37,35 +37,31 @@ const FAQS = [
 export function AiAssistsView() {
   return (
     <main className="bg-white">
-      {/* Dark hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#1a1130] via-[#160d24] to-[#0c0a12] text-white">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-fuchsia-500/20 blur-3xl"
-        />
+      {/* Hero — light, with a soft pink/lavender wash (matches Figma) */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-violet-50/60 via-pink-50/30 to-white">
         <div className="container-app relative grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-24">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-fuchsia-400">
+            <p className="text-[20px] font-normal text-ink">
               ✨ AI-powered workspace intelligence
             </p>
-            <h1 className="mt-3 text-balance text-[34px] font-bold leading-[1.05] tracking-tight sm:text-[44px] lg:text-[56px]">
+            <h1 className="mt-6 text-balance text-[36px] font-medium leading-[1.17] tracking-normal text-ink sm:text-[48px] lg:text-[62px]">
               Build your{' '}
-              <span className="bg-gradient-to-r from-fuchsia-400 to-violet-400 bg-clip-text text-transparent">
-                AI workforce
-              </span>{' '}
+              <span className="text-fuchsia-500">AI</span>{' '}
+              <span className="text-violet-500">workforce</span>{' '}
               inside clicsHQ
             </h1>
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
-              Chat with AI, deploy specialised AI agents, and ask AI in any doc. clicsHQ AI turns
-              plans into action.
+            <p className="mt-5 max-w-[520px] text-[18px] font-normal leading-[1.5] text-muted sm:text-[22px] lg:text-[25px]">
+              Chat with AI, deploy smart agents, summarize docs, create tasks, and automate everyday
+              work across your entire workspace.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <CTAButton variant="accent" href="/signup">Get Started</CTAButton>
+            <div className="mt-8 flex flex-wrap gap-[10px]">
+              <CTAButton href="/signup" className="h-[45px] rounded-[10px] px-[15px] text-base font-medium">Get Started</CTAButton>
               <CTAButton
+                variant="secondary"
                 href="/demo"
-                className="border border-white/20 bg-white/5 text-white hover:bg-white/10"
+                className="h-[45px] rounded-[10px] px-[15px] text-base font-medium"
               >
-                Watch demo
+                Watch Demo
               </CTAButton>
             </div>
           </div>
@@ -78,11 +74,7 @@ export function AiAssistsView() {
       {/* One AI. Three ways to work. */}
       <section className="container-app py-16 sm:py-20">
         <SectionHeader
-          title={
-            <>
-              One AI. <Highlight color="magenta">Three ways</Highlight> to work.
-            </>
-          }
+          title="One AI. Three ways to work."
           subtitle="Chat. Agents. Inline assistance. clicsHQ AI lives where the work is."
           className="mb-10"
         />
@@ -141,16 +133,19 @@ export function AiAssistsView() {
       <CrossProductGrid
         title={
           <>
-            AI is just the <Highlight color="magenta">beginning</Highlight>
+            AI is just the <Highlight color="lime">beginning</Highlight>
           </>
         }
       />
 
-      <FAQAccordion title="AI Assists FAQs" items={FAQS} />
+      <FAQAccordion title="AI Assists FAQs" items={FAQS} toggle="plusminus" />
 
       <FinalCTAMountain
+        align="center"
         title="Stop managing busywork. Start finishing it."
-        subtitle="Let clicsHQ AI plan, summarize, and act — so your team ships the work that matters."
+        subtitle="Give your team an AI workforce built directly into clicsHQ."
+        primaryLabel="Get Started"
+        secondaryLabel=""
       />
 
       <Footer />

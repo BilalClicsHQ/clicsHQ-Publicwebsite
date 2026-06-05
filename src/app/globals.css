@@ -29,11 +29,10 @@
     --surface:   #F9FAFB;
   }
 
-  /* Match the Figma source font: Helvetica Neue / SF Pro on macOS, Arial on
-     Windows (metrically near-identical to Helvetica). Satoshi kept as last resort. */
+  /* Satoshi is the Figma source font (confirmed from the design's text properties). */
   html {
-    font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Text', -apple-system,
-                 BlinkMacSystemFont, ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Satoshi', 'SF Pro Text', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
   }
 
   html {

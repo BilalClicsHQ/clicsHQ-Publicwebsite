@@ -1,0 +1,265 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "clicsHQ" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "clicsHQ" [ref=e5]
+      - navigation [ref=e6]:
+        - button "Product" [ref=e8] [cursor=pointer]:
+          - text: Product
+          - img [ref=e9]
+        - button "Solutions" [ref=e12] [cursor=pointer]:
+          - text: Solutions
+          - img [ref=e13]
+        - link "Resources" [ref=e15] [cursor=pointer]:
+          - /url: /resources
+        - link "Pricing" [ref=e16] [cursor=pointer]:
+          - /url: /pricing
+      - generic [ref=e17]:
+        - link "Demo" [ref=e18] [cursor=pointer]:
+          - /url: /demo
+        - link "Log in" [ref=e19] [cursor=pointer]:
+          - /url: /login
+        - link "Sign up" [ref=e20] [cursor=pointer]:
+          - /url: /signup
+  - generic [ref=e22]:
+    - generic [ref=e23]:
+      - paragraph [ref=e24]: Kanban Boards
+      - heading "Kanban boards that keep work moving" [level=1] [ref=e25]:
+        - text: Kanban boards
+        - text: that keep work
+        - text: moving
+      - paragraph [ref=e26]: Plan, track, automate, and collaborate across tasks without switching between tools.
+      - generic [ref=e27]:
+        - link "Start for free" [ref=e28] [cursor=pointer]:
+          - /url: /signup
+        - link "Get a demo" [ref=e29] [cursor=pointer]:
+          - /url: /demo
+    - img "clicsHQ Kanban board" [ref=e31]
+  - generic [ref=e32]:
+    - paragraph [ref=e33]: Delivering consistent, high-quality solutions.
+    - generic [ref=e34]:
+      - img "TNN" [ref=e36]
+      - img "Cyberbay" [ref=e39]
+      - img "Nyxlab" [ref=e42]
+      - img "Capexplan" [ref=e45]
+  - generic [ref=e47]:
+    - paragraph [ref=e48]: More than boards
+    - heading "A visual workflow, connected to everything" [level=2] [ref=e49]
+    - paragraph [ref=e50]: clicsHQ boards connect tasks, docs, comments, workflows, and AI so every card becomes a complete work hub.
+  - generic [ref=e51]:
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - paragraph [ref=e54]: Visual tracking
+        - heading "See every stage of work clearly" [level=3] [ref=e55]
+        - paragraph [ref=e56]: clicsHQ boards connect tasks, docs, comments, workflows, and AI so every card becomes a complete work hub.
+      - img "Kanban columns showing each stage of work" [ref=e58]
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - paragraph [ref=e61]: Never lose context
+        - heading "Do the work right from the card" [level=3] [ref=e62]
+        - paragraph [ref=e63]: Assign owners, drop in comments, and attach files without leaving the board. When a task needs a doc, it's already linked. One surface for every action.
+      - img "Working directly from a Kanban card" [ref=e65]
+    - generic [ref=e66]:
+      - generic [ref=e67]:
+        - paragraph [ref=e68]: Automation
+        - heading "Automate repetitive board actions" [level=3] [ref=e69]
+        - paragraph [ref=e70]: Reduce manual updates by turning common board movements into simple workflows your team can trust.
+      - generic [ref=e79]:
+        - generic [ref=e80]:
+          - img [ref=e82]
+          - generic [ref=e84]:
+            - paragraph [ref=e85]: WHEN
+            - paragraph [ref=e86]: Task moves to Done
+        - generic [ref=e88]:
+          - img [ref=e90]
+          - generic [ref=e92]:
+            - paragraph [ref=e93]: THEN
+            - paragraph [ref=e94]: "Notify #team in Slack"
+        - generic [ref=e96]:
+          - img [ref=e98]
+          - generic [ref=e99]:
+            - paragraph [ref=e100]: THEN
+            - paragraph [ref=e101]: Create follow-up task
+  - generic [ref=e102]:
+    - heading "Every Kanban feature, built in from day one" [level=2] [ref=e104]
+    - generic [ref=e105]:
+      - img "clicsHQ Kanban board with To-Do, In Progress, Review, and Completed columns" [ref=e107]
+      - generic:
+        - generic [ref=e108]:
+          - heading "Custom fields on cards" [level=3] [ref=e109]
+          - paragraph [ref=e110]: Add priority access, time estimates, client names, or any data your workflow needs right on the card. Your board reflects exactly how your team works.
+        - generic [ref=e111]:
+          - heading "Board filters" [level=3] [ref=e112]
+          - paragraph [ref=e113]: Filter by assignee, priority, tag, or any custom field to zero in on what matters right now. Fewer distractions, faster decisions.
+        - generic [ref=e114]:
+          - heading "Multi-card drag" [level=3] [ref=e115]
+          - paragraph [ref=e116]: Select multiple cards and bulk move them to a new column. Update a sprint's worth of tasks at once instead of card by card.
+        - generic [ref=e117]:
+          - heading "Shared board views" [level=3] [ref=e118]
+          - paragraph [ref=e119]: Share a filtered board view with clients or stakeholders without giving them access to your full Workspace. The right view, for the right person.
+  - generic [ref=e120]:
+    - generic [ref=e121]:
+      - paragraph [ref=e122]: Part of the clicsHQ platform
+      - heading "Board view is just the beginning" [level=2] [ref=e123]
+      - paragraph [ref=e124]: Board view is your visual entry point into the clicsHQ platform. Tasks, Docs, Chat, Calendar, Dashboards, and more in a single, converged app — explore everything you unlock when your work lives in one place.
+    - list [ref=e125]:
+      - listitem [ref=e126]:
+        - link "Integrations Connect with 100+ tools you already use." [ref=e127] [cursor=pointer]:
+          - /url: /product/integrations
+          - img [ref=e129]
+          - generic [ref=e130]:
+            - generic [ref=e131]: Integrations
+            - generic [ref=e132]: Connect with 100+ tools you already use.
+      - listitem [ref=e133]:
+        - link "Kanban Board Visual boards that keep work moving." [ref=e134] [cursor=pointer]:
+          - /url: /product/kanban
+          - img [ref=e136]
+          - generic [ref=e137]:
+            - generic [ref=e138]: Kanban Board
+            - generic [ref=e139]: Visual boards that keep work moving.
+      - listitem [ref=e140]:
+        - link "Gantt Chart Plan timelines and track dependencies." [ref=e141] [cursor=pointer]:
+          - /url: /product/gantt
+          - img [ref=e143]
+          - generic [ref=e144]:
+            - generic [ref=e145]: Gantt Chart
+            - generic [ref=e146]: Plan timelines and track dependencies.
+      - listitem [ref=e147]:
+        - link "Tasks Assign, prioritize, and track every task." [ref=e148] [cursor=pointer]:
+          - /url: /product/tasks
+          - img [ref=e150]
+          - generic [ref=e151]:
+            - generic [ref=e152]: Tasks
+            - generic [ref=e153]: Assign, prioritize, and track every task.
+      - listitem [ref=e154]:
+        - link "AI Agents Let AI handle the busywork for you." [ref=e155] [cursor=pointer]:
+          - /url: /product/ai
+          - img [ref=e157]
+          - generic [ref=e158]:
+            - generic [ref=e159]: AI Agents
+            - generic [ref=e160]: Let AI handle the busywork for you.
+      - listitem [ref=e161]:
+        - link "Docs Write, share, and link docs to your work." [ref=e162] [cursor=pointer]:
+          - /url: /product/docs
+          - img [ref=e164]
+          - generic [ref=e165]:
+            - generic [ref=e166]: Docs
+            - generic [ref=e167]: Write, share, and link docs to your work.
+      - listitem [ref=e168]:
+        - link "Calendar See deadlines and schedules at a glance." [ref=e169] [cursor=pointer]:
+          - /url: /product/calendar
+          - img [ref=e171]
+          - generic [ref=e172]:
+            - generic [ref=e173]: Calendar
+            - generic [ref=e174]: See deadlines and schedules at a glance.
+      - listitem [ref=e175]:
+        - link "Workflows Automate repetitive steps end to end." [ref=e176] [cursor=pointer]:
+          - /url: /product/workflows
+          - img [ref=e178]
+          - generic [ref=e179]:
+            - generic [ref=e180]: Workflows
+            - generic [ref=e181]: Automate repetitive steps end to end.
+  - generic [ref=e182]:
+    - heading "Kanban board FAQs" [level=2] [ref=e183]
+    - generic [ref=e184]:
+      - generic [ref=e185]:
+        - button "Can I customize board statuses?" [expanded] [ref=e186] [cursor=pointer]:
+          - generic [ref=e187]: Can I customize board statuses?
+          - img [ref=e188]
+        - generic [ref=e189]: Yes. Create statuses that match your team's workflow.
+      - button "Can AI help manage my board?" [ref=e191] [cursor=pointer]:
+        - generic [ref=e192]: Can AI help manage my board?
+        - img [ref=e193]
+      - button "Can boards connect with integrations?" [ref=e195] [cursor=pointer]:
+        - generic [ref=e196]: Can boards connect with integrations?
+        - img [ref=e197]
+  - generic [ref=e198]:
+    - img
+    - generic [ref=e200]:
+      - heading "Give your team a board that keeps up" [level=2] [ref=e201]
+      - paragraph [ref=e202]: Plan work, automate updates, and keep every project moving inside clicsHQ.
+      - link "Start for free" [ref=e204] [cursor=pointer]:
+        - /url: /signup
+  - contentinfo [ref=e205]:
+    - generic [ref=e206]:
+      - generic [ref=e207]:
+        - generic [ref=e208]:
+          - img "clicsHQ" [ref=e209]
+          - paragraph [ref=e210]:
+            - text: Work Management Platform
+            - text: For Result-Driven Teams
+          - list [ref=e211]:
+            - listitem [ref=e212]:
+              - link "Facebook" [ref=e213] [cursor=pointer]:
+                - /url: https://facebook.com
+                - img [ref=e214]
+            - listitem [ref=e215]:
+              - link "Twitter" [ref=e216] [cursor=pointer]:
+                - /url: https://twitter.com
+                - img [ref=e217]
+            - listitem [ref=e218]:
+              - link "Instagram" [ref=e219] [cursor=pointer]:
+                - /url: https://instagram.com
+                - img [ref=e220]
+            - listitem [ref=e221]:
+              - link "LinkedIn" [ref=e222] [cursor=pointer]:
+                - /url: https://linkedin.com
+                - img [ref=e223]
+        - generic [ref=e224]:
+          - paragraph [ref=e225]: Company
+          - list [ref=e226]:
+            - listitem [ref=e227]:
+              - link "About" [ref=e228] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e229]:
+              - link "Pricing" [ref=e230] [cursor=pointer]:
+                - /url: /pricing
+            - listitem [ref=e231]:
+              - link "Jobs" [ref=e232] [cursor=pointer]:
+                - /url: /jobs
+            - listitem [ref=e233]:
+              - link "Blog" [ref=e234] [cursor=pointer]:
+                - /url: /resources/blog
+        - generic [ref=e235]:
+          - paragraph [ref=e236]: Product
+          - list [ref=e237]:
+            - listitem [ref=e238]:
+              - link "Sales Software" [ref=e239] [cursor=pointer]:
+                - /url: /product/sales
+            - listitem [ref=e240]:
+              - link "Marketplace" [ref=e241] [cursor=pointer]:
+                - /url: /product/marketplace
+            - listitem [ref=e242]:
+              - link "Terms & Conditions" [ref=e243] [cursor=pointer]:
+                - /url: /legal/terms
+            - listitem [ref=e244]:
+              - link "Privacy Policy" [ref=e245] [cursor=pointer]:
+                - /url: /legal/privacy
+        - generic [ref=e246]:
+          - paragraph [ref=e247]: Help Center
+          - list [ref=e248]:
+            - listitem [ref=e249]:
+              - link "Community" [ref=e250] [cursor=pointer]:
+                - /url: /resources/community
+            - listitem [ref=e251]:
+              - link "Knowledge Base" [ref=e252] [cursor=pointer]:
+                - /url: /resources/help-center
+            - listitem [ref=e253]:
+              - link "Academy" [ref=e254] [cursor=pointer]:
+                - /url: /resources/guides
+            - listitem [ref=e255]:
+              - link "Support" [ref=e256] [cursor=pointer]:
+                - /url: /support
+      - generic [ref=e257]:
+        - paragraph [ref=e258]: © Copyright 2026, All Rights Reserved
+        - list [ref=e259]:
+          - listitem [ref=e260]:
+            - link "Privacy Policy" [ref=e261] [cursor=pointer]:
+              - /url: /legal/privacy
+          - listitem [ref=e262]:
+            - link "Terms & Conditions" [ref=e263] [cursor=pointer]:
+              - /url: /legal/terms
+          - listitem [ref=e264]:
+            - link "Support" [ref=e265] [cursor=pointer]:
+              - /url: /support

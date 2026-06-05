@@ -8,7 +8,8 @@ export const metadata: Metadata = { title: 'For HR teams' }
 const config: SolutionPageConfig = {
   hero: {
     eyebrow: 'clicsHQ for HR',
-    eyebrowColor: 'text-emerald-600',
+    eyebrowColor: 'text-ink',
+    eyebrowUppercase: false,
     title: (
       <>
         Hire, onboard, and grow on <Highlight color="green">one</Highlight> workspace

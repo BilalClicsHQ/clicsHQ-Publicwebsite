@@ -8,73 +8,76 @@ export const metadata: Metadata = { title: 'For Operations teams' }
 const config: SolutionPageConfig = {
   hero: {
     eyebrow: 'clicsHQ for Operations',
-    eyebrowColor: 'text-blue-600',
-    title: (
-      <>
-        Run operations from one <Highlight color="blue">connected</Highlight> workspace
-      </>
-    ),
+    eyebrowColor: 'text-ink',
+    eyebrowUppercase: false,
+    title: <>Run operations from one connected workspace</>,
     subtitle:
-      'Manage tasks, approvals, vendor work, and reporting in one place. Reduce manual handoffs with AI-powered workflows.',
+      'Manage tasks, approvals, workflows, team coordination, and operational visibility with an AI-powered workspace built for fast-moving teams.',
     primaryLabel: 'Get Started',
     secondaryLabel: 'Book a demo',
     mockupSrc: '/images/dashboards/ClicshqPage.svg',
     background: 'light',
   },
   benefits: {
+    eyebrow: 'Why Operations Teams Choose clicsHQ',
     title: (
       <>
-        Everything your <Highlight color="blue">operations team</Highlight> needs to stay aligned
+        Everything your <Highlight color="blue">operations team</Highlight> needs
+        <br className="hidden lg:block" /> to stay aligned
       </>
     ),
+    subtitle: 'Bring work, visibility, workflows, docs, and AI assistance into one simple workspace.',
     items: [
       {
         icon: Eye,
         iconBg: 'bg-violet-100 text-violet-600',
         title: 'Centralized visibility',
-        body: 'See every request, every owner, every blocker — across functions.',
+        body: 'Track progress, priorities, workloads, and blockers from one operational overview.',
       },
       {
         icon: Sparkles,
         iconBg: 'bg-pink-100 text-pink-600',
         title: 'AI-powered coordination',
-        body: 'AI agents summarize updates, flag risks, and trigger follow-ups automatically.',
+        body: 'Use clics One to summarize work, find blockers, generate updates, and reduce manual follow-ups.',
       },
       {
         icon: Workflow,
         iconBg: 'bg-emerald-100 text-emerald-600',
         title: 'Flexible workflows',
-        body: 'Build approval chains and routing rules without writing code.',
+        body: 'Create simple automations that help your team move faster without adding complexity.',
       },
     ],
   },
   intro: {
-    title: 'Stay on top of execution without chasing updates',
-    subtitle: 'Track tasks, ownership, and progress in real time without manually polling teams.',
+    eyebrow: 'Operational Visibility',
+    title: (
+      <>
+        Stay on top of execution without
+        <br className="hidden lg:block" /> chasing updates
+      </>
+    ),
+    subtitle:
+      'Space Overview gives operations teams a clear view of total tasks, progress, priority distribution, workload, and status movement.',
   },
   splitRows: [
     {
-      eyebrow: 'Total task visibility',
-      title: 'Every project, every priority',
+      title: 'Total task visibility',
       body: 'See every running initiative, its owner, status, and deadline. Drill into any one with a click.',
       imageSrc: '/images/dashboards/ClicshqPage.svg',
     },
     {
-      eyebrow: 'Status and progress tracking',
-      title: 'Live progress, automatically',
+      title: 'Status and progress tracking',
       body: 'Status flows from tasks → projects → portfolio. No spreadsheets, no manual rollups.',
       imageSrc: '/images/dashboards/ClicshqPage.svg',
       reverse: true,
     },
     {
-      eyebrow: 'Workload by team member',
-      title: 'Workload that actually reflects reality',
+      title: 'Workload by team member',
       body: 'Capacity views show who is overcommitted before deadlines slip.',
       imageSrc: '/images/dashboards/ClicshqPage.svg',
     },
     {
-      eyebrow: 'Priority and overdue insights',
-      title: 'Surface what needs attention first',
+      title: 'Priority and overdue insights',
       body: 'AI sorts your portfolio by risk and ranks priorities for your standup.',
       imageSrc: '/images/dashboards/ClicshqPage.svg',
       reverse: true,
@@ -82,7 +85,9 @@ const config: SolutionPageConfig = {
   ],
   finalCTA: {
     title: 'Build your AI-powered operations workspace',
-    subtitle: 'Manage operations, automate handoffs, and keep every team aligned in one place.',
+    subtitle: 'Manage operations, automate workflows, and align teams from one connected platform.',
+    primaryLabel: 'Get started',
+    secondaryLabel: 'Book Demo',
   },
 }
 

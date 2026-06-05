@@ -7,37 +7,41 @@ export const metadata: Metadata = { title: 'For Non-Profits' }
 
 const config: SolutionPageConfig = {
   hero: {
-    eyebrow: 'clicsHQ for Non-Profits',
-    eyebrowColor: 'text-emerald-600',
+    eyebrow: 'clicsHQ for Nonprofits',
+    eyebrowColor: 'text-ink',
+    eyebrowUppercase: false,
     title: (
       <>
-        Coordinate <Highlight color="green">mission-driven</Highlight> work, one workspace
+        Run your nonprofit<br className="hidden lg:block" /> work with more<br className="hidden lg:block" /> clarity
       </>
     ),
     subtitle:
-      'Programs, volunteers, donors, impact tracking — bring it all together so your team can spend more time on the mission.',
+      'Plan programs, manage volunteers, track campaigns, organize docs, and keep your team aligned in one simple workspace.',
     primaryLabel: 'Get Started',
+    secondaryLabel: 'Book a demo',
     mockupSrc: '/images/dashboards/ClicshqPage.svg',
     background: 'light',
   },
   benefits: {
+    eyebrow: 'Nonprofit Use Cases',
     title: (
       <>
-        Built for the way <Highlight color="green">nonprofits</Highlight> manage programs
+        Built for the everyday work <Highlight color="blue">nonprofits</Highlight> manage
       </>
     ),
+    subtitle: 'Keep your team focused on mission delivery, not scattered updates.',
     items: [
-      { icon: Heart,    iconBg: 'bg-rose-100 text-rose-600',       title: 'Volunteer coordination', body: 'Schedule, assign, and recognize volunteers in one place.' },
-      { icon: Workflow, iconBg: 'bg-emerald-100 text-emerald-600', title: 'Program management',     body: 'Track every program initiative, milestone, and outcome.' },
-      { icon: Sparkles, iconBg: 'bg-violet-100 text-violet-600',   title: 'Donor reports',          body: 'AI drafts impact reports from your own program data.' },
+      { icon: Heart,    iconBg: 'bg-rose-100 text-rose-600',       title: 'Volunteer coordination', body: 'Assign work, track shifts, and keep volunteer tasks visible.' },
+      { icon: Workflow, iconBg: 'bg-emerald-100 text-emerald-600', title: 'Program management',     body: 'Manage initiatives, timelines, ownership, and progress updates.' },
+      { icon: Sparkles, iconBg: 'bg-violet-100 text-violet-600',   title: 'Donor and campaign work', body: 'Organize reports, communications, events, and approvals.' },
     ],
   },
   splitRows: [
-    { eyebrow: 'Programs',   title: 'Run programs end-to-end',           body: 'Plan, execute, and measure outcomes from one workspace.',           imageSrc: '/images/dashboards/ClicshqPage.svg' },
-    { eyebrow: 'Volunteers', title: 'Volunteer coordination, simplified', body: 'Onboard volunteers, schedule shifts, track contributions.',          imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
-    { eyebrow: 'Impact',      title: 'Tell your impact story',            body: 'AI summarizes program data into reports your donors will read.',     imageSrc: '/images/dashboards/ClicshqPage.svg' },
+    { eyebrow: 'Program Tracking', title: 'Track your programs and impact work',     body: 'Organize program tasks, owners, deadlines, updates, and supporting docs so nothing falls through the cracks.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
+    { eyebrow: 'Planning',          title: 'Schedule and manage tasks or events',    body: 'Create event checklists, assign volunteer tasks, track approvals, and keep every team member clear on what needs to happen next.', imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
+    { eyebrow: 'Impact',            title: 'Tell your impact story',                 body: 'AI summarizes program data into reports your donors will read.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
   ],
-  finalCTA: { title: 'Focus on the mission, not the paperwork', subtitle: 'clicsHQ keeps your programs, people, and impact connected.' },
+  finalCTA: { title: 'Grow your nonprofit with less operational noise', subtitle: 'Bring tasks, docs, events, volunteers, and workflows into one connected workspace.', primaryLabel: 'Get started', secondaryLabel: 'Book Demo' },
 }
 
 export default function NonprofitsPage() {

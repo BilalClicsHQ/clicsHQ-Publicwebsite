@@ -26,8 +26,8 @@ export function FAQAccordion({
 
   return (
     <section className="container-app py-16 sm:py-20">
-      <h2 className="text-center text-[28px] font-bold tracking-tight text-ink sm:text-[36px] lg:text-[40px]">{title}</h2>
-      <div className="mx-auto mt-12 max-w-4xl space-y-4">
+      <h2 className="text-center text-[30px] font-medium leading-[1.17] tracking-normal text-ink sm:text-[40px] lg:text-[48px]">{title}</h2>
+      <div className="mx-auto mt-12 max-w-6xl space-y-4">
         {items.map((it, i) => {
           const isOpen = openIndex === i
           return (
@@ -40,7 +40,7 @@ export function FAQAccordion({
                 className="flex w-full items-center justify-between gap-4 px-7 py-5 text-left"
                 aria-expanded={isOpen}
               >
-                <span className="text-[18px] font-medium text-ink">{it.q}</span>
+                <span className="text-[26px] font-medium text-ink">{it.q}</span>
                 {toggle === 'plusminus' ? (
                   isOpen ? (
                     <Minus className="h-[1.125rem] w-[1.125rem] shrink-0 text-ink" />
@@ -54,7 +54,7 @@ export function FAQAccordion({
                 )}
               </button>
               {isOpen && (
-                <div className="px-7 pb-5 text-[16px] leading-relaxed text-muted animate-fade-up">
+                <div className="px-7 pb-6 text-[20px] leading-relaxed text-muted animate-fade-up">
                   {it.a}
                 </div>
               )}

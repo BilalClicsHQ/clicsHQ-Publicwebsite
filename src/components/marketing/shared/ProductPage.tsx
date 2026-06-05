@@ -105,6 +105,7 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
             eyebrow={config.intro.eyebrow}
             title={config.intro.title}
             subtitle={config.intro.subtitle}
+            size="lg"
           />
           {config.intro.image && (
             <div className="mx-auto mt-10 max-w-5xl sm:mt-12">

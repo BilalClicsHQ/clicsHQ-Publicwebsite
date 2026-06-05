@@ -46,7 +46,7 @@ export function Footer() {
               height={48}
               className="h-12 w-auto invert"
             />
-            <p className="mt-5 text-[16px] leading-relaxed text-white/70">
+            <p className="mt-5 text-[18px] leading-relaxed text-white/70">
               Work Management Platform<br />
               For Result-Driven Teams
             </p>
@@ -83,7 +83,7 @@ export function Footer() {
         </div>
 
         {/* Divider + bottom row */}
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm text-white/60">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-[16px] text-white/60">
           <p>© Copyright {new Date().getFullYear()}, All Rights Reserved</p>
           <ul className="flex flex-wrap items-center gap-6">
             <li><Link href="/legal/privacy" className="hover:text-white">Privacy Policy</Link></li>
@@ -99,7 +99,7 @@ export function Footer() {
 function FooterCol({ title, items }: { title: string; items: { label: string; href: string }[] }) {
   return (
     <div>
-      <p className="text-[18px] font-bold text-white">{title}</p>
+      <p className="text-[22px] font-bold text-white">{title}</p>
       <ul className="mt-5 space-y-3">
         {items.map((it) => (
           <li key={it.href}>

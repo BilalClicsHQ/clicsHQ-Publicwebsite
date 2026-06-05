@@ -38,17 +38,17 @@ export function IntegrationsView() {
       <section className="relative overflow-hidden bg-white">
         <div className="container-app grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-[1fr_1fr] lg:gap-16 lg:py-24">
           <div>
-            <p className="text-[0.9375rem] font-medium text-ink/70">Integrations</p>
-            <h1 className="mt-3 text-balance text-[2.125rem] font-bold leading-[1.06] tracking-tight text-ink sm:text-[2.75rem] lg:text-[3.5rem]">
+            <p className="text-[20px] font-normal text-muted">Integrations</p>
+            <h1 className="mt-6 text-balance text-[36px] font-medium leading-[1.17] tracking-normal text-ink sm:text-[48px] lg:text-[62px]">
               All your work tools, connected in one place
             </h1>
-            <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-muted sm:text-base">
+            <p className="mt-5 max-w-lg text-[18px] font-normal leading-[1.5] text-muted sm:text-[22px] lg:text-[25px]">
               Bring tasks, conversations, files, calendars, and workflows together without
               switching between apps.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <CTAButton href="/signup">Get Started</CTAButton>
-              <CTAButton variant="secondary" href="/product/integrations">Explore integrations</CTAButton>
+            <div className="mt-8 flex flex-wrap gap-[10px]">
+              <CTAButton href="/signup" className="h-[45px] rounded-[10px] px-[15px] text-base font-medium">Get Started</CTAButton>
+              <CTAButton variant="secondary" href="/product/integrations" className="h-[45px] rounded-[10px] px-[15px] text-base font-medium">Explore integrations</CTAButton>
             </div>
           </div>
           <IntegrationOrbitMockup />
@@ -60,6 +60,7 @@ export function IntegrationsView() {
       {/* Native integrations grid */}
       <section className="container-app py-16 sm:py-20">
         <SectionHeader
+          size="lg"
           title={
             <>
               Native <Highlight color="violet">integrations</Highlight>

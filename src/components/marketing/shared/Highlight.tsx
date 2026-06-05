@@ -5,7 +5,7 @@ export type HighlightColor = 'blue' | 'lime' | 'magenta' | 'orange' | 'green' | 
 
 const COLORS: Record<HighlightColor, string> = {
   blue:    'text-sky-500',
-  lime:    'text-lime-500',
+  lime:    'text-lime-400',
   magenta: 'text-fuchsia-500',
   orange:  'text-orange-500',
   green:   'text-emerald-500',
