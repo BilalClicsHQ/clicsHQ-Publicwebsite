@@ -39,26 +39,26 @@ export function CrossProductGrid({
   return (
     <section className="container-app py-16 sm:py-20">
       <div className="text-center">
-        {eyebrow && <p className="text-xs font-medium text-muted sm:text-sm">{eyebrow}</p>}
-        <h2 className="mx-auto mt-1.5 max-w-3xl text-balance text-2xl font-bold leading-tight text-ink sm:text-3xl">
+        {eyebrow && <p className="text-[15px] font-medium text-ink">{eyebrow}</p>}
+        <h2 className="mx-auto mt-3 max-w-3xl text-balance text-[26px] font-bold leading-[1.12] tracking-tight text-ink sm:text-[32px] lg:text-[36px]">
           {title}
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-sm text-muted sm:text-base">{subtitle}</p>
+        <p className="mx-auto mt-4 max-w-2xl text-[16px] leading-relaxed text-muted sm:text-[17px]">{subtitle}</p>
       </div>
 
-      <ul className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mx-auto mt-14 grid max-w-4xl gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
         {ITEMS.map((it) => (
           <li key={it.title}>
             <Link
               href={it.href}
-              className="group flex items-start gap-3 rounded-xl bg-white p-4 ring-1 ring-gray-100 transition-shadow hover:shadow-card"
+              className="group flex items-start gap-3 rounded-lg p-2 transition-colors hover:bg-gray-50"
             >
               <span className="grid h-10 w-10 shrink-0 place-items-center">
                 <Image src={it.iconSrc} alt="" aria-hidden width={40} height={40} className="h-10 w-10" />
               </span>
               <span className="min-w-0">
-                <span className="block text-sm font-semibold text-ink">{it.title}</span>
-                <span className="mt-0.5 block text-xs leading-relaxed text-muted">{it.desc}</span>
+                <span className="block text-[17px] font-semibold text-ink">{it.title}</span>
+                <span className="mt-1 block text-[14px] leading-relaxed text-muted">{it.desc}</span>
               </span>
             </Link>
           </li>

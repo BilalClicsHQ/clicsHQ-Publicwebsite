@@ -133,6 +133,7 @@ export function ProductPage({ config }: { config: ProductPageConfig }) {
           <SectionHeader
             title={config.darkTilesSection.title}
             subtitle={config.darkTilesSection.subtitle}
+            size="lg"
             className="mb-10 sm:mb-14"
           />
           {config.darkTilesSection.layout === 'showcase' && config.darkTilesSection.image ? (

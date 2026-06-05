@@ -26,21 +26,21 @@ export function FAQAccordion({
 
   return (
     <section className="container-app py-16 sm:py-20">
-      <h2 className="text-center text-2xl font-bold text-ink sm:text-3xl">{title}</h2>
-      <div className="mx-auto mt-10 max-w-3xl space-y-3">
+      <h2 className="text-center text-[28px] font-bold tracking-tight text-ink sm:text-[36px] lg:text-[40px]">{title}</h2>
+      <div className="mx-auto mt-12 max-w-4xl space-y-4">
         {items.map((it, i) => {
           const isOpen = openIndex === i
           return (
             <div
               key={i}
-              className="overflow-hidden rounded-xl bg-white ring-1 ring-gray-100 transition-shadow hover:shadow-card"
+              className="overflow-hidden rounded-2xl bg-white ring-1 ring-gray-100 transition-shadow hover:shadow-card"
             >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : i)}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                className="flex w-full items-center justify-between gap-4 px-7 py-5 text-left"
                 aria-expanded={isOpen}
               >
-                <span className="text-sm font-medium text-ink">{it.q}</span>
+                <span className="text-[18px] font-medium text-ink">{it.q}</span>
                 {toggle === 'plusminus' ? (
                   isOpen ? (
                     <Minus className="h-[1.125rem] w-[1.125rem] shrink-0 text-ink" />
@@ -54,7 +54,7 @@ export function FAQAccordion({
                 )}
               </button>
               {isOpen && (
-                <div className="px-5 pb-5 text-sm leading-relaxed text-muted animate-fade-up">
+                <div className="px-7 pb-5 text-[16px] leading-relaxed text-muted animate-fade-up">
                   {it.a}
                 </div>
               )}

@@ -11,23 +11,30 @@ export function SectionHeader({
   title,
   subtitle,
   align = 'center',
+  size = 'default',
   className,
 }: {
   eyebrow?: string
   title: React.ReactNode
   subtitle?: string
   align?: 'center' | 'left'
+  /** 'lg' = large showcase headline (~48px); 'default' = section headline (~38px). */
+  size?: 'default' | 'lg'
   className?: string
 }) {
   const alignCls = align === 'center' ? 'text-center mx-auto' : 'text-left'
+  const headingSize =
+    size === 'lg'
+      ? 'text-[32px] sm:text-[42px] lg:text-[48px]'
+      : 'text-[26px] sm:text-[32px] lg:text-[38px]'
   return (
     <div className={cn(alignCls, 'max-w-3xl', className)}>
-      {eyebrow && <p className="text-xs font-medium text-muted sm:text-sm">{eyebrow}</p>}
-      <h2 className="mt-1.5 text-balance text-2xl font-bold leading-tight tracking-tight text-ink sm:text-3xl lg:text-4xl">
+      {eyebrow && <p className="text-[15px] font-medium text-ink">{eyebrow}</p>}
+      <h2 className={cn('mt-4 text-balance font-bold leading-[1.12] tracking-tight text-ink', headingSize)}>
         {title}
       </h2>
       {subtitle && (
-        <p className={cn('mt-3 text-sm text-muted sm:text-base', align === 'center' && 'mx-auto max-w-2xl')}>
+        <p className={cn('mt-4 text-[16px] leading-relaxed text-muted sm:text-[17px]', align === 'center' && 'mx-auto max-w-2xl')}>
           {subtitle}
         </p>
       )}

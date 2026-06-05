@@ -39,10 +39,10 @@ export function FeatureShowcase({
 
       {/* Corner cards */}
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:mt-0 lg:block">
-        <Card className="lg:absolute lg:left-0 lg:top-2 lg:w-[19rem]" {...tl} />
-        <Card className="lg:absolute lg:right-0 lg:top-2 lg:w-[19rem]" {...tr} />
-        <Card className="lg:absolute lg:bottom-2 lg:left-0 lg:w-[19rem]" {...bl} />
-        <Card className="lg:absolute lg:bottom-2 lg:right-0 lg:w-[19rem]" {...br} />
+        <Card className="lg:absolute lg:left-0 lg:top-2 lg:w-[23rem]" {...tl} />
+        <Card className="lg:absolute lg:right-0 lg:top-2 lg:w-[23rem]" {...tr} />
+        <Card className="lg:absolute lg:bottom-2 lg:left-0 lg:w-[23rem]" {...bl} />
+        <Card className="lg:absolute lg:bottom-2 lg:right-0 lg:w-[23rem]" {...br} />
       </div>
     </div>
   )

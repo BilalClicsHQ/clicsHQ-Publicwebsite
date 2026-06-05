@@ -52,7 +52,7 @@ export function FinalCTAMountain({
             className={cn(
               'font-bold tracking-tight text-ink',
               centered
-                ? 'mx-auto max-w-[20ch] text-[2rem] leading-[1.12] sm:text-[2.5rem] lg:text-[3rem]'
+                ? 'mx-auto max-w-[20ch] text-[2rem] leading-[1.2] sm:text-[2.75rem] lg:text-[3.5rem]'
                 : 'text-balance text-3xl leading-tight sm:text-4xl lg:text-5xl',
             )}
           >
@@ -60,14 +60,14 @@ export function FinalCTAMountain({
           </h2>
           <p
             className={cn(
-              'mt-4 text-sm text-ink/70 sm:text-base',
-              centered ? 'mx-auto max-w-md' : 'max-w-md',
+              'mt-5 text-[16px] text-ink/90 sm:text-[18px] lg:text-[19px]',
+              centered ? 'mx-auto max-w-2xl' : 'max-w-md',
             )}
           >
             {subtitle}
           </p>
-          <div className={cn('mt-7 flex flex-wrap gap-3', centered && 'justify-center')}>
-            <CTAButton href={primaryHref} size={centered ? 'sm' : 'md'}>
+          <div className={cn('mt-8 flex flex-wrap gap-3', centered && 'justify-center')}>
+            <CTAButton href={primaryHref} size="md">
               {primaryLabel}
             </CTAButton>
             {secondaryLabel && (

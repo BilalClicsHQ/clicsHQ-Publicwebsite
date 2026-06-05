@@ -34,11 +34,11 @@ export function FeatureSplitRow({
   return (
     <div className={cn('grid items-center gap-10 lg:grid-cols-2 lg:gap-16', reverse && 'lg:[&>div:first-child]:order-2')}>
       <div>
-        {eyebrow && <p className="text-xs font-medium uppercase tracking-wide text-muted">{eyebrow}</p>}
-        <h3 className="mt-2 text-balance text-2xl font-bold leading-tight text-ink sm:text-3xl">
+        {eyebrow && <p className="text-[15px] font-medium text-ink">{eyebrow}</p>}
+        <h3 className="mt-4 text-balance text-[26px] font-bold leading-[1.12] tracking-tight text-ink sm:text-[34px] lg:text-[40px]">
           {title}
         </h3>
-        {body && <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">{body}</p>}
+        {body && <p className="mt-5 text-[16px] leading-relaxed text-muted">{body}</p>}
         {bullets && bullets.length > 0 && (
           <ul className="mt-5 space-y-2.5">
             {bullets.map((b) => (

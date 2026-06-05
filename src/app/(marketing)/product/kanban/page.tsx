@@ -53,7 +53,7 @@ const config: ProductPageConfig = {
     eyebrow: 'More than boards',
     title: (
       <>
-        A <Highlight color="blue">visual workflow,</Highlight> connected to everything
+        A <Highlight color="sky">visual workflow,</Highlight> connected to everything
       </>
     ),
     subtitle:

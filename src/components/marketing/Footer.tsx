@@ -33,7 +33,7 @@ const SOCIALS = [
 export function Footer() {
   return (
     <footer className="relative z-10 -mt-10 px-3 pb-4 sm:-mt-12 sm:px-4 sm:pb-6 lg:px-6 lg:pb-8">
-      <div className="rounded-[2rem] bg-ink px-6 py-12 text-white sm:px-10 sm:py-14 lg:px-14 lg:py-16">
+      <div className="rounded-[2rem] bg-ink px-6 py-12 text-white sm:px-10 sm:py-14 lg:px-20 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div>
@@ -44,9 +44,9 @@ export function Footer() {
               alt="clicsHQ"
               width={140}
               height={48}
-              className="h-10 w-auto invert"
+              className="h-12 w-auto invert"
             />
-            <p className="mt-5 text-sm leading-relaxed text-white/70">
+            <p className="mt-5 text-[16px] leading-relaxed text-white/70">
               Work Management Platform<br />
               For Result-Driven Teams
             </p>
@@ -58,15 +58,15 @@ export function Footer() {
                     aria-label={s.name}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="grid h-9 w-9 place-items-center rounded-full bg-white/[0.08] transition-colors hover:bg-white/[0.18]"
+                    className="grid h-11 w-11 place-items-center rounded-full bg-white/[0.08] transition-colors hover:bg-white/[0.18]"
                   >
                     <Image
                       src={s.src}
                       alt=""
                       aria-hidden
-                      width={18}
-                      height={18}
-                      className="h-[18px] w-[18px]"
+                      width={20}
+                      height={20}
+                      className="h-5 w-5"
                     />
                   </a>
                 </li>
@@ -83,7 +83,7 @@ export function Footer() {
         </div>
 
         {/* Divider + bottom row */}
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/60">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm text-white/60">
           <p>© Copyright {new Date().getFullYear()}, All Rights Reserved</p>
           <ul className="flex flex-wrap items-center gap-6">
             <li><Link href="/legal/privacy" className="hover:text-white">Privacy Policy</Link></li>
@@ -99,11 +99,11 @@ export function Footer() {
 function FooterCol({ title, items }: { title: string; items: { label: string; href: string }[] }) {
   return (
     <div>
-      <p className="text-sm font-semibold text-white">{title}</p>
+      <p className="text-[18px] font-bold text-white">{title}</p>
       <ul className="mt-5 space-y-3">
         {items.map((it) => (
           <li key={it.href}>
-            <Link href={it.href} className="text-sm text-white/70 transition-colors hover:text-white">
+            <Link href={it.href} className="text-[16px] text-white/70 transition-colors hover:text-white">
               {it.label}
             </Link>
           </li>
