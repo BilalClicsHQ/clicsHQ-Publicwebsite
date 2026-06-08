@@ -1,9 +1,12 @@
 import * as React from 'react'
 import Image from 'next/image'
+import { LayoutDashboard, LayoutGrid, List, Calendar, FileBarChart } from 'lucide-react'
 import { ProductHero } from './ProductHero'
 import { BenefitTrio, type Benefit } from './BenefitTrio'
 import { SectionHeader } from './SectionHeader'
 import { FeatureSplitRow } from './FeatureSplitRow'
+import { FeatureShowcase, type ShowcaseTile } from './FeatureShowcase'
+import { WorkflowCanvasMockup } from './ProductMockups'
 import { FinalCTAMountain } from './FinalCTAMountain'
 import { Footer } from '../Footer'
 import type { HighlightColor } from './Highlight'
@@ -47,6 +50,33 @@ export interface SolutionPageConfig {
     subtitle?: string
     items: Benefit[]
   }
+  /**
+   * "Built for the work <X> teams manage every day" — centered header + a
+   * central product screenshot framed by four dark corner cards.
+   * Expects exactly four tiles: [topLeft, topRight, bottomLeft, bottomRight].
+   */
+  useCases?: {
+    eyebrow?: string
+    title: React.ReactNode
+    subtitle?: string
+    image: string
+    imageAlt?: string
+    tiles: ShowcaseTile[]
+  }
+  /**
+   * "Automate <X> handoffs" — a split row with the in-code WHEN/THEN workflow
+   * builder mockup on one side and copy on the other.
+   */
+  workflowAutomation?: {
+    eyebrow?: string
+    title: React.ReactNode
+    body?: string
+    bullets?: string[]
+    /** Visual on the left, copy on the right (matches the Figma). Default true. */
+    reverse?: boolean
+    /** Custom mockup. Defaults to the generic WHEN/THEN canvas. */
+    visual?: React.ReactNode
+  }
   /** "Organize <X> your way" — centered header + a row of view-tab pills. */
   spaces?: {
     eyebrow?: string
@@ -71,10 +101,18 @@ export interface SolutionPageConfig {
   accentColor?: HighlightColor
 }
 
+/** Icon for each known "Spaces" view tab (matched by label). */
+const SPACE_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  Overview: LayoutDashboard,
+  List: List,
+  Kanban: LayoutGrid,
+  Calendar: Calendar,
+  Gantt: FileBarChart,
+}
+
 /**
- * SolutionPage composer — Hero → Benefit trio → Intro → Splits → FinalCTA → Footer.
- * Lighter than ProductPage since solution audits emphasised industry framing
- * rather than feature grids.
+ * SolutionPage composer — Hero → Benefit trio → Intro → Splits → AI assistant →
+ * Use cases → Workflow automation → Integrations → Spaces → FinalCTA → Footer.
  */
 export function SolutionPage({ config }: { config: SolutionPageConfig }) {
   return (
@@ -130,21 +168,33 @@ export function SolutionPage({ config }: { config: SolutionPageConfig }) {
         </section>
       )}
 
-      {config.spaces && (
+      {config.useCases && (
         <section className="container-app py-16 sm:py-20">
           <SectionHeader
-            eyebrow={config.spaces.eyebrow}
-            title={config.spaces.title}
-            subtitle={config.spaces.subtitle}
-            className="mb-8"
+            eyebrow={config.useCases.eyebrow}
+            title={config.useCases.title}
+            subtitle={config.useCases.subtitle}
+            size="lg"
+            className="mb-12"
           />
-          <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-3">
-            {config.spaces.tabs.map((t) => (
-              <span key={t} className="rounded-full bg-ink px-5 py-2.5 text-[15px] font-medium text-white">
-                {t}
-              </span>
-            ))}
-          </div>
+          <FeatureShowcase
+            image={config.useCases.image}
+            imageAlt={config.useCases.imageAlt}
+            tiles={config.useCases.tiles}
+          />
+        </section>
+      )}
+
+      {config.workflowAutomation && (
+        <section className="container-app py-16 sm:py-20">
+          <FeatureSplitRow
+            eyebrow={config.workflowAutomation.eyebrow}
+            title={config.workflowAutomation.title}
+            body={config.workflowAutomation.body}
+            bullets={config.workflowAutomation.bullets}
+            reverse={config.workflowAutomation.reverse ?? true}
+            visual={config.workflowAutomation.visual ?? <WorkflowCanvasMockup />}
+          />
         </section>
       )}
 
@@ -160,6 +210,31 @@ export function SolutionPage({ config }: { config: SolutionPageConfig }) {
             {config.integrations.logos.map((l) => (
               <Image key={l.src} src={l.src} alt={l.alt} width={120} height={48} className="h-9 w-auto" />
             ))}
+          </div>
+        </section>
+      )}
+
+      {config.spaces && (
+        <section className="container-app py-16 sm:py-20">
+          <SectionHeader
+            eyebrow={config.spaces.eyebrow}
+            title={config.spaces.title}
+            subtitle={config.spaces.subtitle}
+            className="mb-8"
+          />
+          <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-4">
+            {config.spaces.tabs.map((t) => {
+              const Icon = SPACE_ICONS[t]
+              return (
+                <span
+                  key={t}
+                  className="inline-flex items-center gap-2.5 rounded-xl bg-ink px-7 py-3.5 text-[16px] font-medium text-white"
+                >
+                  {Icon && <Icon className="h-[18px] w-[18px]" />}
+                  {t}
+                </span>
+              )
+            })}
           </div>
         </section>
       )}

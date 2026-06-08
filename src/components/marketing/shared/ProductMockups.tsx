@@ -359,6 +359,39 @@ function WfConnector() {
   return <span className="my-1 h-5 w-px bg-gray-200" />
 }
 
+/**
+ * Figma "Automate handoffs" recipe — flat gray WHEN/THEN step cards stacked
+ * vertically with a thin down-arrow between each. Dependency-free arrow (inline
+ * SVG) so it doesn't rely on a specific lucide export.
+ */
+export function WorkflowStepsMockup({
+  steps,
+  className,
+}: {
+  steps: { label: string; sub: string }[]
+  className?: string
+}) {
+  return (
+    <div className={cn('rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200 sm:p-6', className)}>
+      {steps.map((s, i) => (
+        <React.Fragment key={i}>
+          <div className="rounded-xl bg-gray-50 px-5 py-4 ring-1 ring-gray-100">
+            <p className="text-[11px] font-bold uppercase tracking-wide text-ink">{s.label}</p>
+            <p className="mt-1 text-sm text-muted">{s.sub}</p>
+          </div>
+          {i < steps.length - 1 && (
+            <div className="flex justify-center py-2 text-gray-400" aria-hidden>
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </svg>
+            </div>
+          )}
+        </React.Fragment>
+      ))}
+    </div>
+  )
+}
+
 /** Dark "WHEN / THEN" recipe card for the workflow dark-tiles section. */
 export function WorkflowRecipeTile({
   when,

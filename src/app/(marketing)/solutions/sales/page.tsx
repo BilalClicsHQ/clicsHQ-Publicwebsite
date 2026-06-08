@@ -2,6 +2,7 @@
 import { FileText, FileBarChart, Bell, Briefcase } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
+import { WorkflowStepsMockup } from '@/components/marketing/shared/ProductMockups'
 
 const TOOL = '/images/tools'
 const SOL = '/images/solutions/Sales'
@@ -23,7 +24,7 @@ const config: SolutionPageConfig = {
     primaryLabel: 'Get Started',
     secondaryLabel: 'Book a demo',
     mockupSrc: `${SOL}/hero1.svg`,
-    background: 'soft-violet',
+    background: 'light',
   },
   benefits: {
     eyebrow: 'Why Sales Teams Choose clicsHQ',
@@ -70,6 +71,44 @@ const config: SolutionPageConfig = {
       { icon: Bell,         iconBg: 'bg-amber-100 text-amber-600',   title: 'Follow-up Agent',    body: 'Reminds reps about inactive leads, pending follow-ups, and stale sales tasks.' },
       { icon: Briefcase,    iconBg: 'bg-sky-100 text-sky-600',       title: 'Executive Brief',    body: 'Creates a high-level sales summary for leadership with risks, updates, and sales highlights.' },
     ],
+  },
+  useCases: {
+    eyebrow: 'Sales Use Cases',
+    title: (
+      <>
+        Built for the work sales<br className="hidden lg:block" /> teams manage every day
+      </>
+    ),
+    // NOTE (review): best-guess asset — `chart 1.svg` is the largest dashboard export
+    // and matches the Figma Sales Pipeline stats/charts screenshot. Alt: `Group 1171275314.svg`.
+    image: `${SOL}/chart 1.svg`,
+    imageAlt: 'clicsHQ sales pipeline dashboard',
+    tiles: [
+      { title: 'Lead follow-ups',   body: 'Track every lead, next step, owner, and follow-up deadline in one shared workspace.' },
+      { title: 'Deal tracking',     body: 'Manage pipeline tasks, deal stages, approvals, and customer conversations without losing context.' },
+      { title: 'Proposal approvals', body: 'Coordinate pricing, legal review, discounts, and stakeholder approvals before proposals go out.' },
+      { title: 'Customer handoffs',  body: 'Move closed deals to onboarding with clear notes, tasks, owners, and next actions.' },
+    ],
+  },
+  workflowAutomation: {
+    eyebrow: 'Workflow Automation',
+    title: (
+      <>
+        Automate sales<br className="hidden lg:block" /> handoffs
+      </>
+    ),
+    body:
+      'Build simple When → Then workflows to reduce manual follow-ups, missed reminders, and deal handoff gaps.',
+    visual: (
+      <WorkflowStepsMockup
+        steps={[
+          { label: 'When', sub: 'New lead is added' },
+          { label: 'Then', sub: 'Assign sales owner' },
+          { label: 'Then', sub: 'Create follow-up task' },
+          { label: 'Then', sub: 'Notify sales manager' },
+        ]}
+      />
+    ),
   },
   spaces: {
     eyebrow: 'Spaces',
