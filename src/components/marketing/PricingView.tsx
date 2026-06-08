@@ -120,7 +120,7 @@ export function PricingView() {
   const [billingCycle, setBillingCycle] = React.useState<Cycle>('yearly')
   const [seats, setSeats] = React.useState(2)
   const [openFaq, setOpenFaq] = React.useState<number | null>(null)
-  const [selectedPlan, setSelectedPlan] = React.useState<string>('individual')
+  const [selectedPlan, setSelectedPlan] = React.useState<string>('')
 
   return (
     <main className="bg-white">

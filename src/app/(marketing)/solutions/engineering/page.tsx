@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { Eye, Sparkles, Workflow, Bot, Bug, Rocket, FileText } from 'lucide-react'
+import { Bot, Bug, Rocket, FileText } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
 
 const TOOL = '/images/tools'
+const SOL = '/images/solutions/Engineering'
 
 export const metadata: Metadata = { title: 'For Engineering teams' }
 
@@ -21,7 +22,7 @@ const config: SolutionPageConfig = {
       'Plan sprints, track bugs, coordinate releases, manage engineering requests, and keep product, design, and development teams aligned.',
     primaryLabel: 'Get Started',
     secondaryLabel: 'Book a demo',
-    mockupSrc: '/images/dashboards/ClicshqPage.svg',
+    mockupSrc: `${SOL}/hero1.svg`,
     background: 'light',
   },
   benefits: {
@@ -33,9 +34,9 @@ const config: SolutionPageConfig = {
     ),
     subtitle: 'Bring work, visibility, workflows, docs, and AI assistance into one simple workspace.',
     items: [
-      { icon: Eye,      iconBg: 'bg-violet-100 text-violet-600',  title: 'Sprint visibility',  body: 'See every sprint, blocker, and PR — across squads.' },
-      { icon: Sparkles, iconBg: 'bg-pink-100 text-pink-600',      title: 'AI-powered execution', body: 'Bug Triage Agent, Standup Agent, Sprint Agent — built in.' },
-      { icon: Workflow, iconBg: 'bg-emerald-100 text-emerald-600', title: 'Connected engineering workflows', body: 'Two-way sync with GitHub, Linear, Jira, PagerDuty.' },
+      { iconSrc: `${SOL}/icon-a.svg`, title: 'Sprint visibility',  body: 'See every sprint, blocker, and PR — across squads.' },
+      { iconSrc: `${SOL}/icon-b.svg`, title: 'AI-powered execution', body: 'Bug Triage Agent, Standup Agent, Sprint Agent — built in.' },
+      { iconSrc: `${SOL}/icon-c.svg`, title: 'Connected engineering workflows', body: 'Two-way sync with GitHub, Linear, Jira, PagerDuty.' },
     ],
   },
   intro: {
@@ -45,10 +46,10 @@ const config: SolutionPageConfig = {
       'Space Overview gives engineering teams a clear view of sprint progress, workload, priority tasks, blocked work, and overdue items.',
   },
   splitRows: [
-    { title: 'Sprint progress tracking',     body: 'Burndown, velocity, scope changes — automatically tracked.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
-    { title: 'Bug and blocker visibility',   body: 'AI scores severity, suggests owners, and routes to the right team.', imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
-    { title: 'Workload by engineer',         body: 'Capacity-aware sprint planning. Reassign with one drag.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
-    { title: 'Priority and overdue insights', body: 'See overdue tasks and at-risk work before they block a release.', imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
+    { title: 'Sprint progress tracking',     body: 'Burndown, velocity, scope changes — automatically tracked.', imageSrc: `${SOL}/split-1.svg` },
+    { title: 'Bug and blocker visibility',   body: 'AI scores severity, suggests owners, and routes to the right team.', imageSrc: `${SOL}/split-2.svg`, reverse: true },
+    { title: 'Workload by engineer',         body: 'Capacity-aware sprint planning. Reassign with one drag.', imageSrc: `${SOL}/split-3.svg` },
+    { title: 'Priority and overdue insights', body: 'See overdue tasks and at-risk work before they block a release.', imageSrc: `${SOL}/split-4.svg`, reverse: true },
   ],
   aiAssistant: {
     eyebrow: 'clics AI',

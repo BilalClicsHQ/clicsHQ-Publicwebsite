@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { Eye, Sparkles, Workflow, ListChecks, FileText, Bell, BookOpen } from 'lucide-react'
+import { ListChecks, FileText, Bell, BookOpen } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
 
 const TOOL = '/images/tools'
+const SOL = '/images/solutions/smallBussiness'
 
 export const metadata: Metadata = { title: 'For Small Business' }
 
@@ -21,7 +22,7 @@ const config: SolutionPageConfig = {
       'Manage projects, tasks, docs, calendars, workflows, and AI updates in one place — without adding more tools or complexity.',
     primaryLabel: 'Get Started',
     secondaryLabel: 'Book a demo',
-    mockupSrc: '/images/dashboards/ClicshqPage.svg',
+    mockupSrc: `${SOL}/hero1.svg`,
     background: 'soft-pink',
   },
   benefits: {
@@ -32,9 +33,9 @@ const config: SolutionPageConfig = {
       </>
     ),
     items: [
-      { icon: Eye,      iconBg: 'bg-pink-100 text-pink-600', title: 'Less tool switching', body: 'Tasks, docs, calendars, and team chats in one place.' },
-      { icon: Workflow, iconBg: 'bg-pink-100 text-pink-600', title: 'Clear ownership',     body: 'Everyone knows what they own and what comes next.' },
-      { icon: Sparkles, iconBg: 'bg-pink-100 text-pink-600', title: 'AI that saves time',  body: 'AI drafts, summaries, and follow-ups — free up hours every week.' },
+      { iconSrc: `${SOL}/icon-a.svg`, title: 'Less tool switching', body: 'Tasks, docs, calendars, and team chats in one place.' },
+      { iconSrc: `${SOL}/icon-b.svg`, title: 'Clear ownership',     body: 'Everyone knows what they own and what comes next.' },
+      { iconSrc: `${SOL}/icon-c.svg`, title: 'AI that saves time',  body: 'AI drafts, summaries, and follow-ups — free up hours every week.' },
     ],
   },
   splitRows: [
@@ -46,7 +47,7 @@ const config: SolutionPageConfig = {
         </>
       ),
       body: 'Give owners and managers a clear view of projects, deadlines, overdue tasks, and team priorities.',
-      imageSrc: '/images/dashboards/ClicshqPage.svg',
+      imageSrc: `${SOL}/split-1.svg`,
     },
     {
       eyebrow: 'Workflow Automation',
@@ -56,7 +57,7 @@ const config: SolutionPageConfig = {
         </>
       ),
       body: 'Create simple When → Then workflows for reminders, ownership, updates, and handoffs.',
-      imageSrc: '/images/dashboards/ClicshqPage.svg',
+      imageSrc: `${SOL}/split-2.svg`,
       reverse: true,
     },
   ],

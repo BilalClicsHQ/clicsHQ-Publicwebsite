@@ -1,9 +1,10 @@
  import type { Metadata } from 'next'
-import { Eye, Sparkles, Workflow, FileText, FileBarChart, Bell, Briefcase } from 'lucide-react'
+import { FileText, FileBarChart, Bell, Briefcase } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
 
 const TOOL = '/images/tools'
+const SOL = '/images/solutions/Sales'
 
 export const metadata: Metadata = { title: 'For Sales teams' }
 
@@ -21,7 +22,7 @@ const config: SolutionPageConfig = {
       'Manage pipeline tasks, follow-ups, proposals, approvals, customer handoffs, and sales team coordination from one AI-powered workspace.',
     primaryLabel: 'Get Started',
     secondaryLabel: 'Book a demo',
-    mockupSrc: '/images/dashboards/ClicshqPage.svg',
+    mockupSrc: `${SOL}/hero1.svg`,
     background: 'soft-violet',
   },
   benefits: {
@@ -34,9 +35,9 @@ const config: SolutionPageConfig = {
     subtitle:
       'Bring work, visibility, workflows, docs, and AI assistance into one simple workspace.',
     items: [
-      { icon: Eye,      iconBg: 'bg-violet-100 text-violet-600',  title: 'Pipeline visibility',         body: 'Track leads, deal tasks, proposals, approvals, owners, and follow-ups from one place.' },
-      { icon: Sparkles, iconBg: 'bg-pink-100 text-pink-600',       title: 'AI-powered follow-ups',       body: 'Use clics One to summarize meetings, generate updates, break down tasks, and remind owners.' },
-      { icon: Workflow, iconBg: 'bg-emerald-100 text-emerald-600', title: 'Connected sales workflows',   body: 'Automate lead assignment, proposal approvals, follow-up reminders, and customer handoffs.' },
+      { iconSrc: `${SOL}/icon-a.svg`, title: 'Pipeline visibility',         body: 'Track leads, deal tasks, proposals, approvals, owners, and follow-ups from one place.' },
+      { iconSrc: `${SOL}/icon-b.svg`, title: 'AI-powered follow-ups',       body: 'Use clics One to summarize meetings, generate updates, break down tasks, and remind owners.' },
+      { iconSrc: `${SOL}/icon-c.svg`, title: 'Connected sales workflows',   body: 'Automate lead assignment, proposal approvals, follow-up reminders, and customer handoffs.' },
     ],
   },
   intro: {
@@ -50,9 +51,9 @@ const config: SolutionPageConfig = {
       'Give your sales team a clear view of pipeline progress, proposal approvals, overdue follow-ups, and customer handoffs.',
   },
   splitRows: [
-    { title: (<>Lead and pipeline task<br className="hidden lg:block" /> tracking</>),     body: 'Inbound leads, calls, emails — auto-logged into the right deal.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
-    { title: (<>Proposal and approval<br className="hidden lg:block" /> visibility</>),     body: 'Generate proposal docs from call notes. Reviewers approve in clicsHQ.', imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
-    { title: (<>Follow-up reminders<br className="hidden lg:block" /> by owner</>),         body: 'AI suggests follow-ups based on prospect engagement and deal stage.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
+    { title: (<>Lead and pipeline task<br className="hidden lg:block" /> tracking</>),     body: 'Inbound leads, calls, emails — auto-logged into the right deal.', imageSrc: `${SOL}/split-1.svg` },
+    { title: (<>Proposal and approval<br className="hidden lg:block" /> visibility</>),     body: 'Generate proposal docs from call notes. Reviewers approve in clicsHQ.', imageSrc: `${SOL}/split-2.svg`, reverse: true },
+    { title: (<>Follow-up reminders<br className="hidden lg:block" /> by owner</>),         body: 'AI suggests follow-ups based on prospect engagement and deal stage.', imageSrc: `${SOL}/split-3.svg` },
   ],
   aiAssistant: {
     eyebrow: 'clics AI',
