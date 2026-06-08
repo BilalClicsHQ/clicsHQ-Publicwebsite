@@ -57,8 +57,9 @@ const SOLUTIONS_COMPANY_B: SolutionItem[] = [
 ]
 
 const NAV_LINKS = [
-  { label: 'Resources', href: '/resources' },
-  { label: 'Pricing',   href: '/pricing' },
+  // Resources shows a dropdown caret in the Figma (chevron), Pricing does not.
+  { label: 'Resources', href: '/resources', caret: true },
+  { label: 'Pricing',   href: '/pricing',   caret: false },
 ]
 
 type DropdownKey = 'product' | 'solutions' | null
@@ -255,9 +256,10 @@ export function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-lg px-3 py-2 text-[15px] font-medium text-ink/80 transition-colors hover:text-ink"
+              className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-[15px] font-medium text-ink/80 transition-colors hover:text-ink"
             >
               {l.label}
+              {l.caret && <ChevronDown className="h-3.5 w-3.5" />}
             </Link>
           ))}
         </nav>

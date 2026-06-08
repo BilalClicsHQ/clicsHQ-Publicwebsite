@@ -38,6 +38,19 @@ const config: SolutionPageConfig = {
       { iconSrc: `${SOL}/icon-c.svg`, title: 'AI that saves time',  body: 'AI drafts, summaries, and follow-ups — free up hours every week.' },
     ],
   },
+  intro: {
+    eyebrow: 'One place for daily work',
+    title: (
+      <>
+        Replace scattered work with one{' '}
+        <Highlight color="pink">connected workspace</Highlight>
+      </>
+    ),
+    subtitle:
+      'Keep your teams aligned and work moving with purpose-built solutions for every function, connected on one intelligent platform.',
+    image: '/images/dashboards/ClicshqPage.svg',
+    imageAlt: 'clicsHQ small business workspace',
+  },
   splitRows: [
     {
       eyebrow: 'Business Overview',

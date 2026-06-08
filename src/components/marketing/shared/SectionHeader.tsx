@@ -25,8 +25,8 @@ export function SectionHeader({
   const alignCls = align === 'center' ? 'text-center mx-auto' : 'text-left'
   const headingSize =
     size === 'lg'
-      ? 'text-[34px] sm:text-[44px] lg:text-[50px]'
-      : 'text-[28px] sm:text-[36px] lg:text-[42px]'
+      ? 'text-[34px] sm:text-[44px] lg:text-[52px]'
+      : 'text-[28px] sm:text-[38px] lg:text-[44px]'
   return (
     <div className={cn(alignCls, 'max-w-3xl', className)}>
       {eyebrow && <p className="text-[20px] font-normal text-ink">{eyebrow}</p>}

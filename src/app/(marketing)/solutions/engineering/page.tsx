@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Bot, Bug, Rocket, FileText } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
+import { WorkflowStepsMockup } from '@/components/marketing/shared/ProductMockups'
 
 const TOOL = '/images/tools'
 const SOL = '/images/solutions/Engineering'
@@ -66,6 +67,42 @@ const config: SolutionPageConfig = {
       { icon: Rocket,   iconBg: 'bg-amber-100 text-amber-600',   title: 'Release Agent',    body: 'Creates release checklists and monitors launch readiness.' },
       { icon: FileText, iconBg: 'bg-sky-100 text-sky-600',       title: 'Standup Agent',    body: 'Summarizes updates, blockers, and next steps for the team.' },
     ],
+  },
+  useCases: {
+    eyebrow: 'Engineering Use Cases',
+    title: (
+      <>
+        Built for the work engineering<br className="hidden lg:block" /> teams manage every day
+      </>
+    ),
+    image: '/images/dashboards/ClicshqPage.svg',
+    imageAlt: 'clicsHQ engineering sprint dashboard',
+    tiles: [
+      { title: 'Sprint planning',    body: 'Plan sprints, estimate work, and track velocity and burndown across squads.' },
+      { title: 'Bug tracking',       body: 'Triage bugs by severity, route to owners, and keep blockers visible until resolved.' },
+      { title: 'Release management', body: 'Coordinate releases with checklists, sign-offs, and launch-readiness tracking.' },
+      { title: 'Eng requests',       body: 'Intake requests from product and design, prioritize them, and track to done.' },
+    ],
+  },
+  workflowAutomation: {
+    eyebrow: 'Workflow Automation',
+    title: (
+      <>
+        Automate engineering<br className="hidden lg:block" /> handoffs
+      </>
+    ),
+    body:
+      'Build simple When → Then workflows to reduce manual follow-ups, missed reviews, and release handoff gaps.',
+    visual: (
+      <WorkflowStepsMockup
+        steps={[
+          { label: 'When', sub: 'Bug is reported' },
+          { label: 'Then', sub: 'Score severity and assign owner' },
+          { label: 'Then', sub: 'Add to current sprint' },
+          { label: 'Then', sub: 'Notify the on-call engineer' },
+        ]}
+      />
+    ),
   },
   spaces: {
     eyebrow: 'Spaces',

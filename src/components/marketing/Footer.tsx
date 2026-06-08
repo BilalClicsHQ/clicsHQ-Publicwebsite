@@ -58,7 +58,7 @@ export function Footer() {
                     aria-label={s.name}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="grid h-11 w-11 place-items-center rounded-full bg-white/[0.08] transition-colors hover:bg-white/[0.18]"
+                    className="grid h-11 w-11 place-items-center rounded-full ring-1 ring-white/25 transition-colors hover:bg-white/[0.08] hover:ring-white/40"
                   >
                     <Image
                       src={s.src}

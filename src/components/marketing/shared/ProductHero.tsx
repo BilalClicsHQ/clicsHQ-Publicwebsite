@@ -54,7 +54,7 @@ export function ProductHero({
               {eyebrow}
             </p>
           )}
-          <h1 className="mt-6 text-balance text-[36px] font-medium leading-[1.17] tracking-normal text-ink sm:text-[48px] lg:text-[62px]">
+          <h1 className="mt-6 text-balance text-[40px] font-medium leading-[1.08] tracking-[-0.01em] text-ink sm:text-[52px] lg:text-[64px]">
             {title}
           </h1>
           {subtitle && (
@@ -73,7 +73,10 @@ export function ProductHero({
           {mockup ? (
             mockup
           ) : mockupSrc ? (
-            <div className="relative overflow-hidden rounded-2xl bg-ink shadow-2xl ring-1 ring-black/10">
+            // The dashboard SVGs already include their own chrome (dark sidebar +
+            // light panel), so render as a clean rounded screenshot with a soft
+            // shadow — no extra dark frame (matches the Figma hero).
+            <div className="relative overflow-hidden rounded-2xl shadow-[0_24px_60px_-12px_rgba(0,0,0,0.18)] ring-1 ring-gray-200/60">
               <Image
                 src={mockupSrc}
                 alt={mockupAlt}

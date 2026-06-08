@@ -4,7 +4,8 @@ import { cn } from '@/lib/cn'
 export type HighlightColor = 'blue' | 'lime' | 'magenta' | 'orange' | 'green' | 'pink' | 'violet' | 'sky'
 
 const COLORS: Record<HighlightColor, string> = {
-  blue:    'text-sky-500',
+  // Figma's highlighted-word blue measured ~#3B9EFF — brighter than sky-500.
+  blue:    'text-[#3B9EFF]',
   lime:    'text-lime-400',
   magenta: 'text-fuchsia-500',
   orange:  'text-orange-500',

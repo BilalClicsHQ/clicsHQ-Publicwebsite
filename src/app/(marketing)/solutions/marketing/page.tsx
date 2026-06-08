@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Megaphone, FileText, CheckCircle, FileBarChart } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
+import { WorkflowStepsMockup } from '@/components/marketing/shared/ProductMockups'
 
 const TOOL = '/images/tools'
 const SOL = '/images/solutions/marketing'
@@ -66,6 +67,42 @@ const config: SolutionPageConfig = {
       { icon: CheckCircle,  iconBg: 'bg-amber-100 text-amber-600',   title: 'Approval Agent',  body: 'Tracks pending reviews and reminds the right owners.' },
       { icon: FileBarChart, iconBg: 'bg-sky-100 text-sky-600',       title: 'Reporting Agent', body: 'Summarizes campaign progress and weekly marketing updates.' },
     ],
+  },
+  useCases: {
+    eyebrow: 'Marketing Use Cases',
+    title: (
+      <>
+        Built for the work marketing<br className="hidden lg:block" /> teams manage every day
+      </>
+    ),
+    image: `${SOL}/chart 1.svg`,
+    imageAlt: 'clicsHQ marketing campaign dashboard',
+    tiles: [
+      { title: 'Campaign planning',   body: 'Plan launches, map dependencies, and keep every campaign task, owner, and deadline in one place.' },
+      { title: 'Content production',  body: 'Brief, draft, review, and ship content without losing track of approvals or revisions.' },
+      { title: 'Creative requests',   body: 'Intake design and creative requests, route them to the right owner, and track them to done.' },
+      { title: 'Launch coordination', body: 'Coordinate cross-team launches with clear checklists, handoffs, and go-live readiness.' },
+    ],
+  },
+  workflowAutomation: {
+    eyebrow: 'Workflow Automation',
+    title: (
+      <>
+        Automate campaign<br className="hidden lg:block" /> handoffs
+      </>
+    ),
+    body:
+      'Build simple When → Then workflows to reduce manual follow-ups, missed approvals, and campaign handoff gaps.',
+    visual: (
+      <WorkflowStepsMockup
+        steps={[
+          { label: 'When', sub: 'Creative request is submitted' },
+          { label: 'Then', sub: 'Assign to design owner' },
+          { label: 'Then', sub: 'Create review task' },
+          { label: 'Then', sub: 'Notify campaign lead' },
+        ]}
+      />
+    ),
   },
   spaces: {
     eyebrow: 'Spaces',

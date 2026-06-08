@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Bot, FileBarChart, AlertTriangle, FileText } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
+import { WorkflowStepsMockup } from '@/components/marketing/shared/ProductMockups'
 
 const TOOL = '/images/tools'
 const OPS = '/images/solutions/operations'
@@ -98,6 +99,42 @@ const config: SolutionPageConfig = {
       { icon: AlertTriangle, iconBg: 'bg-amber-100 text-amber-600',   title: 'Escalation Agent', body: 'Flags overdue or high-priority tasks automatically.' },
       { icon: FileText,      iconBg: 'bg-sky-100 text-sky-600',       title: 'Docs Assistant',   body: 'Helps teams find answers from internal docs.' },
     ],
+  },
+  useCases: {
+    eyebrow: 'Operations Use Cases',
+    title: (
+      <>
+        Built for the work operations<br className="hidden lg:block" /> teams manage every day
+      </>
+    ),
+    image: '/images/dashboards/ClicshqPage.svg',
+    imageAlt: 'clicsHQ operations dashboard',
+    tiles: [
+      { title: 'Task coordination',     body: 'Keep every task, owner, deadline, and status visible across teams in one shared workspace.' },
+      { title: 'Approvals',             body: 'Route requests to the right approver and track pending reviews so nothing stalls.' },
+      { title: 'Workflow management',   body: 'Standardize recurring processes with simple automations that move work forward.' },
+      { title: 'Operational tracking',  body: 'Monitor progress, priorities, and workload from one operational overview.' },
+    ],
+  },
+  workflowAutomation: {
+    eyebrow: 'Workflow Automation',
+    title: (
+      <>
+        Automate repetitive<br className="hidden lg:block" /> operational work
+      </>
+    ),
+    body:
+      'Build simple When → Then workflows to reduce manual follow-ups, missed handoffs, and repetitive coordination.',
+    visual: (
+      <WorkflowStepsMockup
+        steps={[
+          { label: 'When', sub: 'New request is submitted' },
+          { label: 'Then', sub: 'Assign to task owner' },
+          { label: 'Then', sub: 'Create follow-up task' },
+          { label: 'Then', sub: 'Notify operations lead' },
+        ]}
+      />
+    ),
   },
   spaces: {
     eyebrow: 'Spaces',

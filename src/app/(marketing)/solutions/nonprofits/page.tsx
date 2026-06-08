@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Bot, FileBarChart, AlertTriangle, FileText } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
+import { WorkflowStepsMockup } from '@/components/marketing/shared/ProductMockups'
 
 const TOOL = '/images/tools'
 const SOL = '/images/solutions/nonProfit'
@@ -24,6 +25,14 @@ const config: SolutionPageConfig = {
     secondaryLabel: 'Book a demo',
     mockupSrc: `${SOL}/hero1.svg`,
     background: 'light',
+  },
+  gradientBanner: {
+    eyebrow: 'Work for good, organized better',
+    title: 'Keep programs, people, and priorities connected',
+    body: 'Use clicsHQ to coordinate mission-critical work without adding complexity for lean nonprofit teams.',
+    ctaLabel: 'Explore nonprofit workspace',
+    image: `${SOL}/Tree-01 1.svg`,
+    imageAlt: 'clicsHQ for nonprofits',
   },
   benefits: {
     eyebrow: 'Nonprofit Use Cases',
@@ -59,6 +68,26 @@ const config: SolutionPageConfig = {
       { icon: AlertTriangle, iconBg: 'bg-amber-100 text-amber-600',   title: 'Escalation Agent',  body: 'Flags overdue or high-priority tasks automatically.' },
       { icon: FileText,      iconBg: 'bg-sky-100 text-sky-600',       title: 'Docs Assistant',    body: 'Helps teams find answers from internal docs.' },
     ],
+  },
+  workflowAutomation: {
+    eyebrow: 'Workflow Automation',
+    title: (
+      <>
+        Reduce manual<br className="hidden lg:block" /> follow-ups
+      </>
+    ),
+    body:
+      'Build simple When → Then workflows so volunteer reminders, approvals, and program handoffs happen automatically.',
+    visual: (
+      <WorkflowStepsMockup
+        steps={[
+          { label: 'When', sub: 'Volunteer shift is scheduled' },
+          { label: 'Then', sub: 'Send a reminder' },
+          { label: 'Then', sub: 'Create a prep task' },
+          { label: 'Then', sub: 'Notify the program lead' },
+        ]}
+      />
+    ),
   },
   spaces: {
     eyebrow: 'Spaces',

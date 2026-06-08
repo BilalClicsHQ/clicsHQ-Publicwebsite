@@ -40,6 +40,20 @@ const config: SolutionPageConfig = {
       { icon: Sparkles, iconBg: 'bg-pink-100 text-pink-600',       title: 'Use AI support',      body: 'Ask clics One to summarize work and create clearer updates.' },
     ],
   },
+  darkBanner: {
+    eyebrow: 'Startup workspace',
+    title: (
+      <>
+        One workspace for startup work<br className="hidden lg:block" /> that changes every week
+      </>
+    ),
+    body: 'clicsHQ keeps tasks, docs, workflows, spaces, integrations, and AI assistance connected in one place.',
+    tiles: [
+      { iconSrc: '/images/navbar/task.svg',      title: 'Tasks and project views', body: 'Manage task lists, Kanban boards, calendars, and project timelines.' },
+      { iconSrc: '/images/navbar/ai-assists.svg', title: 'Docs and Ask AI',         body: 'Create docs, keep notes with the work, and use Ask AI when you need answers faster.' },
+      { iconSrc: '/images/navbar/workflows.svg',  title: 'Workflow automation',     body: 'Use simple When → Then workflows for notifications, labels, comments, and task updates.' },
+    ],
+  },
   intro: {
     eyebrow: 'Startup visibility',
     title: 'See what is moving, stuck, or waiting',
@@ -50,6 +64,37 @@ const config: SolutionPageConfig = {
     { title: 'Ownership and workload visibility',     body: 'Know who owns what and how work is balanced across the team.',                       imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
     { title: 'AI-generated task summaries',           body: 'Let clics One recap progress, blockers, and next steps so updates write themselves.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
   ],
+  workflowCards: {
+    eyebrow: 'Workflow automation',
+    title: 'Simple workflows for startup teams',
+    subtitle: 'Automate common task updates without creating complex logic.',
+    cards: [
+      {
+        title: 'Task review workflow',
+        steps: [
+          { label: 'When', sub: 'Task status changes to Ready' },
+          { label: 'Then', sub: 'Assign reviewer' },
+          { label: 'Then', sub: 'Notify the task owner' },
+        ],
+      },
+      {
+        title: 'Overdue task workflow',
+        steps: [
+          { label: 'When', sub: 'Task becomes overdue' },
+          { label: 'Then', sub: 'Notify task owner' },
+          { label: 'Then', sub: 'Flag as high priority' },
+        ],
+      },
+      {
+        title: 'Comment notification workflow',
+        steps: [
+          { label: 'When', sub: 'Comment is added' },
+          { label: 'Then', sub: 'Notify mentioned members' },
+          { label: 'Then', sub: 'Add to the activity feed' },
+        ],
+      },
+    ],
+  },
   aiAssistant: {
     eyebrow: 'clics AI',
     title: (

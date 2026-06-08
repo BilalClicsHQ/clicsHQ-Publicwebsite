@@ -29,10 +29,13 @@ export function BenefitTrio({
       {items.map((b, i) => (
         <div
           key={i}
-          className="rounded-2xl bg-white p-6 ring-1 ring-gray-100 transition-shadow hover:shadow-card"
+          className="rounded-2xl bg-white p-7 shadow-card ring-1 ring-gray-100/80 transition-shadow hover:shadow-md"
         >
           {b.iconSrc ? (
-            <Image src={b.iconSrc} alt="" aria-hidden width={56} height={56} className="h-14 w-14" />
+            // Glyph inside the Figma pink→violet gradient tile.
+            <span className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-pink-200 via-fuchsia-200 to-violet-300">
+              <Image src={b.iconSrc} alt="" aria-hidden width={30} height={30} className="h-[30px] w-[30px]" />
+            </span>
           ) : (
             <span
               className={cn(
@@ -43,8 +46,8 @@ export function BenefitTrio({
               {b.icon && <b.icon className="h-5 w-5" />}
             </span>
           )}
-          <h3 className="mt-4 text-[18px] font-bold text-ink">{b.title}</h3>
-          <p className="mt-2 text-[15px] leading-relaxed text-muted">{b.body}</p>
+          <h3 className="mt-5 text-[24px] font-medium leading-tight text-ink">{b.title}</h3>
+          <p className="mt-3 text-[16px] leading-relaxed text-muted">{b.body}</p>
         </div>
       ))}
     </div>
