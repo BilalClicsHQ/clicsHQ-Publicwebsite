@@ -2,11 +2,13 @@ import Image from 'next/image'
 import { cn } from '@/lib/cn'
 import { CTAButton } from './CTAButton'
 
+// Per-logo sizes from the Figma: TNN is a stacked 114×114 block (much taller),
+// the rest are ~28px wordmarks.
 const COMPANIES = [
-  { name: 'TNN',       src: '/images/companies/TNN.svg',       w: 90,  h: 40 },
-  { name: 'Cyberbay',  src: '/images/companies/CyberBay.svg',  w: 130, h: 36 },
-  { name: 'Nyxlab',    src: '/images/companies/nyxLab.svg',    w: 130, h: 36 },
-  { name: 'Capexplan', src: '/images/companies/capexplan.svg', w: 130, h: 32 },
+  { name: 'TNN',       src: '/images/companies/TNN.svg',       w: 114, h: 114, cls: 'h-[88px]' },
+  { name: 'Cyberbay',  src: '/images/companies/CyberBay.svg',  w: 130, h: 36,  cls: 'h-7' },
+  { name: 'Nyxlab',    src: '/images/companies/nyxLab.svg',    w: 130, h: 36,  cls: 'h-7' },
+  { name: 'Capexplan', src: '/images/companies/capexplan.svg', w: 130, h: 32,  cls: 'h-7' },
 ]
 
 /**
@@ -40,11 +42,12 @@ function tierFor(index: number, total: number): 'sm' | 'md' | 'lg' | 'xl' {
   return 'sm'
 }
 
+// Figma: steeper tiering — edge circles are small (~44px), center is large (~104px).
 const TIER_SIZE = {
-  sm: { box: 'h-12 w-12 sm:h-14 sm:w-14', icon: 'h-6  w-6  sm:h-7  sm:w-7'  },
-  md: { box: 'h-14 w-14 sm:h-16 sm:w-16', icon: 'h-7  w-7  sm:h-8  sm:w-8'  },
+  sm: { box: 'h-10 w-10 sm:h-11 sm:w-11', icon: 'h-5  w-5  sm:h-6  sm:w-6'  },
+  md: { box: 'h-12 w-12 sm:h-14 sm:w-14', icon: 'h-6  w-6  sm:h-7  sm:w-7'  },
   lg: { box: 'h-16 w-16 sm:h-20 sm:w-20', icon: 'h-8  w-8  sm:h-10 sm:w-10' },
-  xl: { box: 'h-20 w-20 sm:h-24 sm:w-24', icon: 'h-10 w-10 sm:h-12 sm:w-12' },
+  xl: { box: 'h-20 w-20 sm:h-[6.5rem] sm:w-[6.5rem]', icon: 'h-10 w-10 sm:h-[3.25rem] sm:w-[3.25rem]' },
 }
 
 export function TrustAndTools() {
@@ -55,18 +58,19 @@ export function TrustAndTools() {
         <p className="text-center text-sm font-medium text-ink">
           Delivering consistent, high-quality solutions.
         </p>
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14">
+        {/* Figma: logos are smaller (~28px tall) with tighter gaps. */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-5 sm:gap-x-12">
           {COMPANIES.map((c, i) => (
-            <div key={c.name} className="flex items-center gap-x-10 sm:gap-x-14">
+            <div key={c.name} className="flex items-center gap-x-8 sm:gap-x-12">
               <Image
                 src={c.src}
                 alt={c.name}
                 width={c.w}
                 height={c.h}
-                className="h-9 w-auto opacity-90"
+                className={`${c.cls} w-auto opacity-90`}
               />
               {i < COMPANIES.length - 1 && (
-                <span aria-hidden className="hidden h-9 w-px bg-gray-200 sm:block" />
+                <span aria-hidden className="hidden h-8 w-px bg-gray-200 sm:block" />
               )}
             </div>
           ))}
@@ -74,8 +78,9 @@ export function TrustAndTools() {
       </div>
 
       {/* Tools strip */}
-      <div className="container-app pb-20 sm:pb-24">
-        <h2 className="heading-lg text-center text-balance">
+      <div className="container-app pb-10 sm:pb-12">
+        {/* Figma: medium weight, ~38px. */}
+        <h2 className="text-center text-balance text-[26px] font-medium tracking-normal text-ink sm:text-[32px] lg:text-[38px]">
           Works With 200+ Tools You Already Use
         </h2>
 

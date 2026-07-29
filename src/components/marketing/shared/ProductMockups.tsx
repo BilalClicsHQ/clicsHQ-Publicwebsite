@@ -573,6 +573,48 @@ export function AiAgentGrid({ agents }: { agents: AiAgent[] }) {
   )
 }
 
+/**
+ * "Ask AI in Docs" — floating Recent Chats panel (matches the AI page Figma):
+ * a sparkle "Ask AI" header above a list of recent chat titles, the first one
+ * truncating with an ellipsis, ending in a "More" row.
+ */
+export function AskAiDocsMockup({ className }: { className?: string }) {
+  const recent = [
+    'Team Scheduler: Workload Balancing',
+    'How to create tags',
+    'Weekly Key Decisions',
+    'Task Risk Review',
+  ]
+  return (
+    <div
+      className={cn(
+        'w-full max-w-[300px] min-h-[360px] rounded-2xl bg-white p-5 shadow-[0_24px_60px_-24px_rgba(17,24,39,0.25)] ring-1 ring-gray-200/60',
+        className,
+      )}
+    >
+      {/* Ask AI header */}
+      <div className="flex items-center gap-2.5">
+        <Sparkles className="h-4 w-4 text-violet-500" />
+        <span className="text-sm font-medium text-ink">Ask AI</span>
+      </div>
+
+      {/* Recent chats */}
+      <p className="mt-6 text-[11px] font-bold text-subtle">Recent Chats</p>
+      <ul className="mt-3.5 space-y-3.5">
+        {recent.map((r) => (
+          <li key={r} className="truncate text-sm text-muted">
+            {r}
+          </li>
+        ))}
+        <li className="flex items-center gap-1.5 text-sm text-muted">
+          <MoreHorizontal className="h-4 w-4 text-subtle" />
+          More
+        </li>
+      </ul>
+    </div>
+  )
+}
+
 /** Small "three ways to work" tile used in the AI intro trio. */
 export function AiWayTile({
   icon,
@@ -584,12 +626,12 @@ export function AiWayTile({
   desc: string
 }) {
   return (
-    <div className="rounded-2xl bg-white p-5 text-center ring-1 ring-gray-100">
-      <span className="mx-auto grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-fuchsia-100 to-violet-100 text-violet-600">
+    <div className="rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(16,24,40,0.05),0_12px_28px_-16px_rgba(16,24,40,0.18)] ring-1 ring-gray-100">
+      <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-fuchsia-200 to-violet-200 text-violet-600">
         {icon}
       </span>
-      <p className="mt-3 text-sm font-semibold text-ink">{title}</p>
-      <p className="mt-1 text-xs leading-relaxed text-muted">{desc}</p>
+      <p className="mt-6 text-[20px] font-medium leading-tight text-ink">{title}</p>
+      <p className="mt-2 text-[14px] leading-[1.6] text-muted">{desc}</p>
     </div>
   )
 }

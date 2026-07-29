@@ -33,41 +33,53 @@ export function Hero() {
       />
       {/* White shade at the top — near-white fading to transparent so the top reads
           white, blends through a soft shadow, then into the black stage below. */}
-      <Image
-        src="/images/hero/landingpagesshade.svg"
-        alt=""
+      {/* White-to-dark fade as a pure CSS gradient (always full-bleed on any
+          viewport width). It ends just ABOVE the CTA buttons, so the buttons sit
+          on the dark stage like the Figma. */}
+      <div
         aria-hidden
-        width={1400}
-        height={479}
-        priority
-        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-auto w-full select-none"
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[300px] bg-gradient-to-b from-white from-35% via-white/70 to-transparent sm:h-[360px] lg:h-[410px]"
       />
 
       {/* Headline area */}
       <div className="container-app relative z-10 pt-14 sm:pt-20 lg:pt-24 pb-8 text-center">
-        <h1 className="relative mx-auto max-w-[1100px] text-balance font-medium tracking-[-0.01em] text-ink leading-[1.05] text-[40px] sm:text-[64px] lg:text-[84px]">
+        {/* Figma: Satoshi 500, 72px, LH 120%, LS -4%, #050505. */}
+        <h1 className="relative mx-auto max-w-[1000px] font-medium tracking-[-0.04em] text-[#050505] leading-[1.2] text-[38px] sm:text-[56px] lg:text-[72px]">
           Manage Your Task Productivity
         </h1>
 
-        <p className="relative mx-auto mt-6 max-w-xl text-sm sm:text-base text-muted leading-relaxed">
+        {/* Figma: Plus Jakarta Sans 500, 18px/32px, LS -2%, #040506 (dark, not gray). */}
+        <p className="relative mx-auto mt-5 max-w-[680px] font-jakarta font-medium text-[15px] leading-[26px] tracking-[-0.02em] text-[#040506] sm:text-[18px] sm:leading-[32px]">
           This is software that protects all your data, including strong security access.
+          <br className="hidden sm:block" />
           Use data as needed and provide security of all data very easily.
         </p>
 
         {/* CTAs */}
         <div className="relative mt-10 inline-flex items-center justify-center gap-3">
           {/* Curved arrow doodle — sits to the left of the primary CTA, curling up to point at it */}
+          {/* Figma: arrowhead points at the button from the left at button height,
+              tail curls DOWN toward the bottom (not above the button). */}
           <Image
             src="/images/hero/arrow.svg"
             alt=""
             aria-hidden
             width={92}
             height={116}
-            className="pointer-events-none absolute -left-[120px] -bottom-2 hidden h-[110px] w-auto select-none sm:block"
+            className="pointer-events-none absolute -left-[155px] top-[4px] hidden h-[160px] w-auto select-none sm:block"
           />
 
-          <CTAButton variant="accent" size="lg" href="/signup">Get Started Now</CTAButton>
-          <CTAButton variant="secondary" size="lg" href="/demo">Try It Free</CTAButton>
+          {/* Primary CTA + the Figma's #DCA4FF blur-30 glow underneath it */}
+          <span className="relative inline-flex">
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -bottom-3 left-1/2 h-5 w-[110px] -translate-x-1/2 rounded-full bg-[#DCA4FF]/60 blur-[28px]"
+            />
+            <CTAButton variant="accent" size="lg" href="/signup" className="relative h-[50px] px-5 text-base">
+              Get Started Now
+            </CTAButton>
+          </span>
+          <CTAButton variant="secondary" size="lg" href="/demo" className="h-[50px] rounded-[9px] px-5 text-base">Try It Free</CTAButton>
         </div>
 
         <p className="relative mt-4 text-sm text-white/80">
@@ -102,28 +114,10 @@ export function Hero() {
               className="pointer-events-none absolute -right-6 top-12 z-20 hidden w-[235px] select-none drop-shadow-2xl lg:block xl:-right-16"
             />
 
-            {/* Browser-chrome window wrapping the app preview */}
+            {/* App preview — ClicshqPage.svg already has the browser chrome
+                (traffic lights + URL bar) baked in, so no hand-built chrome here
+                (it was rendering a double chrome bar). */}
             <div className="relative z-10 overflow-hidden rounded-2xl bg-white shadow-[0_30px_60px_-15px_rgb(0_0_0_/_0.4)] ring-1 ring-black/10">
-              {/* Window chrome */}
-              <div className="flex items-center gap-3 border-b border-gray-100 bg-white px-4 py-2.5">
-                <div className="flex items-center gap-1.5">
-                  <span className="h-3 w-3 rounded-full bg-rose-500" />
-                  <span className="h-3 w-3 rounded-full bg-amber-400" />
-                  <span className="h-3 w-3 rounded-full bg-emerald-500" />
-                </div>
-                <div className="flex items-center gap-2 text-gray-400">
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 6l6 6-6 6"/></svg>
-                </div>
-                <div className="flex-1">
-                  <div className="mx-auto flex h-7 max-w-md items-center justify-center rounded-md bg-gray-100 px-3 text-xs text-gray-500">
-                    www.clicshq.com
-                  </div>
-                </div>
-                <span className="h-4 w-4" />
-              </div>
-
-              {/* App preview */}
               <Image
                 src="/images/dashboards/ClicshqPage.svg"
                 alt="clicsHQ dashboard preview"

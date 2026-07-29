@@ -8,6 +8,9 @@
 /* Caveat — handwriting accent that replaces Figma's "Lucida Handwriting" (Google Fonts). */
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
 
+/* Plus Jakarta Sans — hero subtitle typeface per the Figma spec (Google Fonts). */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 /*
  * Satoshi — the global base typeface for the whole site.
  * Self-hosted from Fontshare (Satoshi is NOT available on Google Fonts).

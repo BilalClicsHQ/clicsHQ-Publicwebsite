@@ -17,7 +17,7 @@ const INTEGRATIONS: IntegrationItem[] = [
   { name: 'Google Drive',       desc: 'Seamlessly upload and attach files to actions, projects, action templates, and share them in messages.',                                  logo: '/images/tools/g-drive.svg' },
   { name: 'Microsoft OneDrive', desc: 'Seamlessly upload your files through OneDrive Integration. Attach your files directly as attachments in Clics.',                          logo: '/images/tools/One drive.svg' },
   { name: 'Microsoft Teams',    desc: 'Access all features of Clics directly from Microsoft Teams.',                                                                            logo: '/images/tools/msTeams.svg' },
-  { name: 'Jira',               desc: "Clics's integration to Jira allows you to connect Hive projects to selected Jira projects/boards.",                                       logo: '/images/tools/Jira.svg' },
+  { name: 'Jira',               desc: "Clics's integration to Jira allows you to connect Clics projects to selected Jira projects/boards.",                                      logo: '/images/tools/Jira.svg' },
   { name: 'Slack',              desc: 'Easily share Clics actions in Slack and quickly create actions using slash commands.',                                                   logo: '/images/tools/Slack.svg' },
   { name: 'GitHub',             desc: 'Associate Clics actions with Github Branches and automatically capture branch activity.',                                                logo: '/images/tools/Github.svg' },
   { name: 'Figma',              desc: 'Easily share Clics actions in Slack and quickly create actions using slash commands.',                                                   logo: '/images/tools/Figma.svg' },

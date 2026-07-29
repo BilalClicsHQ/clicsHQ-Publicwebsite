@@ -5,24 +5,25 @@ import Image from 'next/image'
 import { Phone, PlayCircle, DollarSign } from 'lucide-react'
 import { CTAButton } from './CTAButton'
 
+// Icon tiles use gradients per the Figma (e.g. phone = blue→violet).
 const HELP_OPTIONS = [
   {
     icon: Phone,
     title: 'Schedule a call',
     body: 'Book a 15 minute discovery session with our sales team to learn more about Clics.',
-    iconBg: 'bg-blue-500',
+    iconBg: 'bg-gradient-to-br from-blue-500 to-violet-600',
   },
   {
     icon: PlayCircle,
     title: 'Customized demo',
     body: 'We’ll help you get started in Clics with a demo session tailored to your needs.',
-    iconBg: 'bg-orange-500',
+    iconBg: 'bg-gradient-to-br from-orange-400 to-orange-600',
   },
   {
     icon: DollarSign,
     title: 'Pricing questions',
     body: 'Need a quote or want to talk about Clics plans? We can help.',
-    iconBg: 'bg-emerald-500',
+    iconBg: 'bg-gradient-to-br from-emerald-400 to-emerald-600',
   },
 ]
 
@@ -58,7 +59,7 @@ export function DemoView() {
             </h1>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-white/70">
               Fill out your information and we’ll be in touch ASAP.
-              Have a question about Hive functionality? Check out
+              Have a question about Clics functionality? Check out
               our Help Desk.
             </p>
 
@@ -108,7 +109,15 @@ export function DemoView() {
             <Field label="Phone Number" required>
               <div className="flex">
                 <span className="inline-flex h-10 items-center gap-1 rounded-l-lg border border-r-0 border-gray-200 bg-white px-3 text-xs text-ink">
-                  <span className="grid h-5 w-5 place-items-center rounded-full bg-gradient-to-br from-emerald-500 via-white to-rose-500 text-[8px]">🇵🇰</span>
+                  {/* UAE flag — inline SVG (emoji flags don't render on Windows). */}
+                  <span className="inline-block h-4 w-5 overflow-hidden rounded-[3px] ring-1 ring-black/10">
+                    <svg viewBox="0 0 20 16" className="h-full w-full" aria-hidden>
+                      <rect width="20" height="16" fill="#FFFFFF" />
+                      <rect width="20" height="5.33" y="0" fill="#00843D" />
+                      <rect width="20" height="5.33" y="10.67" fill="#000000" />
+                      <rect width="6" height="16" fill="#FF0000" />
+                    </svg>
+                  </span>
                   ▼
                 </span>
                 <input type="tel" defaultValue="+971" className={`${inputCls} rounded-l-none`} required />
@@ -132,7 +141,7 @@ export function DemoView() {
 
             <p className="pt-4 text-xs leading-relaxed text-muted">
               By completing and submitting this form, I confirm that I have read and
-              understood the Hive{' '}
+              understood the Clics{' '}
               <a href="/legal/privacy" className="underline">Privacy Policy</a>.
             </p>
           </form>

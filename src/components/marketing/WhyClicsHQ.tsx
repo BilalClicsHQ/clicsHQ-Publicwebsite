@@ -25,18 +25,20 @@ export function WhyClicsHQ() {
         {/* Left */}
         <div>
           <p className="text-sm font-medium text-muted">Why clicsHQ</p>
-          <h2 className="mt-3 text-balance text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[44px]">
-            Built for how modern teams actually work.
+          {/* Figma: medium weight. */}
+          <h2 className="mt-3 text-balance text-[28px] font-medium leading-[1.2] tracking-normal text-ink sm:text-[34px] lg:text-[40px]">
+            Built for how modern
+            <br className="hidden lg:block" /> teams actually work.
           </h2>
 
           <ul className="mt-10 space-y-7">
             {POINTS.map((p) => (
               <li key={p.n} className="flex gap-5">
-                <span className="grid h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-ink text-base font-bold text-white">
+                <span className="grid h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-ink text-lg font-bold text-white">
                   {p.n}
                 </span>
                 <div>
-                  <h3 className="text-base font-bold text-ink sm:text-lg">{p.title}</h3>
+                  <h3 className="text-base font-semibold text-ink sm:text-lg">{p.title}</h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-muted">{p.body}</p>
                 </div>
               </li>
@@ -44,17 +46,25 @@ export function WhyClicsHQ() {
           </ul>
         </div>
 
-        {/* Right preview */}
+        {/* Right preview — Figma "01. Home" dashboard export (chrome-less panel
+            with its own fade baked in). */}
         <div className="relative">
-          <div className="overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-gray-200">
-            <Image
-              src="/images/dashboards/ClicshqPage.svg"
-              alt="clicsHQ home preview"
-              width={1580}
-              height={910}
-              className="h-auto w-full"
-            />
-          </div>
+          {/* unoptimized: the Next image optimizer 500s on this exported SVG. */}
+          <Image
+            src="/images/icons/svg2.svg"
+            alt="clicsHQ home preview"
+            width={1280}
+            height={1080}
+            unoptimized
+            loading="eager"
+            className="h-auto w-full"
+          />
+          {/* Figma: soft white fog over the bottom edge (96px gradient, blur 43)
+              so the dashboard fades out instead of cutting off hard. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 -bottom-1 h-24 bg-gradient-to-t from-white via-white/70 to-transparent blur-[6px]"
+          />
         </div>
       </div>
     </section>

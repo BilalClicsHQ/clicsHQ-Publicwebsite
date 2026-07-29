@@ -3,6 +3,8 @@
 import * as React from 'react'
 import { Check } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import { FinalCTAMountain } from './shared/FinalCTAMountain'
+import { Footer } from './Footer'
 
 // ── Types & data ──────────────────────────────────────────────────────────────
 
@@ -117,7 +119,7 @@ const FAQS: FAQ[] = [
 // ── View ────────────────────────────────────────────────────────────────────
 
 export function PricingView() {
-  const [billingCycle, setBillingCycle] = React.useState<Cycle>('yearly')
+  const [billingCycle, setBillingCycle] = React.useState<Cycle>('monthly')
   const [seats, setSeats] = React.useState(2)
   const [openFaq, setOpenFaq] = React.useState<number | null>(null)
   const [selectedPlan, setSelectedPlan] = React.useState<string>('')
@@ -151,7 +153,7 @@ export function PricingView() {
               marginTop: '16px',
             }}
           >
-            Affordable plans for oganization of every stage, shape, and size
+            Affordable plans for organization of every stage, shape, and size
           </p>
         </div>
 
@@ -262,7 +264,7 @@ export function PricingView() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                great choice
+                -20
               </span>
             </div>
           </div>
@@ -348,6 +350,16 @@ export function PricingView() {
           </div>
         </div>
       </div>
+
+      <FinalCTAMountain
+        align="center"
+        title="Turn your growth ideas into reality today"
+        subtitle="Start your 14-day Pro trial today. No credit card required."
+        primaryLabel="Start for free"
+        secondaryLabel="Get a demo"
+      />
+
+      <Footer />
     </main>
   )
 }

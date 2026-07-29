@@ -56,19 +56,40 @@ const SOLUTIONS_COMPANY_B: SolutionItem[] = [
   { id: 'docs',  iconSrc: `${SOL}/docs.svg`,  title: 'Docs',        desc: 'Workflows with smart automation', href: '/product/docs'  },
 ]
 
-const NAV_LINKS = [
-  // Resources shows a dropdown caret in the Figma (chevron), Pricing does not.
-  { label: 'Resources', href: '/resources', caret: true },
-  { label: 'Pricing',   href: '/pricing',   caret: false },
+// Resources dropdown — mirrors the Solutions layout (Teams + Company type +
+// trailing column). Reuses the crisp Solutions SVG icons (the uploaded PNGs in
+// /images/resources were low-res). Support Center → operations and Blogs →
+// marketing map by position to the Solutions "Teams" column icons.
+const RESOURCES_TEAMS: SolutionItem[] = [
+  { id: 'support',     iconSrc: `${SOL}/operations.svg`,  title: 'Support Center', desc: 'Connect with 100+ tools you already use',     href: '/resources/help-center' },
+  { id: 'blogs',       iconSrc: `${SOL}/marketing.svg`,   title: 'Blogs',          desc: 'Track performance and insights in real Time', href: '/resources/blog'        },
+  { id: 'engineering', iconSrc: `${SOL}/engineering.svg`, title: 'Engineering',    desc: 'Track performance and insights in real Time', href: '/solutions/engineering' },
+  { id: 'sales',       iconSrc: `${SOL}/sales.svg`,       title: 'Sales',          desc: 'Track performance and insights in real Time', href: '/solutions/sales'       },
 ]
 
-type DropdownKey = 'product' | 'solutions' | null
+const RESOURCES_COMPANY_A: SolutionItem[] = [
+  { id: 'startup',   iconSrc: `${SOL}/startup.svg`,        title: 'Startup',        desc: 'Workflows with smart automation',         href: '/solutions/startup'        },
+  { id: 'small-biz', iconSrc: `${SOL}/small-business.svg`, title: 'Small Business', desc: 'Leverage Ai to supercharge your pipline', href: '/solutions/small-business' },
+  { id: 'nonprofit', iconSrc: `${SOL}/nonprofit.svg`,      title: 'Non profit',     desc: 'Leverage Ai to supercharge your pipline', href: '/solutions/nonprofits'     },
+]
+
+const RESOURCES_COMPANY_B: SolutionItem[] = [
+  { id: 'gantt', iconSrc: `${SOL}/gantt.svg`, title: 'Gantt Chart', desc: 'Workflows with smart automation', href: '/product/gantt' },
+  { id: 'docs',  iconSrc: `${SOL}/docs.svg`,  title: 'Docs',        desc: 'Workflows with smart automation', href: '/product/docs'  },
+]
+
+const NAV_LINKS = [
+  { label: 'Pricing', href: '/pricing', caret: false },
+]
+
+type DropdownKey = 'product' | 'solutions' | 'resources' | null
 
 export function Navbar() {
   const [openMenu, setOpenMenu] = React.useState<DropdownKey>(null)
   const closeTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
   const productRef = React.useRef<HTMLDivElement | null>(null)
   const solutionsRef = React.useRef<HTMLDivElement | null>(null)
+  const resourcesRef = React.useRef<HTMLDivElement | null>(null)
 
   const openHandler = (which: DropdownKey) => () => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
@@ -85,7 +106,8 @@ export function Navbar() {
       const target = e.target as Node
       const isInProduct = productRef.current?.contains(target)
       const isInSolutions = solutionsRef.current?.contains(target)
-      if (!isInProduct && !isInSolutions) setOpenMenu(null)
+      const isInResources = resourcesRef.current?.contains(target)
+      if (!isInProduct && !isInSolutions && !isInResources) setOpenMenu(null)
     }
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
@@ -243,6 +265,69 @@ export function Navbar() {
                     <p className="px-3 pb-1 text-sm text-transparent" aria-hidden>.</p>
                     <ul>
                       {SOLUTIONS_COMPANY_B.map((s) => (
+                        <SolutionRow key={s.id} item={s} onClick={() => setOpenMenu(null)} />
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Resources dropdown */}
+          <div
+            ref={resourcesRef}
+            className="relative"
+            onMouseEnter={openHandler('resources')}
+            onMouseLeave={closeHandler}
+          >
+            <button
+              onClick={() => setOpenMenu(openMenu === 'resources' ? null : 'resources')}
+              className={cn(
+                'inline-flex items-center gap-1 rounded-lg px-3 py-2 text-[15px] font-medium transition-colors',
+                openMenu === 'resources' ? 'bg-gray-50 text-ink' : 'text-ink/80 hover:text-ink',
+              )}
+              aria-expanded={openMenu === 'resources'}
+            >
+              Resources
+              <ChevronDown
+                className={cn('h-3.5 w-3.5 transition-transform', openMenu === 'resources' && 'rotate-180')}
+              />
+            </button>
+
+            {openMenu === 'resources' && (
+              <div
+                role="menu"
+                className="absolute left-1/2 top-full z-50 mt-3 w-[760px] -translate-x-1/2 rounded-2xl bg-white p-3 shadow-2xl ring-1 ring-gray-100 animate-fade-up"
+                onMouseEnter={openHandler('resources')}
+                onMouseLeave={closeHandler}
+              >
+                <div className="rounded-lg bg-gray-100 px-3 py-2">
+                  <p className="text-xs font-semibold text-ink/80">Resources</p>
+                </div>
+                <div className="mt-1 grid grid-cols-3 gap-x-2 p-2">
+                  {/* Teams */}
+                  <div>
+                    <p className="px-3 pb-1 text-sm text-subtle">Teams</p>
+                    <ul>
+                      {RESOURCES_TEAMS.map((s) => (
+                        <SolutionRow key={s.id} item={s} onClick={() => setOpenMenu(null)} />
+                      ))}
+                    </ul>
+                  </div>
+                  {/* Company type */}
+                  <div>
+                    <p className="px-3 pb-1 text-sm text-subtle">Company type</p>
+                    <ul>
+                      {RESOURCES_COMPANY_A.map((s) => (
+                        <SolutionRow key={s.id} item={s} onClick={() => setOpenMenu(null)} />
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="px-3 pb-1 text-sm text-transparent" aria-hidden>.</p>
+                    <ul>
+                      {RESOURCES_COMPANY_B.map((s) => (
                         <SolutionRow key={s.id} item={s} onClick={() => setOpenMenu(null)} />
                       ))}
                     </ul>

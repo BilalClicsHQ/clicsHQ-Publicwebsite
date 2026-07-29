@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
-import { Megaphone, FileText, CheckCircle, FileBarChart } from 'lucide-react'
+import Image from 'next/image'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
-import { WorkflowStepsMockup } from '@/components/marketing/shared/ProductMockups'
+import { HeroOverlayCard } from '@/components/marketing/shared/HeroOverlayCard'
 
 const TOOL = '/images/tools'
 const SOL = '/images/solutions/marketing'
+const AI = '/images/ai'
 
 export const metadata: Metadata = { title: 'For Marketing teams' }
 
@@ -24,6 +25,13 @@ const config: SolutionPageConfig = {
     primaryLabel: 'Get Started',
     secondaryLabel: 'Book a demo',
     mockupSrc: `${SOL}/hero1.svg`,
+    mockupOverlay: (
+      <HeroOverlayCard
+        title="2 approvals pending"
+        body="Your Campaign Agent found pending reviews and one launch task that needs attention."
+        className="bottom-6 right-3 sm:right-6"
+      />
+    ),
     background: 'light',
   },
   benefits: {
@@ -62,10 +70,10 @@ const config: SolutionPageConfig = {
     subtitle:
       'Ask questions, create campaign briefs, summarize updates, and let AI agents help your team move from idea to launch faster.',
     items: [
-      { icon: Megaphone,    iconBg: 'bg-violet-100 text-violet-600', title: 'Campaign Agent',  body: 'Creates campaign plans, launch checklists, and task lists.' },
-      { icon: FileText,     iconBg: 'bg-pink-100 text-pink-600',     title: 'Content Agent',   body: 'Turns ideas into briefs, outlines, drafts, and content tasks.' },
-      { icon: CheckCircle,  iconBg: 'bg-amber-100 text-amber-600',   title: 'Approval Agent',  body: 'Tracks pending reviews and reminds the right owners.' },
-      { icon: FileBarChart, iconBg: 'bg-sky-100 text-sky-600',       title: 'Reporting Agent', body: 'Summarizes campaign progress and weekly marketing updates.' },
+      { avatarSrc: `${AI}/avatar-project-planner.png`,  title: 'Campaign Agent',  body: 'Creates campaign plans, launch checklists, and task lists.' },
+      { avatarSrc: `${AI}/avatar-executive-brief.png`,  title: 'Content Agent',   body: 'Turns ideas into briefs, outlines, drafts, and content tasks.' },
+      { avatarSrc: `${AI}/avatar-follow-up.png`,        title: 'Approval Agent',  body: 'Tracks pending reviews and reminds the right owners.' },
+      { avatarSrc: `${AI}/avatar-status-reporter.png`,  title: 'Reporting Agent', body: 'Summarizes campaign progress and weekly marketing updates.' },
     ],
   },
   useCases: {
@@ -94,14 +102,15 @@ const config: SolutionPageConfig = {
     body:
       'Build simple When → Then workflows to reduce manual follow-ups, missed approvals, and campaign handoff gaps.',
     visual: (
-      <WorkflowStepsMockup
-        steps={[
-          { label: 'When', sub: 'Creative request is submitted' },
-          { label: 'Then', sub: 'Assign to design owner' },
-          { label: 'Then', sub: 'Create review task' },
-          { label: 'Then', sub: 'Notify campaign lead' },
-        ]}
-      />
+      <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+        <Image
+          src="/images/solutions/smallBussiness/workflow-automation.svg"
+          alt="When → Then workflow automation example"
+          width={493}
+          height={325}
+          className="h-auto w-full"
+        />
+      </div>
     ),
   },
   spaces: {
@@ -129,6 +138,8 @@ const config: SolutionPageConfig = {
     subtitle: 'Bring campaign planning, execution, approvals, and AI assistance into one connected workspace.',
     primaryLabel: 'Get started',
     secondaryLabel: 'Book Demo',
+    image: '/images/solutions/footer/footer2.png',
+    imageAlt: '',
   },
 }
 

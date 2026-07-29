@@ -7,7 +7,7 @@ import { SectionHeader } from './SectionHeader'
 import { FeatureSplitRow } from './FeatureSplitRow'
 import { FeatureShowcase, type ShowcaseTile } from './FeatureShowcase'
 import { WorkflowCanvasMockup } from './ProductMockups'
-import { FinalCTAMountain } from './FinalCTAMountain'
+import { SolutionFinalCTA } from './SolutionFinalCTA'
 import { SolutionDarkBanner, type DarkBannerTile } from './SolutionDarkBanner'
 import { SolutionGradientBanner } from './SolutionGradientBanner'
 import { WorkflowCardRow, type WorkflowCard } from './WorkflowCardRow'
@@ -24,6 +24,8 @@ export interface SolutionPageConfig {
     primaryLabel?: string
     secondaryLabel?: string
     mockupSrc?: string
+    /** Floating element layered over the hero mockup (e.g. an AI agent card). */
+    mockupOverlay?: React.ReactNode
     background?: 'light' | 'soft-pink' | 'soft-violet'
   }
   /**
@@ -46,6 +48,8 @@ export interface SolutionPageConfig {
     items: Benefit[]
     columns?: 3 | 4
   }
+  /** Render `benefits` below `splitRows` instead of above (nonprofits Figma). */
+  benefitsAfterSplit?: boolean
   /**
    * Full-width black cross-sell banner — eyebrow + headline + body on the left,
    * a cluster of bordered feature tiles on the right. Renders after `benefits`.
@@ -136,9 +140,23 @@ export interface SolutionPageConfig {
     subtitle?: string
     primaryLabel?: string
     secondaryLabel?: string
+    /** Framed line-art illustration shown on the right of the banner. */
+    image?: string
+    imageAlt?: string
   }
   /** Background-color accent on the highlighted word in the cross grid section */
   accentColor?: HighlightColor
+}
+
+/** Soft brand-tinted tile background for each known integration (matched by alt). */
+const INTEGRATION_BG: Record<string, string> = {
+  Dropbox: 'bg-blue-100',
+  'Microsoft Teams': 'bg-indigo-100',
+  'Google Drive': 'bg-green-100',
+  Jira: 'bg-sky-100',
+  GitHub: 'bg-gray-100',
+  Figma: 'bg-red-100',
+  Slack: 'bg-pink-100',
 }
 
 /** Icon for each known "Spaces" view tab (matched by label). */
@@ -155,6 +173,18 @@ const SPACE_ICONS: Record<string, React.ComponentType<{ className?: string }>> =
  * Use cases → Workflow automation → Integrations → Spaces → FinalCTA → Footer.
  */
 export function SolutionPage({ config }: { config: SolutionPageConfig }) {
+  const benefits = config.benefits && (
+    <section className="container-app py-16 sm:py-20">
+      <SectionHeader
+        eyebrow={config.benefits.eyebrow}
+        title={config.benefits.title}
+        subtitle={config.benefits.subtitle}
+        className="mb-10 max-w-4xl"
+      />
+      <BenefitTrio items={config.benefits.items} columns={config.benefits.columns} />
+    </section>
+  )
+
   return (
     <>
       <ProductHero
@@ -166,6 +196,7 @@ export function SolutionPage({ config }: { config: SolutionPageConfig }) {
         primaryLabel={config.hero.primaryLabel}
         secondaryLabel={config.hero.secondaryLabel}
         mockupSrc={config.hero.mockupSrc}
+        mockupOverlay={config.hero.mockupOverlay}
         background={config.hero.background}
       />
 
@@ -181,17 +212,7 @@ export function SolutionPage({ config }: { config: SolutionPageConfig }) {
         />
       )}
 
-      {config.benefits && (
-        <section className="container-app py-16 sm:py-20">
-          <SectionHeader
-            eyebrow={config.benefits.eyebrow}
-            title={config.benefits.title}
-            subtitle={config.benefits.subtitle}
-            className="mb-10"
-          />
-          <BenefitTrio items={config.benefits.items} columns={config.benefits.columns} />
-        </section>
-      )}
+      {!config.benefitsAfterSplit && benefits}
 
       {config.darkBanner && (
         <SolutionDarkBanner
@@ -231,6 +252,8 @@ export function SolutionPage({ config }: { config: SolutionPageConfig }) {
           ))}
         </section>
       )}
+
+      {config.benefitsAfterSplit && benefits}
 
       {config.workflowCards && (
         <section className="container-app py-16 sm:py-20">
@@ -300,9 +323,14 @@ export function SolutionPage({ config }: { config: SolutionPageConfig }) {
             subtitle={config.integrations.subtitle}
             className="mb-10"
           />
-          <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-10 gap-y-6">
+          <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-3 sm:gap-4">
             {config.integrations.logos.map((l) => (
-              <Image key={l.src} src={l.src} alt={l.alt} width={120} height={48} className="h-9 w-auto" />
+              <span
+                key={l.src}
+                className={`grid h-14 w-14 place-items-center rounded-2xl shadow-sm ring-1 ring-black/5 ${INTEGRATION_BG[l.alt] ?? 'bg-gray-100'}`}
+              >
+                <Image src={l.src} alt={l.alt} width={30} height={30} className="h-7 w-7 object-contain" />
+              </span>
             ))}
           </div>
         </section>
@@ -333,11 +361,13 @@ export function SolutionPage({ config }: { config: SolutionPageConfig }) {
         </section>
       )}
 
-      <FinalCTAMountain
+      <SolutionFinalCTA
         title={config.finalCTA?.title}
         subtitle={config.finalCTA?.subtitle}
         primaryLabel={config.finalCTA?.primaryLabel}
         secondaryLabel={config.finalCTA?.secondaryLabel}
+        image={config.finalCTA?.image}
+        imageAlt={config.finalCTA?.imageAlt}
       />
 
       <Footer />

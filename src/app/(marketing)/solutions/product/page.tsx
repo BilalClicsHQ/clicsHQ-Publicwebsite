@@ -37,7 +37,7 @@ const config: SolutionPageConfig = {
     { eyebrow: 'Specs',     title: 'Specs that live with the work',            body: 'PRDs, decision docs, and acceptance criteria all in clicsHQ Docs.',       imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
     { eyebrow: 'Launch',    title: 'Cross-team launch coordination',           body: 'Marketing, sales, support, and engineering aligned on launch checklists.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
   ],
-  finalCTA: { title: 'Bring product teams onto one platform', subtitle: 'Plan, build, and launch from one connected workspace.' },
+  finalCTA: { title: 'Bring product teams onto one platform', subtitle: 'Plan, build, and launch from one connected workspace.', primaryLabel: 'Get started', secondaryLabel: 'Book Demo', image: '/images/solutions/footer/footer2.png' },
 }
 
 export default function ProductSolutionPage() {

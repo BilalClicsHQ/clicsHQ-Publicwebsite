@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Bot, FileBarChart, AlertTriangle, FileText } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
 import { WorkflowStepsMockup } from '@/components/marketing/shared/ProductMockups'
@@ -34,6 +33,7 @@ const config: SolutionPageConfig = {
     image: `${SOL}/Tree-01 1.svg`,
     imageAlt: 'clicsHQ for nonprofits',
   },
+  benefitsAfterSplit: true,
   benefits: {
     eyebrow: 'Nonprofit Use Cases',
     title: (
@@ -51,24 +51,7 @@ const config: SolutionPageConfig = {
   splitRows: [
     { eyebrow: 'Program Tracking', title: 'Track your programs and impact work',     body: 'Organize program tasks, owners, deadlines, updates, and supporting docs so nothing falls through the cracks.', imageSrc: `${SOL}/split-1.svg` },
     { eyebrow: 'Planning',          title: 'Schedule and manage tasks or events',    body: 'Create event checklists, assign volunteer tasks, track approvals, and keep every team member clear on what needs to happen next.', imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
-    { eyebrow: 'Impact',            title: 'Tell your impact story',                 body: 'AI summarizes program data into reports your donors will read.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
   ],
-  aiAssistant: {
-    eyebrow: 'clics AI',
-    title: (
-      <>
-        Meet your <Highlight color="violet">AI nonprofit</Highlight> assistant
-      </>
-    ),
-    subtitle:
-      'Ask questions, create updates, summarize work, and let AI agents help your team stay focused on the mission.',
-    items: [
-      { icon: Bot,           iconBg: 'bg-violet-100 text-violet-600', title: 'Program Agent',     body: 'Monitors program tasks, volunteers, and pending work.' },
-      { icon: FileBarChart,  iconBg: 'bg-pink-100 text-pink-600',     title: 'Reporting Agent',   body: 'Generates donor updates and impact summaries.' },
-      { icon: AlertTriangle, iconBg: 'bg-amber-100 text-amber-600',   title: 'Escalation Agent',  body: 'Flags overdue or high-priority tasks automatically.' },
-      { icon: FileText,      iconBg: 'bg-sky-100 text-sky-600',       title: 'Docs Assistant',    body: 'Helps teams find answers from internal docs.' },
-    ],
-  },
   workflowAutomation: {
     eyebrow: 'Workflow Automation',
     title: (
@@ -109,7 +92,7 @@ const config: SolutionPageConfig = {
       { src: `${TOOL}/Slack.svg`,   alt: 'Slack' },
     ],
   },
-  finalCTA: { title: 'Grow your nonprofit with less operational noise', subtitle: 'Bring tasks, docs, events, volunteers, and workflows into one connected workspace.', primaryLabel: 'Get started', secondaryLabel: 'Book Demo' },
+  finalCTA: { title: 'Grow your nonprofit with less operational noise', subtitle: 'Bring tasks, docs, events, volunteers, and workflows into one connected workspace.', primaryLabel: 'Get started', secondaryLabel: 'Book Demo', image: '/images/solutions/footer/footer2.png' },
 }
 
 export default function NonprofitsPage() {

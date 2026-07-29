@@ -1,11 +1,12 @@
  import type { Metadata } from 'next'
-import { FileText, FileBarChart, Bell, Briefcase } from 'lucide-react'
+import Image from 'next/image'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
-import { WorkflowStepsMockup } from '@/components/marketing/shared/ProductMockups'
+import { HeroOverlayCard } from '@/components/marketing/shared/HeroOverlayCard'
 
 const TOOL = '/images/tools'
 const SOL = '/images/solutions/Sales'
+const AI = '/images/ai'
 
 export const metadata: Metadata = { title: 'For Sales teams' }
 
@@ -24,6 +25,13 @@ const config: SolutionPageConfig = {
     primaryLabel: 'Get Started',
     secondaryLabel: 'Book a demo',
     mockupSrc: `${SOL}/hero1.svg`,
+    mockupOverlay: (
+      <HeroOverlayCard
+        title="9 follow-ups due"
+        body="Follow-up Agent found overdue deal tasks and pending proposal approvals."
+        className="bottom-6 right-3 sm:right-6"
+      />
+    ),
     background: 'light',
   },
   benefits: {
@@ -66,10 +74,10 @@ const config: SolutionPageConfig = {
     subtitle:
       'Use built-in AI agents to summarize calls, generate updates, break down tasks, track follow-ups, and keep sales work moving.',
     items: [
-      { icon: FileText,     iconBg: 'bg-violet-100 text-violet-600', title: 'Meeting Summarizer', body: 'Turns discovery calls, demos, and internal sales meetings into clear summaries and action items.' },
-      { icon: FileBarChart, iconBg: 'bg-pink-100 text-pink-600',     title: 'Status Reporter',    body: 'Generates quick deal and pipeline updates with completed work and next steps.' },
-      { icon: Bell,         iconBg: 'bg-amber-100 text-amber-600',   title: 'Follow-up Agent',    body: 'Reminds reps about inactive leads, pending follow-ups, and stale sales tasks.' },
-      { icon: Briefcase,    iconBg: 'bg-sky-100 text-sky-600',       title: 'Executive Brief',    body: 'Creates a high-level sales summary for leadership with risks, updates, and sales highlights.' },
+      { avatarSrc: `${AI}/avatar-project-planner.png`,   title: 'Meeting Summarizer', body: 'Turns discovery calls, demos, and internal sales meetings into clear summaries and action items.' },
+      { avatarSrc: `${AI}/avatar-meeting-summarizer.png`, title: 'Status Reporter',    body: 'Generates quick deal and pipeline updates with completed work and next steps.' },
+      { avatarSrc: `${AI}/avatar-status-reporter.png`,   title: 'Follow-up Agent',    body: 'Reminds reps about inactive leads, pending follow-ups, and stale sales tasks.' },
+      { avatarSrc: `${AI}/avatar-follow-up.png`,         title: 'Executive Brief',    body: 'Creates a high-level sales summary for leadership with risks, updates, and sales highlights.' },
     ],
   },
   useCases: {
@@ -100,14 +108,15 @@ const config: SolutionPageConfig = {
     body:
       'Build simple When → Then workflows to reduce manual follow-ups, missed reminders, and deal handoff gaps.',
     visual: (
-      <WorkflowStepsMockup
-        steps={[
-          { label: 'When', sub: 'New lead is added' },
-          { label: 'Then', sub: 'Assign sales owner' },
-          { label: 'Then', sub: 'Create follow-up task' },
-          { label: 'Then', sub: 'Notify sales manager' },
-        ]}
-      />
+      <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+        <Image
+          src={`${SOL}/Frame 2147205965.svg`}
+          alt="When → Then sales workflow automation example"
+          width={493}
+          height={325}
+          className="h-auto w-full"
+        />
+      </div>
     ),
   },
   spaces: {
@@ -130,7 +139,7 @@ const config: SolutionPageConfig = {
       { src: `${TOOL}/Slack.svg`,   alt: 'Slack' },
     ],
   },
-  finalCTA: { title: 'Close more deals with clicsHQ', subtitle: 'A single source of truth across your pipeline.' },
+  finalCTA: { title: 'Launch campaigns faster with clicsHQ', subtitle: 'Bring campaign planning, execution, approvals, and AI assistance into one connected workspace.', primaryLabel: 'Get started', secondaryLabel: 'Book Demo', image: '/images/solutions/footer/footer2.png' },
 }
 
 export default function SalesPage() {

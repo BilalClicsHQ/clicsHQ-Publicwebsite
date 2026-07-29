@@ -19,8 +19,10 @@ export function AISection() {
   return (
     <section className="relative px-4 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl rounded-[2rem] bg-ink px-6 py-16 text-white sm:px-10 sm:py-20 lg:px-14">
-        <h2 className="mx-auto max-w-3xl text-center text-balance text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-[44px]">
-          AI that does more than write summaries.
+        {/* Figma: medium weight, two lines. */}
+        <h2 className="mx-auto max-w-3xl text-center text-[28px] font-medium leading-[1.25] text-white sm:text-[34px] lg:text-[40px]">
+          AI that does more than write
+          <br className="hidden sm:block" /> summaries.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-white/70 sm:text-base">
           Let AI help create tasks, summarize project updates, detect blockers, and trigger
@@ -28,25 +30,19 @@ export function AISection() {
         </p>
 
         <div className="mt-12 grid gap-5 lg:grid-cols-[1.25fr_1fr] lg:items-stretch">
-          {/* Left — violet gradient preview card */}
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-violet-700 via-violet-500 to-fuchsia-500 p-6 sm:p-8">
-            {/* Soft glow */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background: 'radial-gradient(ellipse at top, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 60%)',
-              }}
+          {/* Left — Figma "Build your own workforce" composition (gradient + popup
+              baked into the exported SVG). */}
+          <div className="relative overflow-hidden rounded-2xl">
+            {/* unoptimized: the Next image optimizer 500s on this large exported SVG. */}
+            <Image
+              src="/images/icons/svg1.svg"
+              alt="Build your own AI workforce in minutes"
+              width={1400}
+              height={900}
+              unoptimized
+              loading="eager"
+              className="h-full w-full object-cover"
             />
-            <div className="relative mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-2xl">
-              <Image
-                src="/images/dashboards/ClicshqPage.svg"
-                alt="clicsHQ AI agents"
-                width={1580}
-                height={910}
-                className="h-auto w-full"
-              />
-            </div>
           </div>
 
           {/* Right — three dark cards */}

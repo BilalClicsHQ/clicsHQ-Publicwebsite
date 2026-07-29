@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
-import { Bot, FileBarChart, AlertTriangle, FileText } from 'lucide-react'
+import Image from 'next/image'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
-import { WorkflowStepsMockup } from '@/components/marketing/shared/ProductMockups'
+import { HeroOverlayCard } from '@/components/marketing/shared/HeroOverlayCard'
 
 const TOOL = '/images/tools'
 const OPS = '/images/solutions/operations'
+const AI = '/images/ai'
 
 export const metadata: Metadata = { title: 'For Operations teams' }
 
@@ -20,6 +21,13 @@ const config: SolutionPageConfig = {
     primaryLabel: 'Get Started',
     secondaryLabel: 'Book a demo',
     mockupSrc: `${OPS}/hero1.svg`,
+    mockupOverlay: (
+      <HeroOverlayCard
+        title="3 blockers found"
+        body="Your Operations Agent found overdue tasks and pending approvals that need attention."
+        className="bottom-6 right-3 sm:right-6"
+      />
+    ),
     background: 'light',
   },
   benefits: {
@@ -94,10 +102,10 @@ const config: SolutionPageConfig = {
     subtitle:
       'Ask questions, create updates, summarize work, and let AI agents help your team stay ahead of operational blockers.',
     items: [
-      { icon: Bot,           iconBg: 'bg-violet-100 text-violet-600', title: 'Operations Agent', body: 'Monitors tasks, blockers, and pending work.' },
-      { icon: FileBarChart,  iconBg: 'bg-pink-100 text-pink-600',     title: 'Reporting Agent',  body: 'Generates weekly updates and progress summaries.' },
-      { icon: AlertTriangle, iconBg: 'bg-amber-100 text-amber-600',   title: 'Escalation Agent', body: 'Flags overdue or high-priority tasks automatically.' },
-      { icon: FileText,      iconBg: 'bg-sky-100 text-sky-600',       title: 'Docs Assistant',   body: 'Helps teams find answers from internal docs.' },
+      { avatarSrc: `${AI}/avatar-project-planner.png`,   title: 'Operations Agent', body: 'Monitors tasks, blockers, and pending work.' },
+      { avatarSrc: `${AI}/avatar-meeting-summarizer.png`, title: 'Reporting Agent',  body: 'Generates weekly updates and progress summaries.' },
+      { avatarSrc: `${AI}/avatar-status-reporter.png`,    title: 'Escalation Agent', body: 'Flags overdue or high-priority tasks automatically.' },
+      { avatarSrc: `${AI}/avatar-follow-up.png`,          title: 'Docs Assistant',   body: 'Helps teams find answers from internal docs.' },
     ],
   },
   useCases: {
@@ -126,14 +134,15 @@ const config: SolutionPageConfig = {
     body:
       'Build simple When → Then workflows to reduce manual follow-ups, missed handoffs, and repetitive coordination.',
     visual: (
-      <WorkflowStepsMockup
-        steps={[
-          { label: 'When', sub: 'New request is submitted' },
-          { label: 'Then', sub: 'Assign to task owner' },
-          { label: 'Then', sub: 'Create follow-up task' },
-          { label: 'Then', sub: 'Notify operations lead' },
-        ]}
-      />
+      <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+        <Image
+          src="/images/solutions/smallBussiness/workflow-automation.svg"
+          alt="When → Then workflow automation example"
+          width={493}
+          height={325}
+          className="h-auto w-full"
+        />
+      </div>
     ),
   },
   spaces: {
@@ -161,6 +170,8 @@ const config: SolutionPageConfig = {
     subtitle: 'Manage operations, automate workflows, and align teams from one connected platform.',
     primaryLabel: 'Get started',
     secondaryLabel: 'Book Demo',
+    image: '/images/solutions/footer/footer2.png',
+    imageAlt: '',
   },
 }
 

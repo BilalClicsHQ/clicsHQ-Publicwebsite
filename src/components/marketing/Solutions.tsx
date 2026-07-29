@@ -58,12 +58,13 @@ export function Solutions() {
   const current = SOLUTIONS.find((s) => s.id === active) ?? SOLUTIONS[0]
 
   return (
-    <section className="bg-white py-20 sm:py-24">
+    <section className="bg-white py-14 sm:py-16">
       <div className="container-app">
-        {/* Heading */}
-        <h2 className="heading-lg text-center text-balance">
+        {/* Heading — Figma: medium weight, ~40px. */}
+        <h2 className="text-center text-balance text-[28px] font-medium tracking-normal text-ink sm:text-[36px] lg:text-[40px]">
           Solutions for every team, powered by{' '}
-          <span className="text-violet-500">AI</span>
+          {/* Figma-measured blue-violet (#6464FF), not violet-500. */}
+          <span className="text-[#6464FF]">AI</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-base text-muted">
           Keep your teams aligned and work moving with purpose-built solutions for every
@@ -95,7 +96,8 @@ export function Solutions() {
           {/* Left — text */}
           <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-14">
             <p className="text-xs text-muted">{current.eyebrow}</p>
-            <h3 className="mt-3 text-2xl font-bold leading-tight text-ink sm:text-3xl">
+            {/* Figma: medium weight, ~30px. */}
+            <h3 className="mt-3 text-2xl font-medium leading-[1.25] text-ink sm:text-[30px]">
               {current.title}
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-muted">{current.body}</p>

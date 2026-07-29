@@ -19,22 +19,18 @@ export function FinalCTA() {
         width={1440}
         height={607}
         priority
-        className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
+        className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover brightness-[.88] contrast-[1.15]"
       />
 
-      {/* Soft white gradient at the bottom-left for text legibility */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/70 via-white/30 to-transparent"
-      />
-
-      {/* Content */}
+      {/* Content — no white wash; in the Figma the text sits directly on the
+          light sky area and the landscape stays dark/punchy.  */}
       <div className="container-app relative py-24 sm:py-28 lg:py-32">
-        <div className="max-w-xl">
-          <h2 className="text-3xl font-bold leading-tight text-ink text-balance sm:text-4xl lg:text-5xl">
-            Bring your team’s work into one connected place.
+        <div className="max-w-2xl">
+          <h2 className="text-[28px] font-bold leading-[1.3] text-ink sm:text-[34px] lg:text-[40px]">
+            Bring your team’s work into one
+            <br className="hidden sm:block" /> connected place.
           </h2>
-          <p className="mt-4 max-w-md text-sm text-ink/70 sm:text-base">
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-ink/80">
             Plan projects, manage tasks, collaborate with your team, and automate the
             busywork with AI-powered workflows.
           </p>

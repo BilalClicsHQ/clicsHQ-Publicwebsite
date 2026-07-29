@@ -94,6 +94,8 @@ const config: Config = {
         display: ['Satoshi', 'SF Pro Text', '-apple-system', 'Helvetica Neue', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         // Manrope — secondary typeface (Google Fonts); use via `font-manrope`.
         manrope: ['Manrope', 'Satoshi', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Plus Jakarta Sans — hero subtitle per the Figma spec; use via `font-jakarta`.
+        jakarta: ['Plus Jakarta Sans', 'Satoshi', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         // Handwriting accent — replaces Figma's "Lucida Handwriting".
         handwriting: ['Caveat', 'Segoe Script', 'Bradley Hand', 'cursive'],
       },

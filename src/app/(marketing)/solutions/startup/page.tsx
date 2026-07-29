@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
-import { Eye, Sparkles, Workflow, Zap, Bot, FileBarChart, ListChecks, FileText } from 'lucide-react'
+import { Focus, Layers, Waypoints, BotMessageSquare, LayoutGrid, FileText, Workflow } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
+import { HeroOverlayCard } from '@/components/marketing/shared/HeroOverlayCard'
 
 const TOOL = '/images/tools'
 
@@ -22,6 +23,13 @@ const config: SolutionPageConfig = {
     primaryLabel: 'Get Started',
     secondaryLabel: 'Book a demo',
     mockupSrc: '/images/dashboards/ClicshqPage.svg',
+    mockupOverlay: (
+      <HeroOverlayCard
+        title="Status update summarized"
+        body="clics AI summarized recent task updates, blockers, and next steps."
+        className="bottom-6 right-3 sm:right-6"
+      />
+    ),
     background: 'soft-violet',
   },
   benefits: {
@@ -34,10 +42,10 @@ const config: SolutionPageConfig = {
     ),
     subtitle: 'Startups need one simple place to plan, assign, discuss, and track work.',
     items: [
-      { icon: Eye,      iconBg: 'bg-violet-100 text-violet-600',   title: 'Capture work',        body: 'Turn ideas, requests, and notes into tasks.' },
-      { icon: Zap,      iconBg: 'bg-amber-100 text-amber-600',     title: 'Organize in spaces',  body: 'Group work by project, team, or initiative.' },
-      { icon: Workflow, iconBg: 'bg-emerald-100 text-emerald-600', title: 'Track execution',     body: 'Use List, Kanban, Calendar, and Gantt views to manage progress.' },
-      { icon: Sparkles, iconBg: 'bg-pink-100 text-pink-600',       title: 'Use AI support',      body: 'Ask clics One to summarize work and create clearer updates.' },
+      { icon: Focus,            title: 'Capture work',       body: 'Turn ideas, requests, and notes into tasks.' },
+      { icon: Layers,           title: 'Organize in spaces', body: 'Group work by project, team, or initiative.' },
+      { icon: Waypoints,        title: 'Track execution',    body: 'Use List, Kanban, Calendar, and Gantt views to manage progress.' },
+      { icon: BotMessageSquare, title: 'Use AI support',     body: 'Ask clics One to summarize work and create clearer updates.' },
     ],
   },
   darkBanner: {
@@ -49,9 +57,9 @@ const config: SolutionPageConfig = {
     ),
     body: 'clicsHQ keeps tasks, docs, workflows, spaces, integrations, and AI assistance connected in one place.',
     tiles: [
-      { iconSrc: '/images/navbar/task.svg',      title: 'Tasks and project views', body: 'Manage task lists, Kanban boards, calendars, and project timelines.' },
-      { iconSrc: '/images/navbar/ai-assists.svg', title: 'Docs and Ask AI',         body: 'Create docs, keep notes with the work, and use Ask AI when you need answers faster.' },
-      { iconSrc: '/images/navbar/workflows.svg',  title: 'Workflow automation',     body: 'Use simple When → Then workflows for notifications, labels, comments, and task updates.' },
+      { icon: LayoutGrid, title: 'Tasks and project views', body: 'Manage task lists, Kanban boards, calendars, and project timelines.' },
+      { icon: FileText,   title: 'Docs and Ask AI',         body: 'Create docs, keep notes with the work, and use Ask AI when you need answers faster.' },
+      { icon: Workflow,   title: 'Workflow automation',     body: 'Use simple When → Then workflows for notifications, labels, comments, and task updates.' },
     ],
   },
   intro: {
@@ -60,9 +68,9 @@ const config: SolutionPageConfig = {
     subtitle: 'Give your team a clear view of progress, ownership, overdue items, and blocked tasks without chasing updates.',
   },
   splitRows: [
-    { title: 'Task progress and blockers',           body: 'See active work, what is on track, and what is stuck across every project.',         imageSrc: '/images/dashboards/ClicshqPage.svg' },
-    { title: 'Ownership and workload visibility',     body: 'Know who owns what and how work is balanced across the team.',                       imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
-    { title: 'AI-generated task summaries',           body: 'Let clics One recap progress, blockers, and next steps so updates write themselves.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
+    { title: 'Task progress and blockers',       body: 'Collaborate live with comments, mentions, shared editing, and instant updates across your team.', imageSrc: '/images/solutions/Sales/05. Kanban Board-2 1 (1).svg' },
+    { title: 'Ownership and workload visibility', body: 'Collaborate live with comments, mentions, shared editing, and instant updates across your team.', imageSrc: '/images/solutions/Sales/05. Kanban Board-3 1 (1).svg', reverse: true },
+    { title: 'AI-generated task summaries',       body: 'Collaborate live with comments, mentions, shared editing, and instant updates across your team.', imageSrc: '/images/solutions/Sales/Group 1171275314.svg' },
   ],
   workflowCards: {
     eyebrow: 'Workflow automation',
@@ -99,16 +107,16 @@ const config: SolutionPageConfig = {
     eyebrow: 'clics AI',
     title: (
       <>
-        Meet your <Highlight color="violet">AI startup</Highlight> assistant
+        <Highlight color="violet">AI assistance</Highlight> for daily startup work
       </>
     ),
     subtitle:
-      'Ask questions, create updates, break down work, and let AI agents help your small team move faster without extra overhead.',
+      'Use clics One to summarize work, create subtasks, generate status updates, and help your team find context faster.',
     items: [
-      { icon: Bot,          iconBg: 'bg-violet-100 text-violet-600', title: 'Startup Agent',     body: 'Tracks tasks, blockers, and what needs attention next.' },
-      { icon: ListChecks,   iconBg: 'bg-pink-100 text-pink-600',     title: 'Planning Agent',    body: 'Breaks big ideas into clear subtasks your team can run with.' },
-      { icon: FileBarChart, iconBg: 'bg-amber-100 text-amber-600',   title: 'Reporting Agent',   body: 'Generates status updates and progress summaries automatically.' },
-      { icon: FileText,     iconBg: 'bg-sky-100 text-sky-600',       title: 'Docs Assistant',    body: 'Helps your team find answers from notes and internal docs.' },
+      { title: 'Prompt',    body: '“Summarize updates from this project.”' },
+      { title: 'AI output', body: 'Summary of completed work, blockers, and next steps.' },
+      { title: 'Prompt',    body: '“Break this task into subtasks.”' },
+      { title: 'AI output', body: 'Suggested subtasks that the team can review and assign.' },
     ],
   },
   spaces: {
@@ -131,7 +139,7 @@ const config: SolutionPageConfig = {
       { src: `${TOOL}/Slack.svg`,   alt: 'Slack' },
     ],
   },
-  finalCTA: { title: 'Ship like a 10x team from day one', subtitle: 'Get every team aligned without adding tools.', primaryLabel: 'Get started', secondaryLabel: 'Book Demo' },
+  finalCTA: { title: 'Launch campaigns faster with clicsHQ', subtitle: 'Bring campaign planning, execution, approvals, and AI assistance into one connected workspace.', primaryLabel: 'Get started', secondaryLabel: 'Book Demo', image: '/images/solutions/footer/footer2.png' },
 }
 
 export default function StartupSolutionPage() {

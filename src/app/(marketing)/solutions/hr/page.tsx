@@ -37,7 +37,7 @@ const config: SolutionPageConfig = {
     { eyebrow: 'Onboarding', title: 'Onboarding that actually finishes', body: 'Every new hire gets a personalized 30/60/90 plan with owners and reminders.', imageSrc: '/images/dashboards/ClicshqPage.svg', reverse: true },
     { eyebrow: 'Reviews',    title: 'Performance reviews without spreadsheets', body: 'Calibration, 360s, and growth plans run end-to-end in clicsHQ.', imageSrc: '/images/dashboards/ClicshqPage.svg' },
   ],
-  finalCTA: { title: 'Build a people operations engine', subtitle: 'Scale your team and culture with structured workflows.' },
+  finalCTA: { title: 'Build a people operations engine', subtitle: 'Scale your team and culture with structured workflows.', primaryLabel: 'Get started', secondaryLabel: 'Book Demo', image: '/images/solutions/footer/footer2.png' },
 }
 
 export default function HRPage() {

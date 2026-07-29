@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { ListChecks, FileText, Bell, BookOpen } from 'lucide-react'
 import { SolutionPage, type SolutionPageConfig } from '@/components/marketing/shared/SolutionPage'
 import { Highlight } from '@/components/marketing/shared/Highlight'
 
 const TOOL = '/images/tools'
 const SOL = '/images/solutions/smallBussiness'
+const AI = '/images/ai'
 
 export const metadata: Metadata = { title: 'For Small Business' }
 
@@ -48,7 +48,7 @@ const config: SolutionPageConfig = {
     ),
     subtitle:
       'Keep your teams aligned and work moving with purpose-built solutions for every function, connected on one intelligent platform.',
-    image: '/images/dashboards/ClicshqPage.svg',
+    image: '/images/solutions/smallBussiness/daily-work.png',
     imageAlt: 'clicsHQ small business workspace',
   },
   splitRows: [
@@ -60,7 +60,7 @@ const config: SolutionPageConfig = {
         </>
       ),
       body: 'Give owners and managers a clear view of projects, deadlines, overdue tasks, and team priorities.',
-      imageSrc: `${SOL}/split-1.svg`,
+      imageSrc: '/images/solutions/marketing/split-2.svg',
     },
     {
       eyebrow: 'Workflow Automation',
@@ -70,7 +70,7 @@ const config: SolutionPageConfig = {
         </>
       ),
       body: 'Create simple When → Then workflows for reminders, ownership, updates, and handoffs.',
-      imageSrc: `${SOL}/split-2.svg`,
+      imageSrc: `${SOL}/workflow-automation.svg`,
       reverse: true,
     },
   ],
@@ -84,10 +84,10 @@ const config: SolutionPageConfig = {
     subtitle:
       'Ask questions, summarize updates, draft replies, and let AI agents handle the busywork for your team.',
     items: [
-      { icon: ListChecks, iconBg: 'bg-violet-100 text-violet-600', title: 'Task Agent',     body: 'Creates and organizes task lists.' },
-      { icon: FileText,   iconBg: 'bg-pink-100 text-pink-600',     title: 'Summary Agent',  body: 'Summarizes meetings and updates.' },
-      { icon: Bell,       iconBg: 'bg-amber-100 text-amber-600',   title: 'Reminder Agent', body: 'Flags overdue and upcoming work.' },
-      { icon: BookOpen,   iconBg: 'bg-sky-100 text-sky-600',       title: 'Docs Assistant', body: 'Finds answers from team docs.' },
+      { avatarSrc: `${AI}/avatar-project-planner.png`,   title: 'Task Agent',     body: 'Creates and organizes task lists.' },
+      { avatarSrc: `${AI}/avatar-meeting-summarizer.png`, title: 'Summary Agent',  body: 'Summarizes meetings and updates.' },
+      { avatarSrc: `${AI}/avatar-status-reporter.png`,   title: 'Reminder Agent', body: 'Flags overdue and upcoming work.' },
+      { avatarSrc: `${AI}/avatar-follow-up.png`,         title: 'Docs Assistant', body: 'Finds answers from team docs.' },
     ],
   },
   spaces: {
@@ -115,6 +115,7 @@ const config: SolutionPageConfig = {
     subtitle: 'Manage projects, tasks, docs, workflows, and AI updates with clicsHQ.',
     primaryLabel: 'Get started',
     secondaryLabel: 'Book Demo',
+    image: '/images/solutions/footer/footer2.png',
   },
 }
 

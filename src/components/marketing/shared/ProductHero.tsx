@@ -22,6 +22,7 @@ export function ProductHero({
   mockupSrc,
   mockupAlt = '',
   mockup,
+  mockupOverlay,
   background = 'light',
 }: {
   eyebrow?: string
@@ -36,6 +37,8 @@ export function ProductHero({
   mockupSrc?: string
   mockupAlt?: string
   mockup?: React.ReactNode
+  /** Floating element layered over the mockup (not clipped by its rounded frame). */
+  mockupOverlay?: React.ReactNode
   background?: 'light' | 'soft-pink' | 'soft-violet'
 }) {
   const bg = {
@@ -84,8 +87,17 @@ export function ProductHero({
                 height={620}
                 className="h-auto w-full"
               />
+              {/* Soft white fade along the bottom so the mockup melts into the
+                  page (matches the Figma hero treatment). */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white via-white/70 to-transparent"
+              />
             </div>
           ) : null}
+          {/* Floating overlay (e.g. the clicsAI agent card) — sits outside the
+              mockup's overflow-hidden frame so it isn't clipped. */}
+          {mockupOverlay}
         </div>
       </div>
     </section>
