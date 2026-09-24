@@ -14,13 +14,12 @@ import { AiWayTile, AskAiDocsMockup } from './shared/ProductMockups'
 
 const IMG = '/images/ai'
 
-// ponytail: `avatar` null → gradient tile only. Workload Analyzer has no exported avatar yet.
 const AGENTS = [
   { avatar: 'avatar-project-planner.png',    name: 'Project Planner',    tag: 'Planning',   desc: 'Create full project plans, milestones, goals, timelines, and task breakdowns.' },
   { avatar: 'avatar-meeting-summarizer.png', name: 'Meeting Summarizer', tag: 'Meetings',   desc: 'Turn meetings into clean summaries, decisions, and action items.' },
   { avatar: 'avatar-status-reporter.png',    name: 'Status Reporter',    tag: 'Reporting',  desc: 'Generate project updates, progress reports, and leadership summaries.' },
   { avatar: 'avatar-follow-up.png',          name: 'Follow-up Agent',    tag: 'Team',       desc: 'Track blockers, pending tasks, inactive work, and delayed updates.' },
-  { avatar: null,                            name: 'Workload Analyzer',  tag: 'Capacity',   desc: 'Identify overloaded team members and suggest reassignment opportunities.' },
+  { avatar: 'ai-workload-summarizer.png',    name: 'Workload Analyzer',  tag: 'Capacity',   desc: 'Identify overloaded team members and suggest reassignment opportunities.' },
   { avatar: 'avatar-executive-brief.png',    name: 'Executive Brief',    tag: 'Leadership', desc: 'Create leadership-ready summaries with progress, blockers, and key highlights.' },
 ]
 
